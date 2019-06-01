@@ -155,14 +155,14 @@
               prop="name"
               align="left"
               fixed
-              label="姓名"
+              label="客户名称"
               width="90">
             </el-table-column>
             <el-table-column
               prop="workID"
               width="85"
               align="left"
-              label="工号">
+              label="客户编码">
             </el-table-column>
             <el-table-column
               prop="gender"
