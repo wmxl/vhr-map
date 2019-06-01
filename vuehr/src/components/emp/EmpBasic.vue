@@ -22,6 +22,7 @@
             style="margin-right: 5px"></i>高级搜索
           </el-button>
         </div>
+
         <div style="margin-left: 5px;margin-right: 20px;display: inline">
           <el-upload
             :show-file-list="false"
@@ -42,8 +43,10 @@
             添加员工
           </el-button>
         </div>
+
       </el-header>
       <el-main style="padding-left: 0px;padding-top: 0px">
+        
         <div>
           <transition name="slide-fade">
             <div
@@ -166,7 +169,7 @@
             </el-table-column>
             <el-table-column
               prop="gender"
-              label="性别"
+              label="省份"
               width="50">
             </el-table-column>
             <el-table-column
@@ -305,8 +308,10 @@
             </el-pagination>
           </div>
         </div>
+
       </el-main>
     </el-container>
+
     <el-form :model="emp" :rules="rules" ref="addEmpForm" style="margin: 0px;padding: 0px;">
       <div style="text-align: left">
         <el-dialog
@@ -318,7 +323,7 @@
           <el-row>
             <el-col :span="6">
               <div>
-                <el-form-item label="姓名:" prop="name">
+                <el-form-item label="客户名称:" prop="name">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.name" size="mini" style="width: 150px"
                             placeholder="请输入员工姓名"></el-input>
                 </el-form-item>
@@ -326,11 +331,13 @@
             </el-col>
             <el-col :span="5">
               <div>
-                <el-form-item label="性别:" prop="gender">
-                  <el-radio-group v-model="emp.gender">
+                <el-form-item label="省份:" prop="gender">
+                  <!-- <el-radio-group v-model="emp.gender">
                     <el-radio label="男">男</el-radio>
                     <el-radio style="margin-left: 15px" label="女">女</el-radio>
-                  </el-radio-group>
+                  </el-radio-group> -->
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.gender" size="mini" style="width: 150px"
+                            placeholder="请输入省份"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -596,6 +603,7 @@
     </el-form>
   </div>
 </template>
+<!-- JS -->
 <script>
   export default {
     data() {
