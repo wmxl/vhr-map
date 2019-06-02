@@ -7,7 +7,7 @@ import java.util.Date;
 public class Employee {
     private Long id;
     private String name;
-    private String gender;
+    private String province;
     private Date birthday;
     private String idCard;
     private String wedlock;
@@ -117,12 +117,12 @@ public class Employee {
         this.name = name;
     }
 
-    public String getGender() {
-        return gender;
+    public String getProvince() {
+        return province;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public Date getBirthday() {

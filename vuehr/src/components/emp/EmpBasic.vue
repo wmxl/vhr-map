@@ -168,7 +168,7 @@
               label="客户编码">
             </el-table-column>
             <el-table-column
-              prop="gender"
+              prop="province"
               label="省份"
               width="50">
             </el-table-column>
@@ -331,12 +331,12 @@
             </el-col>
             <el-col :span="5">
               <div>
-                <el-form-item label="省份:" prop="gender">
+                <el-form-item label="省份:" prop="province">
                   <!-- <el-radio-group v-model="emp.gender">
                     <el-radio label="男">男</el-radio>
                     <el-radio style="margin-left: 15px" label="女">女</el-radio>
                   </el-radio-group> -->
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.gender" size="mini" style="width: 150px"
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.province" size="mini" style="width: 150px"
                             placeholder="请输入省份"></el-input>
                 </el-form-item>
               </div>
@@ -640,7 +640,7 @@
         showOrHidePop2: false,
         emp: {
           name: '',
-          gender: '',
+          province: '',
           birthday: '',
           idCard: '',
           wedlock: '',
@@ -670,7 +670,7 @@
         },
         rules: {
           name: [{required: true, message: '必填:姓名', trigger: 'blur'}],
-          gender: [{required: true, message: '必填:性别', trigger: 'blur'}],
+          province: [{required: true, message: '必填:省份', trigger: 'blur'}],
           birthday: [{required: true, message: '必填:出生日期', trigger: 'blur'}],
           idCard: [{
             required: true,
@@ -918,7 +918,7 @@
       emptyEmpData(){
         this.emp = {
           name: '',
-          gender: '',
+          province: '',
           birthday: '',
           idCard: '',
           wedlock: '',

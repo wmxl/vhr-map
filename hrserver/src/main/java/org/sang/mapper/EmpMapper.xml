@@ -10,7 +10,7 @@
         select * from politicsstatus;
     </select>
     <insert id="addEmp" parameterType="org.sang.bean.Employee">
-            insert into employee (name, gender,
+            insert into employee (name, province,
       birthday, idCard, wedlock, nationId,
       nativePlace, politicId, email,
       phone, address, departmentId,
@@ -20,7 +20,7 @@
       contractTerm, conversionTime,
       beginContract, endContract, workAge
       )
-    values (#{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR},
+    values (#{name,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
       #{birthday,jdbcType=DATE}, #{idCard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER},
       #{nativePlace,jdbcType=VARCHAR}, #{politicId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER},
@@ -37,7 +37,7 @@
     <resultMap id="BaseResultMap" type="org.sang.bean.Employee">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
-        <result column="gender" property="gender"/>
+        <result column="province" property="province"/>
         <result column="birthday" property="birthday"/>
         <result column="idCard" property="idCard"/>
         <result column="wedlock" property="wedlock"/>
@@ -162,8 +162,8 @@
             <if test="emp.name != null">
                 name = #{emp.name,jdbcType=VARCHAR},
             </if>
-            <if test="emp.gender != null">
-                gender = #{emp.gender,jdbcType=CHAR},
+            <if test="emp.province != null">
+                province = #{emp.province,jdbcType=VARCHAR},
             </if>
             <if test="emp.birthday != null">
                 birthday = #{emp.birthday,jdbcType=DATE},
@@ -244,7 +244,7 @@
         </foreach>
     </delete>
     <insert id="addEmps">
-        insert into employee (name, gender,
+        insert into employee (name, province,
         birthday, idCard, wedlock, nationId,
         nativePlace, politicId, email,
         phone, address, departmentId,
@@ -256,7 +256,7 @@
         )
         values
         <foreach collection="emps" item="emp" separator=",">
-            (#{emp.name,jdbcType=VARCHAR}, #{emp.gender,jdbcType=CHAR},
+            (#{emp.name,jdbcType=VARCHAR}, #{emp.province,jdbcType=VARCHAR},
             #{emp.birthday,jdbcType=DATE}, #{emp.idCard,jdbcType=CHAR}, #{emp.wedlock,jdbcType=CHAR},
             #{emp.nationId,jdbcType=BIGINT},
             #{emp.nativePlace,jdbcType=VARCHAR}, #{emp.politicId,jdbcType=BIGINT}, #{emp.email,jdbcType=VARCHAR},
