@@ -48,6 +48,7 @@
       <el-main style="padding-left: 0px;padding-top: 0px">
         
         <div>
+<!--          主列表之前-->
           <transition name="slide-fade">
             <div
               style="margin-bottom: 10px;border: 1px;border-radius: 5px;border-style: solid;padding: 5px 0px 5px 0px;box-sizing:border-box;border-color: #20a0ff"
@@ -141,6 +142,8 @@
               </el-row>
             </div>
           </transition>
+<!--          主列表之前 结束-->
+<!--          主列表-->
           <el-table
             :data="emps"
             v-loading="tableLoading"
@@ -172,11 +175,24 @@
               align="left"
               label="客户编码">
             </el-table-column>
+
             <el-table-column
               prop="province"
               label="省份"
               width="50">
             </el-table-column>
+            <el-table-column
+              prop="city"
+              label="城市2"
+              width="50">
+            </el-table-column>
+            <el-table-column
+              prop="county"
+              label="县"
+              width="50">
+            </el-table-column>
+
+
             <el-table-column
               width="85"
               align="left"
@@ -299,6 +315,8 @@
               </template>
             </el-table-column>
           </el-table>
+<!--          主列表结束-->
+<!--          主列表之后-->
           <div style="display: flex;justify-content: space-between;margin: 2px">
             <el-button type="danger" size="mini" v-if="emps.length>0" :disabled="multipleSelection.length==0"
                        @click="deleteManyEmps">批量删除
@@ -312,11 +330,12 @@
               :total="totalCount">
             </el-pagination>
           </div>
+<!--          主列表之后 结束-->
         </div>
 
       </el-main>
     </el-container>
-
+<!--    添加数据-->
     <el-form :model="emp" :rules="rules" ref="addEmpForm" style="margin: 0px;padding: 0px;">
       <div style="text-align: left">
         <el-dialog
@@ -350,6 +369,23 @@
                 </el-form-item>
               </div>
             </el-col>
+            <el-col :span="5">
+              <div>
+                <el-form-item label="城市:" prop="city">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.city" size="mini" style="width: 150px"
+                            placeholder="请输入城市"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+            <el-col :span="5">
+              <div>
+                <el-form-item label="县:" prop="county">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.county" size="mini" style="width: 150px"
+                            placeholder="请输入县"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
             <el-col :span="6">
               <div>
                 <el-form-item label="出生日期:" prop="birthday">
@@ -604,12 +640,15 @@
             </el-col>
           </el-row>
           <span slot="footer" class="dialog-footer">
-    <el-button size="mini" @click="cancelEidt">取 消</el-button>
-    <el-button size="mini" type="primary" @click="addEmp('addEmpForm')">确 定</el-button>
-  </span>
+            <el-button size="mini" @click="cancelEidt">取 消</el-button>
+            <el-button size="mini" type="primary" @click="addEmp('addEmpForm')">确 定</el-button>
+          </span>
         </el-dialog>
       </div>
     </el-form>
+<!--    添加数据结束-->
+
+
   </div>
 </template>
 <!-- JS -->
@@ -651,6 +690,9 @@
           name: '',
           highSea: '',
           province: '',
+          city: '',
+          county: '',
+
           birthday: '',
           idCard: '',
           wedlock: '',
@@ -930,6 +972,9 @@
           name: '',
           highSea: '',
           province: '',
+          city: '',
+          county: '',
+
           birthday: '',
           idCard: '',
           wedlock: '',
@@ -961,6 +1006,7 @@
     }
   };
 </script>
+<!--样式-->
 <style>
   .el-dialog__body {
     padding-top: 0px;
