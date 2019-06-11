@@ -162,6 +162,11 @@
               width="90">
             </el-table-column>
             <el-table-column
+              prop="highSea"
+              label="公海"
+              width="50">
+            </el-table-column>
+            <el-table-column
               prop="workID"
               width="85"
               align="left"
@@ -331,11 +336,15 @@
             </el-col>
             <el-col :span="5">
               <div>
+                <el-form-item label="公海:" prop="highSea">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.highSea" size="mini" style="width: 150px"
+                            placeholder="请输入公海"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+            <el-col :span="5">
+              <div>
                 <el-form-item label="省份:" prop="province">
-                  <!-- <el-radio-group v-model="emp.gender">
-                    <el-radio label="男">男</el-radio>
-                    <el-radio style="margin-left: 15px" label="女">女</el-radio>
-                  </el-radio-group> -->
                   <el-input prefix-icon="el-icon-edit" v-model="emp.province" size="mini" style="width: 150px"
                             placeholder="请输入省份"></el-input>
                 </el-form-item>
@@ -640,6 +649,7 @@
         showOrHidePop2: false,
         emp: {
           name: '',
+          highSea: '',
           province: '',
           birthday: '',
           idCard: '',
@@ -918,6 +928,7 @@
       emptyEmpData(){
         this.emp = {
           name: '',
+          highSea: '',
           province: '',
           birthday: '',
           idCard: '',
