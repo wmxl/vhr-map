@@ -7,7 +7,12 @@ import java.util.Date;
 public class Employee {
     private Long id;
     private String name;
+    private String highSea;
     private String province;
+
+
+    private String city;
+    private String county;
     private Date birthday;
     private String idCard;
     private String wedlock;
@@ -364,5 +369,25 @@ public class Employee {
 
     public void setWorkAge(Integer workAge) {
         this.workAge = workAge;
+    }
+
+
+    public void setHighSea(String highSea) {
+        this.highSea = highSea;
+    }
+    public String getHighSea() {
+        return highSea;
+    }
+    public String getCity() {
+        return city;
+    }
+    public String getCounty() {
+        return county;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
+    public void setCounty(String county) {
+        this.county = county;
     }
 }

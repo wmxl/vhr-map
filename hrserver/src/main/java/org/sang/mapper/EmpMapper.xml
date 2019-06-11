@@ -10,7 +10,7 @@
         select * from politicsstatus;
     </select>
     <insert id="addEmp" parameterType="org.sang.bean.Employee">
-            insert into employee (name, province,
+            insert into employee (name, highSea, province, city, county,
       birthday, idCard, wedlock, nationId,
       nativePlace, politicId, email,
       phone, address, departmentId,
@@ -20,7 +20,8 @@
       contractTerm, conversionTime,
       beginContract, endContract, workAge
       )
-    values (#{name,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
+    values (#{name,jdbcType=VARCHAR}, #{highSea,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
+        #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR},
       #{birthday,jdbcType=DATE}, #{idCard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER},
       #{nativePlace,jdbcType=VARCHAR}, #{politicId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER},
@@ -37,7 +38,10 @@
     <resultMap id="BaseResultMap" type="org.sang.bean.Employee">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
+        <result column="highSea" property="highSea"/>
         <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="county" property="county"/>
         <result column="birthday" property="birthday"/>
         <result column="idCard" property="idCard"/>
         <result column="wedlock" property="wedlock"/>
@@ -162,8 +166,17 @@
             <if test="emp.name != null">
                 name = #{emp.name,jdbcType=VARCHAR},
             </if>
+            <if test="emp.highSea != null">
+                highSea = #{emp.highSea,jdbcType=VARCHAR},
+            </if>
             <if test="emp.province != null">
                 province = #{emp.province,jdbcType=VARCHAR},
+            </if>
+            <if test="emp.city != null">
+                city = #{emp.city,jdbcType=VARCHAR},
+            </if>
+            <if test="emp.county != null">
+                county = #{emp.county,jdbcType=VARCHAR},
             </if>
             <if test="emp.birthday != null">
                 birthday = #{emp.birthday,jdbcType=DATE},
@@ -244,7 +257,7 @@
         </foreach>
     </delete>
     <insert id="addEmps">
-        insert into employee (name, province,
+        insert into employee (name, highSea, province, ciy, county,
         birthday, idCard, wedlock, nationId,
         nativePlace, politicId, email,
         phone, address, departmentId,
@@ -256,7 +269,8 @@
         )
         values
         <foreach collection="emps" item="emp" separator=",">
-            (#{emp.name,jdbcType=VARCHAR}, #{emp.province,jdbcType=VARCHAR},
+            (#{emp.name,jdbcType=VARCHAR}, #{emp.highSea,jdbcType=VARCHAR}, #{emp.province,jdbcType=VARCHAR},
+            #{emp.city,jdbcType=VARCHAR}, #{emp.county,jdbcType=VARCHAR},
             #{emp.birthday,jdbcType=DATE}, #{emp.idCard,jdbcType=CHAR}, #{emp.wedlock,jdbcType=CHAR},
             #{emp.nationId,jdbcType=BIGINT},
             #{emp.nativePlace,jdbcType=VARCHAR}, #{emp.politicId,jdbcType=BIGINT}, #{emp.email,jdbcType=VARCHAR},
