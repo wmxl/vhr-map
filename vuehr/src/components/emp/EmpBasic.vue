@@ -183,12 +183,17 @@
             </el-table-column>
             <el-table-column
               prop="city"
-              label="城市2"
+              label="城市"
               width="50">
             </el-table-column>
             <el-table-column
               prop="county"
               label="县"
+              width="50">
+            </el-table-column>
+            <el-table-column
+              prop="industry"
+              label="行业"
               width="50">
             </el-table-column>
 
@@ -382,6 +387,14 @@
                 <el-form-item label="县:" prop="county">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.county" size="mini" style="width: 150px"
                             placeholder="请输入县"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+            <el-col :span="5">
+              <div>
+                <el-form-item label="行业:" prop="industry">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.industry" size="mini" style="width: 150px"
+                            placeholder="请输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -692,6 +705,7 @@
           province: '',
           city: '',
           county: '',
+          industry: '',
 
           birthday: '',
           idCard: '',
@@ -722,17 +736,10 @@
         },
         rules: {
           name: [{required: true, message: '必填:姓名', trigger: 'blur'}],
-          province: [{required: true, message: '必填:省份', trigger: 'blur'}],
+          province: [{message: '必填:省份', trigger: 'blur'}],
+          city: [{required: true, message: '必填:省份'}],
           birthday: [{required: true, message: '必填:出生日期', trigger: 'blur'}],
-          idCard: [{
-            required: true,
-            message: '必填:身份证号码',
-            trigger: 'blur'
-          }, {
-            pattern: /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/,
-            message: '身份证号码格式不正确',
-            trigger: 'blur'
-          }],
+
           wedlock: [{required: true, message: '必填:婚姻状况', trigger: 'blur'}],
           nationId: [{required: true, message: '必填:民族', trigger: 'change'}],
           nativePlace: [{required: true, message: '必填:籍贯', trigger: 'blur'}],
@@ -742,20 +749,6 @@
             message: '邮箱格式不正确',
             trigger: 'blur'
           }],
-          phone: [{required: true, message: '必填:电话号码', trigger: 'blur'}],
-          address: [{required: true, message: '必填:联系地址', trigger: 'blur'}],
-          departmentId: [{required: true, message: '必填:部门', trigger: 'change'}],
-          jobLevelId: [{required: true, message: '必填:职称', trigger: 'change'}],
-          posId: [{required: true, message: '必填:职位', trigger: 'change'}],
-          engageForm: [{required: true, message: '必填:聘用形式', trigger: 'blur'}],
-          tiptopDegree: [{required: true, message: '必填:最高学历', trigger: 'change'}],
-          specialty: [{required: true, message: '必填:专业', trigger: 'blur'}],
-          workID: [{required: true, message: '必填:工号', trigger: 'blur'}],
-          school: [{required: true, message: '必填:毕业院校', trigger: 'blur'}],
-          beginDate: [{required: true, message: '必填:入职日期', trigger: 'blur'}],
-          conversionTime: [{required: true, message: '必填:转正日期', trigger: 'blur'}],
-          beginContract: [{required: true, message: '必填:合同起始日期', trigger: 'blur'}],
-          endContract: [{required: true, message: '必填:合同终止日期', trigger: 'blur'}],
           workAge: [{required: true, message: '必填:工龄', trigger: 'blur'}]
         }
       };
@@ -974,6 +967,7 @@
           province: '',
           city: '',
           county: '',
+          industry: '',
 
           birthday: '',
           idCard: '',

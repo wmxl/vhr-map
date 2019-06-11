@@ -12,7 +12,20 @@ public class Employee {
 
 
     private String city;
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
     private String county;
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    private String industry;
+
+
     private Date birthday;
     private String idCard;
     private String wedlock;

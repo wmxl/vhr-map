@@ -10,7 +10,7 @@
         select * from politicsstatus;
     </select>
     <insert id="addEmp" parameterType="org.sang.bean.Employee">
-            insert into employee (name, highSea, province, city, county,
+            insert into employee (name, highSea, province, city, county, industry
       birthday, idCard, wedlock, nationId,
       nativePlace, politicId, email,
       phone, address, departmentId,
@@ -21,7 +21,7 @@
       beginContract, endContract, workAge
       )
     values (#{name,jdbcType=VARCHAR}, #{highSea,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
-        #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR},
+        #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR},
       #{birthday,jdbcType=DATE}, #{idCard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER},
       #{nativePlace,jdbcType=VARCHAR}, #{politicId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER},
@@ -42,6 +42,7 @@
         <result column="province" property="province"/>
         <result column="city" property="city"/>
         <result column="county" property="county"/>
+        <result column="industry" property="industry"/>
         <result column="birthday" property="birthday"/>
         <result column="idCard" property="idCard"/>
         <result column="wedlock" property="wedlock"/>
@@ -178,6 +179,9 @@
             <if test="emp.county != null">
                 county = #{emp.county,jdbcType=VARCHAR},
             </if>
+            <if test="emp.industry != null">
+                industry = #{emp.industry,jdbcType=VARCHAR},
+            </if>
             <if test="emp.birthday != null">
                 birthday = #{emp.birthday,jdbcType=DATE},
             </if>
@@ -257,7 +261,7 @@
         </foreach>
     </delete>
     <insert id="addEmps">
-        insert into employee (name, highSea, province, ciy, county,
+        insert into employee (name, highSea, province, ciy, county, industry
         birthday, idCard, wedlock, nationId,
         nativePlace, politicId, email,
         phone, address, departmentId,
@@ -270,7 +274,7 @@
         values
         <foreach collection="emps" item="emp" separator=",">
             (#{emp.name,jdbcType=VARCHAR}, #{emp.highSea,jdbcType=VARCHAR}, #{emp.province,jdbcType=VARCHAR},
-            #{emp.city,jdbcType=VARCHAR}, #{emp.county,jdbcType=VARCHAR},
+            #{emp.city,jdbcType=VARCHAR}, #{emp.county,jdbcType=VARCHAR}, #{emp.industry,jdbcType=VARCHAR},
             #{emp.birthday,jdbcType=DATE}, #{emp.idCard,jdbcType=CHAR}, #{emp.wedlock,jdbcType=CHAR},
             #{emp.nationId,jdbcType=BIGINT},
             #{emp.nativePlace,jdbcType=VARCHAR}, #{emp.politicId,jdbcType=BIGINT}, #{emp.email,jdbcType=VARCHAR},
