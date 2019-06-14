@@ -13,6 +13,16 @@ public class Employee {
 
     private String city;
 
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    private String remark;
+
     public void setIndustry(String industry) {
         this.industry = industry;
     }
