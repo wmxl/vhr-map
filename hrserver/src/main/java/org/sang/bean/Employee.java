@@ -9,62 +9,18 @@ public class Employee {
     private String name;
     private String highSea;
     private String province;
-
-
     private String city;
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    private String remark;
-
-    public void setIndustry(String industry) {
-        this.industry = industry;
-    }
-
     private String county;
 
-    public String getIndustry() {
-        return industry;
-    }
-
-    private String industry;
     private String website;
+    private String remark;
     private String businessReceipt;
     private String businessScope;
 
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    public String getBusinessReceipt() {
-        return businessReceipt;
-    }
-
-    public void setBusinessReceipt(String businessReceipt) {
-        this.businessReceipt = businessReceipt;
-    }
-
-    public String getBusinessScope() {
-        return businessScope;
-    }
-
-    public void setBusinessScope(String businessScope) {
-        this.businessScope = businessScope;
-    }
 
 
 
-
+    private String industry;
     private Date birthday;
     private String idCard;
     private String wedlock;
@@ -446,5 +402,44 @@ public class Employee {
 
     public void setCounty(String county) {
         this.county = county;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getBusinessReceipt() {
+        return businessReceipt;
+    }
+
+    public void setBusinessReceipt(String businessReceipt) {
+        this.businessReceipt = businessReceipt;
+    }
+
+    public String getBusinessScope() {
+        return businessScope;
+    }
+
+    public void setBusinessScope(String businessScope) {
+        this.businessScope = businessScope;
     }
 }

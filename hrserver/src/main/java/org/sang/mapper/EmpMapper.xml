@@ -10,7 +10,8 @@
         select * from politicsstatus;
     </select>
     <insert id="addEmp" parameterType="org.sang.bean.Employee">
-            insert into employee (name, highSea, province, city, county, industry
+            insert into employee (name, highSea, province, city, county, industry,
+        website, remark, businessReceipt, businessScope,
       birthday, idCard, wedlock, nationId,
       nativePlace, politicId, email,
       phone, address, departmentId,
@@ -22,6 +23,9 @@
       )
     values (#{name,jdbcType=VARCHAR}, #{highSea,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
         #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR},
+
+        #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR},
+
       #{birthday,jdbcType=DATE}, #{idCard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER},
       #{nativePlace,jdbcType=VARCHAR}, #{politicId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER},
@@ -42,6 +46,13 @@
         <result column="province" property="province"/>
         <result column="city" property="city"/>
         <result column="county" property="county"/>
+
+        <result column="website" property="website"/>
+        <result column="remark" property="remark"/>
+        <result column="businessReceipt" property="businessReceipt"/>
+        <result column="businessScope" property="businessScope"/>
+
+
         <result column="industry" property="industry"/>
         <result column="birthday" property="birthday"/>
         <result column="idCard" property="idCard"/>
@@ -179,6 +190,21 @@
             <if test="emp.county != null">
                 county = #{emp.county,jdbcType=VARCHAR},
             </if>
+
+            <if test="emp.website != null">
+                website = #{emp.website,jdbcType=VARCHAR},
+            </if>
+            <if test="emp.remark != null">
+                remark = #{emp.remark,jdbcType=VARCHAR},
+            </if>
+            <if test="emp.businessReceipt != null">
+                businessReceipt = #{emp.businessReceipt,jdbcType=VARCHAR},
+            </if>
+            <if test="emp.businessScope != null">
+                businessScope = #{emp.businessScope,jdbcType=VARCHAR},
+            </if>
+
+
             <if test="emp.industry != null">
                 industry = #{emp.industry,jdbcType=VARCHAR},
             </if>
@@ -261,7 +287,8 @@
         </foreach>
     </delete>
     <insert id="addEmps">
-        insert into employee (name, highSea, province, ciy, county, industry
+        insert into employee (name, highSea, province, ciy, county, industry,
+        website, remark, businessReceipt, businessScope,
         birthday, idCard, wedlock, nationId,
         nativePlace, politicId, email,
         phone, address, departmentId,
@@ -275,6 +302,9 @@
         <foreach collection="emps" item="emp" separator=",">
             (#{emp.name,jdbcType=VARCHAR}, #{emp.highSea,jdbcType=VARCHAR}, #{emp.province,jdbcType=VARCHAR},
             #{emp.city,jdbcType=VARCHAR}, #{emp.county,jdbcType=VARCHAR}, #{emp.industry,jdbcType=VARCHAR},
+
+            #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR},
+
             #{emp.birthday,jdbcType=DATE}, #{emp.idCard,jdbcType=CHAR}, #{emp.wedlock,jdbcType=CHAR},
             #{emp.nationId,jdbcType=BIGINT},
             #{emp.nativePlace,jdbcType=VARCHAR}, #{emp.politicId,jdbcType=BIGINT}, #{emp.email,jdbcType=VARCHAR},

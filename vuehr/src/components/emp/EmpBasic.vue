@@ -191,11 +191,6 @@
               label="县"
               width="50">
             </el-table-column>
-            <el-table-column
-              prop="industry"
-              label="行业"
-              width="50">
-            </el-table-column>
 
             <el-table-column
               prop="website"
@@ -210,16 +205,24 @@
             </el-table-column>
 
             <el-table-column
-              prop="remark"
+              prop="businessReceipt"
               label="营业收入"
               width="50">
             </el-table-column>
 
             <el-table-column
-              prop="remark"
+              prop="businessScope"
               label="营业范围"
               width="50">
             </el-table-column>
+
+            <el-table-column
+              prop="industry"
+              label="行业"
+              width="50">
+            </el-table-column>
+
+
 
 
             <el-table-column
