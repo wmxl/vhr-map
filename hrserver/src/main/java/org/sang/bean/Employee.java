@@ -34,6 +34,35 @@ public class Employee {
     }
 
     private String industry;
+    private String website;
+    private String businessReceipt;
+    private String businessScope;
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getBusinessReceipt() {
+        return businessReceipt;
+    }
+
+    public void setBusinessReceipt(String businessReceipt) {
+        this.businessReceipt = businessReceipt;
+    }
+
+    public String getBusinessScope() {
+        return businessScope;
+    }
+
+    public void setBusinessScope(String businessScope) {
+        this.businessScope = businessScope;
+    }
+
+
 
 
     private Date birthday;
@@ -398,18 +427,23 @@ public class Employee {
     public void setHighSea(String highSea) {
         this.highSea = highSea;
     }
+
     public String getHighSea() {
         return highSea;
     }
+
     public String getCity() {
         return city;
     }
+
     public String getCounty() {
         return county;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
+
     public void setCounty(String county) {
         this.county = county;
     }

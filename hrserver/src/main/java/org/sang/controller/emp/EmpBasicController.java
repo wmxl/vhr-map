@@ -30,13 +30,13 @@ public class EmpBasicController {
     @Autowired
     EmpService empService;
     @Autowired
-    DepartmentService departmentService;
+    DepartmentService departmentService; //部门  -> 主要产品
     @Autowired
-    PositionService positionService;
+    PositionService positionService;//职位
     @Autowired
-    JobLevelService jobLevelService;
+    JobLevelService jobLevelService; //职称
     @Autowired
-    ExecutorService executorService;
+    ExecutorService executorService; //
     @Autowired
     TemplateEngine templateEngine;
     @Autowired
