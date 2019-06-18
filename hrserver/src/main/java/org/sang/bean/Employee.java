@@ -59,7 +59,6 @@ public class Employee {
 
     private String industry;
     private Date birthday;
-    private String idCard;
     private String wedlock;
     private Long nationId;
     private String nationName;
@@ -181,14 +180,6 @@ public class Employee {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
-    }
-
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
     }
 
     public String getWedlock() {

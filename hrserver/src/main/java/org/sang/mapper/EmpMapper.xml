@@ -15,7 +15,7 @@
 
         propertyValue, employeeNum, products, propertyType,
 
-      birthday, idCard, wedlock, nationId,
+      birthday, wedlock, nationId,
       nativePlace, politicId, email,
       phone, address, departmentId,
       jobLevelId, posId, engageForm,
@@ -31,7 +31,7 @@
 
         #{propertyValue,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR}, #{propertyType,jdbcType=VARCHAR},
 
-      #{birthday,jdbcType=DATE}, #{idCard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER},
+      #{birthday,jdbcType=DATE}, #{wedlock,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER},
       #{nativePlace,jdbcType=VARCHAR}, #{politicId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER},
       #{jobLevelId,jdbcType=INTEGER}, #{posId,jdbcType=INTEGER}, #{engageForm,jdbcType=VARCHAR},
@@ -65,7 +65,6 @@
 
         <result column="industry" property="industry"/>
         <result column="birthday" property="birthday"/>
-        <result column="idCard" property="idCard"/>
         <result column="wedlock" property="wedlock"/>
         <result column="nationId" property="nationId"/>
         <result column="nativePlace" property="nativePlace"/>
@@ -235,9 +234,6 @@
             <if test="emp.birthday != null">
                 birthday = #{emp.birthday,jdbcType=DATE},
             </if>
-            <if test="emp.idCard != null">
-                idCard = #{emp.idCard,jdbcType=CHAR},
-            </if>
             <if test="emp.wedlock != null">
                 wedlock = #{emp.wedlock,jdbcType=CHAR},
             </if>
@@ -314,7 +310,7 @@
         insert into employee (name, highSea, province, ciy, county, industry,
         website, remark, businessReceipt, businessScope,
         propertyValue, employeeNum, products, propertyType,
-        birthday, idCard, wedlock, nationId,
+        birthday, wedlock, nationId,
         nativePlace, politicId, email,
         phone, address, departmentId,
         jobLevelId, posId, engageForm,
@@ -331,7 +327,7 @@
             #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR},
 
             #{propertyValue,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR}, #{propertyType,jdbcType=VARCHAR},
-            #{emp.birthday,jdbcType=DATE}, #{emp.idCard,jdbcType=CHAR}, #{emp.wedlock,jdbcType=CHAR},
+            #{emp.birthday,jdbcType=DATE}, #{emp.wedlock,jdbcType=CHAR},
             #{emp.nationId,jdbcType=BIGINT},
             #{emp.nativePlace,jdbcType=VARCHAR}, #{emp.politicId,jdbcType=BIGINT}, #{emp.email,jdbcType=VARCHAR},
             #{emp.phone,jdbcType=VARCHAR}, #{emp.address,jdbcType=VARCHAR}, #{emp.departmentId,jdbcType=BIGINT},

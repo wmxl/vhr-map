@@ -98,13 +98,13 @@
                     </el-option>
                   </el-select>
                 </el-col>
-                <el-col :span="7">
-                  聘用形式:
-                  <el-radio-group v-model="emp.engageForm">
-                    <el-radio label="劳动合同">劳动合同</el-radio>
-                    <el-radio style="margin-left: 15px" label="劳务合同">劳务合同</el-radio>
-                  </el-radio-group>
-                </el-col>
+<!--                <el-col :span="7">-->
+<!--                  聘用形式:-->
+<!--                  <el-radio-group v-model="emp.engageForm">-->
+<!--                    <el-radio label="劳动合同">劳动合同</el-radio>-->
+<!--                    <el-radio style="margin-left: 15px" label="劳务合同">劳务合同</el-radio>-->
+<!--                  </el-radio-group>-->
+<!--                </el-col>-->
               </el-row>
               <el-row style="margin-top: 10px">
                 <el-col :span="5">
@@ -269,17 +269,13 @@
               label="出生日期">
               <template slot-scope="scope">{{ scope.row.birthday | formatDate}}</template>
             </el-table-column>
-            <el-table-column
-              prop="idCard"
-              width="150"
-              align="left"
-              label="身份证号码">
-            </el-table-column>
-            <el-table-column
-              prop="wedlock"
-              width="70"
-              label="婚姻状况">
-            </el-table-column>
+
+<!--            <el-table-column-->
+<!--              prop="wedlock"-->
+<!--              width="70"-->
+<!--              label="婚姻状况">-->
+<!--            </el-table-column>-->
+
             <el-table-column
               width="50"
               prop="nation.name"
@@ -329,10 +325,12 @@
               align="left"
               label="职称">
             </el-table-column>
-            <el-table-column
-              prop="engageForm"
-              label="聘用形式">
-            </el-table-column>
+
+<!--            <el-table-column-->
+<!--              prop="engageForm"-->
+<!--              label="聘用形式">-->
+<!--            </el-table-column>-->
+
             <el-table-column
               width="85"
               align="left"
@@ -414,8 +412,9 @@
           :close-on-click-modal="false"
           :visible.sync="dialogVisible"
           width="77%">
-          <el-row>
 
+          <el-row>
+<!--            第一行-->
             <el-col :span="6">
               <div>
                 <el-form-item label="客户名称:" prop="name">
@@ -571,7 +570,9 @@
                 </el-form-item>
               </div>
             </el-col>
+
           </el-row>
+<!--          第二行-->
           <el-row>
             <el-col :span="6">
               <div>
@@ -611,7 +612,9 @@
               </div>
             </el-col>
           </el-row>
+
           <el-row>
+<!--            第三行-->
             <el-col :span="6">
               <div>
                 <el-form-item label="职位:" prop="posId">
@@ -668,6 +671,7 @@
             </el-col>
           </el-row>
           <el-row>
+<!--            第四行-->
             <el-col :span="6">
               <div>
                 <el-form-item label="工号:" prop="workID">
@@ -708,6 +712,7 @@
             </el-col>
           </el-row>
           <el-row>
+<!--            第五行-->
             <el-col :span="6">
               <div>
                 <el-form-item label="入职日期:" prop="beginDate">
@@ -765,37 +770,30 @@
               </div>
             </el-col>
           </el-row>
-          <el-row>
-            <el-col :span="8">
-              <div>
-                <el-form-item label="身份证号码:" prop="idCard">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.idCard" size="mini" style="width: 180px"
-                            placeholder="请输入员工身份证号码..."></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
-            <el-col :span="8">
-              <div>
-                <el-form-item label="聘用形式:" prop="engageForm">
-                  <el-radio-group v-model="emp.engageForm">
-                    <el-radio label="劳动合同">劳动合同</el-radio>
-                    <el-radio style="margin-left: 15px" label="劳务合同">劳务合同</el-radio>
-                  </el-radio-group>
-                </el-form-item>
-              </div>
-            </el-col>
-            <el-col :span="8">
-              <div>
-                <el-form-item label="婚姻状况:" prop="wedlock">
-                  <el-radio-group v-model="emp.wedlock">
-                    <el-radio label="已婚">已婚</el-radio>
-                    <el-radio style="margin-left: 15px" label="未婚">未婚</el-radio>
-                    <el-radio style="margin-left: 15px" label="离异">离异</el-radio>
-                  </el-radio-group>
-                </el-form-item>
-              </div>
-            </el-col>
-          </el-row>
+<!--            第六行-->
+<!--          <el-row>-->
+<!--            <el-col :span="8">-->
+<!--              <div>-->
+<!--                <el-form-item label="聘用形式:" prop="engageForm">-->
+<!--                  <el-radio-group v-model="emp.engageForm">-->
+<!--                    <el-radio label="劳动合同">劳动合同</el-radio>-->
+<!--                    <el-radio style="margin-left: 15px" label="劳务合同">劳务合同</el-radio>-->
+<!--                  </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--              </div>-->
+<!--            </el-col>-->
+<!--            <el-col :span="8">-->
+<!--              <div>-->
+<!--                <el-form-item label="婚姻状况:" prop="wedlock">-->
+<!--                  <el-radio-group v-model="emp.wedlock">-->
+<!--                    <el-radio label="已婚">已婚</el-radio>-->
+<!--                    <el-radio style="margin-left: 15px" label="未婚">未婚</el-radio>-->
+<!--                    <el-radio style="margin-left: 15px" label="离异">离异</el-radio>-->
+<!--                  </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--              </div>-->
+<!--            </el-col>-->
+<!--          </el-row>-->
           <span slot="footer" class="dialog-footer">
             <el-button size="mini" @click="cancelEidt">取 消</el-button>
             <el-button size="mini" type="primary" @click="addEmp('addEmpForm')">确 定</el-button>
@@ -809,7 +807,6 @@
   </div>
 </template>
 <!-- JS -->
-<!--样式-->
 <script>
   export default {
     data() {
@@ -862,8 +859,9 @@
           propertyType: '',
 
           birthday: '',
-          idCard: '',
-          wedlock: '',
+
+          //wedlock: '',
+
           nationId: '',
           nativePlace: '',
           politicId: '',
@@ -874,7 +872,9 @@
           departmentName: '所属部门...',
           jobLevelId: '',
           posId: '',
-          engageForm: '',
+
+          //engageForm: '',
+
           tiptopDegree: '',
           specialty: '',
           school: '',
@@ -890,14 +890,8 @@
         },
         rules: {
           name: [{required: true, message: '必填:姓名', trigger: 'blur'}],
-          province: [{message: '必填:省份', trigger: 'blur'}],
-          city: [{required: true, message: '必填:省份'}],
-          birthday: [{required: true, message: '必填:出生日期', trigger: 'blur'}],
+          //birthday: [{required: true, message: '必填:出生日期', trigger: 'blur'}],
 
-          wedlock: [{required: true, message: '必填:婚姻状况', trigger: 'blur'}],
-          nationId: [{required: true, message: '必填:民族', trigger: 'change'}],
-          nativePlace: [{required: true, message: '必填:籍贯', trigger: 'blur'}],
-          politicId: [{required: true, message: '必填:政治面貌', trigger: 'blur'}],
           email: [{required: true, message: '必填:电子邮箱', trigger: 'blur'}, {
             type: 'email',
             message: '邮箱格式不正确',
@@ -998,7 +992,7 @@
       loadEmps(){
         var _this = this;
         this.tableLoading = true;
-        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&politicId=" + this.emp.politicId + "&nationId=" + this.emp.nationId + "&posId=" + this.emp.posId + "&jobLevelId=" + this.emp.jobLevelId + "&engageForm=" + this.emp.engageForm + "&departmentId=" + this.emp.departmentId + "&beginDateScope=" + this.beginDateScope).then(resp=> {
+        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&politicId=" + this.emp.politicId + "&nationId=" + this.emp.nationId + "&posId=" + this.emp.posId + "&jobLevelId=" + this.emp.jobLevelId  + "&departmentId=" + this.emp.departmentId + "&beginDateScope=" + this.beginDateScope).then(resp=> {
           this.tableLoading = false;
           if (resp && resp.status == 200) {
             var data = resp.data;
@@ -1133,8 +1127,7 @@
           propertyType: '',
 
           birthday: '',
-          idCard: '',
-          wedlock: '',
+          //wedlock: '',
           nationId: '',
           nativePlace: '',
           politicId: '',
@@ -1145,7 +1138,7 @@
           departmentName: '所属部门...',
           jobLevelId: '',
           posId: '',
-          engageForm: '',
+          //engageForm: '',
           tiptopDegree: '',
           specialty: '',
           school: '',
