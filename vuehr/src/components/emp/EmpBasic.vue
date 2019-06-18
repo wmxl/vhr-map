@@ -198,13 +198,7 @@
               width="50">
             </el-table-column>
 
-            <el-table-column
-              prop="industry"
-              label="行业"
-              align="left"
-              width="50">
-            </el-table-column>
-
+          
             <el-table-column
               prop="website"
               label="网址"
@@ -263,12 +257,12 @@
 
 
 
-            <el-table-column
+            <!-- <el-table-column
               width="85"
               align="left"
               label="出生日期">
               <template slot-scope="scope">{{ scope.row.birthday | formatDate}}</template>
-            </el-table-column>
+            </el-table-column> -->
 
 <!--            <el-table-column-->
 <!--              prop="wedlock"-->
@@ -363,8 +357,8 @@
             </el-table-column>
             <el-table-column
               align="left"
-              prop="tiptopDegree"
-              label="最高学历">
+              prop="industry"
+              label="行业">
             </el-table-column>
             <el-table-column
               fixed="right"
@@ -457,14 +451,6 @@
               </div>
             </el-col>
 
-            <el-col :span="5">
-              <div>
-                <el-form-item label="行业:" prop="industry">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.industry" size="mini" style="width: 150px"
-                            placeholder="请输入industry"></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
 
             <el-col :span="5">
               <div>
@@ -542,7 +528,7 @@
 
 
 
-            <el-col :span="6">
+            <!-- <el-col :span="6">
               <div>
                 <el-form-item label="出生日期:" prop="birthday">
                   <el-date-picker
@@ -555,7 +541,9 @@
                   </el-date-picker>
                 </el-form-item>
               </div>
-            </el-col>
+            </el-col> -->
+
+
             <el-col :span="7">
               <div>
                 <el-form-item label="政治面貌:" prop="politicId">
@@ -682,8 +670,8 @@
             </el-col>
             <el-col :span="5">
               <div>
-                <el-form-item label="学历:" prop="tiptopDegree">
-                  <el-select v-model="emp.tiptopDegree" style="width: 120px" size="mini" placeholder="最高学历">
+                <el-form-item label="行业:" prop="industry">
+                  <el-select v-model="emp.industry" style="width: 120px" size="mini" placeholder="行业">
                     <el-option
                       v-for="item in degrees"
                       :key="item.id"
@@ -826,10 +814,10 @@
         joblevels: [],
         totalCount: -1,
         currentPage: 1,
-        degrees: [{id: 4, name: '大专'}, {id: 5, name: '本科'}, {id: 6, name: '硕士'}, {id: 7, name: '博士'}, {
+        degrees: [{id: 4, name: '汽车及零配件'}, {id: 5, name: '新能源'}, {id: 6, name: '批发/零售'}, {id: 7, name: '电气/电力/水利'}, {
           id: 3,
-          name: '高中'
-        }, {id: 2, name: '初中'}, {id: 1, name: '小学'}, {id: 8, name: '其他'}],
+          name: '机械/设备/重工'
+        }, {id: 2, name: '专业服务(咨询、人力资源、财会)'}, {id: 1, name: '计算机软件'}, {id: 8, name: '其他'}],
         deps: [],
         defaultProps: {
           label: 'name',
@@ -847,7 +835,6 @@
           province: '',
           city: '',
           county: '',
-          industry: '',
           website: '',
           remark: '',
           businessReceipt: '',
@@ -858,8 +845,7 @@
           products: '',
           propertyType: '',
 
-          birthday: '',
-
+          // birthday: '',
           //wedlock: '',
 
           nationId: '',
@@ -875,7 +861,7 @@
 
           //engageForm: '',
 
-          tiptopDegree: '',
+          industry: '',
           specialty: '',
           school: '',
           beginDate: '',
@@ -890,14 +876,12 @@
         },
         rules: {
           name: [{required: true, message: '必填:姓名', trigger: 'blur'}],
-          //birthday: [{required: true, message: '必填:出生日期', trigger: 'blur'}],
-
           email: [{required: true, message: '必填:电子邮箱', trigger: 'blur'}, {
             type: 'email',
             message: '邮箱格式不正确',
             trigger: 'blur'
           }],
-          workAge: [{required: true, message: '必填:工龄', trigger: 'blur'}]
+          // workAge: [{required: true, message: '必填:工龄', trigger: 'blur'}]
         }
       };
     },
@@ -989,15 +973,23 @@
         this.currentPage = currentChange;
         this.loadEmps();
       },
+      //加载数据的方法
       loadEmps(){
         var _this = this;
         this.tableLoading = true;
         this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&politicId=" + this.emp.politicId + "&nationId=" + this.emp.nationId + "&posId=" + this.emp.posId + "&jobLevelId=" + this.emp.jobLevelId  + "&departmentId=" + this.emp.departmentId + "&beginDateScope=" + this.beginDateScope).then(resp=> {
           this.tableLoading = false;
+
           if (resp && resp.status == 200) {
             var data = resp.data;
             _this.emps = data.emps;
             _this.totalCount = data.count;
+
+            console.log("start")
+            console.log(data.emps)
+            console.log(data.emps[0])
+            console.log("end")
+
 //            _this.emptyEmpData();
           }
         })
@@ -1077,7 +1069,7 @@
         console.log(row)
         this.dialogTitle = "编辑员工";
         this.emp = row;
-        this.emp.birthday = this.formatDate(row.birthday);
+        // this.emp.birthday = this.formatDate(row.birthday);
         this.emp.conversionTime = this.formatDate(row.conversionTime);
         this.emp.beginContract = this.formatDate(row.beginContract);
         this.emp.endContract = this.formatDate(row.endContract);
@@ -1115,7 +1107,6 @@
           province: '',
           city: '',
           county: '',
-          industry: '',
           website: '',
           remark: '',
           businessReceipt: '',
@@ -1126,7 +1117,7 @@
           products: '',
           propertyType: '',
 
-          birthday: '',
+          // birthday: '',
           //wedlock: '',
           nationId: '',
           nativePlace: '',
@@ -1139,7 +1130,7 @@
           jobLevelId: '',
           posId: '',
           //engageForm: '',
-          tiptopDegree: '',
+          industry: '',
           specialty: '',
           school: '',
           beginDate: '',

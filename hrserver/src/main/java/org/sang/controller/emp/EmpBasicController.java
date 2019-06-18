@@ -30,11 +30,11 @@ public class EmpBasicController {
     @Autowired
     EmpService empService;
     @Autowired
-    DepartmentService departmentService; //部门  -> 公司性质
+    DepartmentService departmentService; //删掉
     @Autowired
     PositionService positionService;//职位 -> 资质类型
     @Autowired
-    JobLevelService jobLevelService; //职称
+    JobLevelService jobLevelService; //删掉
     @Autowired
     ExecutorService executorService;
     @Autowired

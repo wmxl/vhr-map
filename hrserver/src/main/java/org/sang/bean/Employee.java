@@ -17,6 +17,16 @@ public class Employee {
     private String businessReceipt;
     private String businessScope;
 
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
+    private String industry;
+
 
     public String getPropertyValue() {
         return propertyValue;
@@ -55,9 +65,6 @@ public class Employee {
     private String products;
     private String propertyType;
 
-
-
-    private String industry;
     private Date birthday;
     private String wedlock;
     private Long nationId;
@@ -430,14 +437,6 @@ public class Employee {
 
     public void setCounty(String county) {
         this.county = county;
-    }
-
-    public void setIndustry(String industry) {
-        this.industry = industry;
-    }
-
-    public String getIndustry() {
-        return industry;
     }
 
     public String getRemark() {

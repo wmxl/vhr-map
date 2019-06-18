@@ -172,7 +172,6 @@ public class PoiUtils {
                 HSSFCell birthdayCell = row.createCell(4);
                 birthdayCell.setCellValue(emp.getBirthday());
                 birthdayCell.setCellStyle(dateCellStyle);
-                row.createCell(5).setCellValue(emp.getIdCard());
                 row.createCell(6).setCellValue(emp.getWedlock());
                 row.createCell(7).setCellValue(emp.getNation().getName());
                 row.createCell(8).setCellValue(emp.getNativePlace());
@@ -254,9 +253,7 @@ public class PoiUtils {
                 case 3:
                     employee.setProvince(cellValue);
                     break;
-                case 5:
-                    employee.setIdCard(cellValue);
-                    break;
+
                 case 6:
                     employee.setWedlock(cellValue);
                     break;
