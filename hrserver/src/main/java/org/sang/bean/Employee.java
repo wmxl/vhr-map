@@ -18,6 +18,43 @@ public class Employee {
     private String businessScope;
 
 
+    public String getPropertyValue() {
+        return propertyValue;
+    }
+
+    public void setPropertyValue(String propertyValue) {
+        this.propertyValue = propertyValue;
+    }
+
+    public String getEmployeeNum() {
+        return employeeNum;
+    }
+
+    public void setEmployeeNum(String employeeNum) {
+        this.employeeNum = employeeNum;
+    }
+
+    public String getProducts() {
+        return products;
+    }
+
+    public void setProducts(String products) {
+        this.products = products;
+    }
+
+    public String getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    private String propertyValue;
+    private String employeeNum;
+    private String products;
+    private String propertyType;
+
 
 
     private String industry;

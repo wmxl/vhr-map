@@ -157,6 +157,7 @@
               align="left"
               width="30">
             </el-table-column>
+
             <el-table-column
               prop="name"
               align="left"
@@ -164,11 +165,13 @@
               label="客户名称"
               width="90">
             </el-table-column>
+
             <el-table-column
               prop="highSea"
               label="公海"
               width="50">
             </el-table-column>
+
             <el-table-column
               prop="workID"
               width="85"
@@ -179,49 +182,84 @@
             <el-table-column
               prop="province"
               label="省份"
+              align="left"
               width="50">
             </el-table-column>
             <el-table-column
               prop="city"
               label="城市"
+              align="left"
               width="50">
             </el-table-column>
             <el-table-column
               prop="county"
               label="县"
-              width="50">
-            </el-table-column>
-
-            <el-table-column
-              prop="website"
-              label="网址"
-              width="50">
-            </el-table-column>
-
-            <el-table-column
-              prop="remark"
-              label="备注"
-              width="50">
-            </el-table-column>
-
-            <el-table-column
-              prop="businessReceipt"
-              label="营业收入"
-              width="50">
-            </el-table-column>
-
-            <el-table-column
-              prop="businessScope"
-              label="营业范围"
+              align="left"
               width="50">
             </el-table-column>
 
             <el-table-column
               prop="industry"
               label="行业"
+              align="left"
               width="50">
             </el-table-column>
 
+            <el-table-column
+              prop="website"
+              label="网址"
+              align="left"
+              width="50">
+            </el-table-column>
+
+            <el-table-column
+              prop="remark"
+              label="备注"
+              align="left"
+              width="50">
+            </el-table-column>
+
+            <el-table-column
+              prop="businessReceipt"
+              label="营业收入"
+              align="left"
+              width="50">
+            </el-table-column>
+
+            <el-table-column
+              prop="businessScope"
+              label="营业范围"
+              align="left"
+              width="50">
+            </el-table-column>
+
+            <el-table-column
+              prop="propertyValue"
+              label="资产总计"
+              align="left"
+              width="50">
+            </el-table-column>
+
+            <el-table-column
+              prop="employeeNum"
+              label="从业总人数"
+              align="left"
+              width="50">
+            </el-table-column>
+
+            <el-table-column
+              prop="products"
+              label="主要产品"
+              align="left"
+              width="50">
+            </el-table-column>
+
+            <el-table-column
+              prop="propertyType"
+              label="资产类型"
+              align="left"
+              width="50">
+            </el-table-column>
 
 
 
@@ -377,6 +415,7 @@
           :visible.sync="dialogVisible"
           width="77%">
           <el-row>
+
             <el-col :span="6">
               <div>
                 <el-form-item label="客户名称:" prop="name">
@@ -386,6 +425,7 @@
               </div>
             </el-col>
             <el-col :span="5">
+
               <div>
                 <el-form-item label="公海:" prop="highSea">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.highSea" size="mini" style="width: 150px"
@@ -414,6 +454,15 @@
                 <el-form-item label="县:" prop="county">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.county" size="mini" style="width: 150px"
                             placeholder="请输入县"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="行业:" prop="industry">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.industry" size="mini" style="width: 150px"
+                            placeholder="请输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -454,14 +503,45 @@
               </div>
             </el-col>
 
+
             <el-col :span="5">
               <div>
-                <el-form-item label="行业:" prop="industry">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.industry" size="mini" style="width: 150px"
+                <el-form-item label="资产总计:" prop="propertyValue">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.propertyValue" size="mini" style="width: 150px"
                             placeholder="请输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="从业总人数:" prop="employeeNum">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.employeeNum" size="mini" style="width: 150px"
+                            placeholder="请输入industry"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="主要产品:" prop="products">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.products" size="mini" style="width: 150px"
+                            placeholder="请输入industry"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="资产类型:" prop="propertyType">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.propertyType" size="mini" style="width: 150px"
+                            placeholder="请输入industry"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+
+
 
             <el-col :span="6">
               <div>
@@ -776,6 +856,11 @@
           businessReceipt: '',
           businessScope: '',
 
+          propertyValue: '',
+          employeeNum: '',
+          products: '',
+          propertyType: '',
+
           birthday: '',
           idCard: '',
           wedlock: '',
@@ -1041,6 +1126,11 @@
           remark: '',
           businessReceipt: '',
           businessScope: '',
+
+          propertyValue: '',
+          employeeNum: '',
+          products: '',
+          propertyType: '',
 
           birthday: '',
           idCard: '',

@@ -12,6 +12,9 @@
     <insert id="addEmp" parameterType="org.sang.bean.Employee">
             insert into employee (name, highSea, province, city, county, industry,
         website, remark, businessReceipt, businessScope,
+
+        propertyValue, employeeNum, products, propertyType,
+
       birthday, idCard, wedlock, nationId,
       nativePlace, politicId, email,
       phone, address, departmentId,
@@ -25,6 +28,8 @@
         #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR},
 
         #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR},
+
+        #{propertyValue,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR}, #{propertyType,jdbcType=VARCHAR},
 
       #{birthday,jdbcType=DATE}, #{idCard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER},
       #{nativePlace,jdbcType=VARCHAR}, #{politicId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
@@ -51,6 +56,11 @@
         <result column="remark" property="remark"/>
         <result column="businessReceipt" property="businessReceipt"/>
         <result column="businessScope" property="businessScope"/>
+
+        <result column="propertyValue" property="propertyValue"/>
+        <result column="employeeNum" property="employeeNum"/>
+        <result column="products" property="products"/>
+        <result column="propertyType" property="propertyType"/>
 
 
         <result column="industry" property="industry"/>
@@ -190,6 +200,9 @@
             <if test="emp.county != null">
                 county = #{emp.county,jdbcType=VARCHAR},
             </if>
+            <if test="emp.industry != null">
+                industry = #{emp.industry,jdbcType=VARCHAR},
+            </if>
 
             <if test="emp.website != null">
                 website = #{emp.website,jdbcType=VARCHAR},
@@ -204,10 +217,21 @@
                 businessScope = #{emp.businessScope,jdbcType=VARCHAR},
             </if>
 
-
-            <if test="emp.industry != null">
-                industry = #{emp.industry,jdbcType=VARCHAR},
+            <if test="emp.propertyValue != null">
+                propertyValue = #{emp.propertyValue,jdbcType=VARCHAR},
             </if>
+            <if test="emp.employeeNum != null">
+                employeeNum = #{emp.employeeNum,jdbcType=VARCHAR},
+            </if>
+            <if test="emp.products != null">
+                products = #{emp.products,jdbcType=VARCHAR},
+            </if>
+            <if test="emp.propertyType != null">
+                propertyType = #{emp.propertyType,jdbcType=VARCHAR},
+            </if>
+
+
+
             <if test="emp.birthday != null">
                 birthday = #{emp.birthday,jdbcType=DATE},
             </if>
@@ -289,6 +313,7 @@
     <insert id="addEmps">
         insert into employee (name, highSea, province, ciy, county, industry,
         website, remark, businessReceipt, businessScope,
+        propertyValue, employeeNum, products, propertyType,
         birthday, idCard, wedlock, nationId,
         nativePlace, politicId, email,
         phone, address, departmentId,
@@ -305,6 +330,7 @@
 
             #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR},
 
+            #{propertyValue,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR}, #{propertyType,jdbcType=VARCHAR},
             #{emp.birthday,jdbcType=DATE}, #{emp.idCard,jdbcType=CHAR}, #{emp.wedlock,jdbcType=CHAR},
             #{emp.nationId,jdbcType=BIGINT},
             #{emp.nativePlace,jdbcType=VARCHAR}, #{emp.politicId,jdbcType=BIGINT}, #{emp.email,jdbcType=VARCHAR},
