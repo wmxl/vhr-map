@@ -98,67 +98,57 @@ public class PoiUtils {
             HSSFCell cell3 = headerRow.createCell(3);
             cell3.setCellValue("性别");
             cell3.setCellStyle(headerStyle);
-            HSSFCell cell4 = headerRow.createCell(4);
-            cell4.setCellValue("出生日期");
-            cell4.setCellStyle(headerStyle);
-            HSSFCell cell5 = headerRow.createCell(5);
-            cell5.setCellValue("身份证号码");
-            cell5.setCellStyle(headerStyle);
-            HSSFCell cell6 = headerRow.createCell(6);
-            cell6.setCellValue("婚姻状况");
-            cell6.setCellStyle(headerStyle);
-            HSSFCell cell7 = headerRow.createCell(7);
+
+
+            HSSFCell cell7 = headerRow.createCell(4);
             cell7.setCellValue("民族");
             cell7.setCellStyle(headerStyle);
-            HSSFCell cell8 = headerRow.createCell(8);
+            HSSFCell cell8 = headerRow.createCell(5);
             cell8.setCellValue("籍贯");
             cell8.setCellStyle(headerStyle);
-            HSSFCell cell9 = headerRow.createCell(9);
+            HSSFCell cell9 = headerRow.createCell(6);
             cell9.setCellValue("政治面貌");
             cell9.setCellStyle(headerStyle);
-            HSSFCell cell10 = headerRow.createCell(10);
+            HSSFCell cell10 = headerRow.createCell(7);
             cell10.setCellValue("电话号码");
             cell10.setCellStyle(headerStyle);
-            HSSFCell cell11 = headerRow.createCell(11);
+            HSSFCell cell11 = headerRow.createCell(8);
             cell11.setCellValue("联系地址");
             cell11.setCellStyle(headerStyle);
-            HSSFCell cell12 = headerRow.createCell(12);
+            HSSFCell cell12 = headerRow.createCell(9);
             cell12.setCellValue("所属部门");
             cell12.setCellStyle(headerStyle);
-            HSSFCell cell13 = headerRow.createCell(13);
+            HSSFCell cell13 = headerRow.createCell(10);
             cell13.setCellValue("职称");
             cell13.setCellStyle(headerStyle);
-            HSSFCell cell14 = headerRow.createCell(14);
+            HSSFCell cell14 = headerRow.createCell(11);
             cell14.setCellValue("职位");
             cell14.setCellStyle(headerStyle);
-            HSSFCell cell15 = headerRow.createCell(15);
-            cell15.setCellValue("聘用形式");
-            cell15.setCellStyle(headerStyle);
-            HSSFCell cell16 = headerRow.createCell(16);
-            cell16.setCellValue("最高学历");
+            HSSFCell cell16 = headerRow.createCell(12);
+            cell16.setCellValue("行业");
             cell16.setCellStyle(headerStyle);
-            HSSFCell cell17 = headerRow.createCell(17);
+            HSSFCell cell17 = headerRow.createCell(13);
             cell17.setCellValue("专业");
             cell17.setCellStyle(headerStyle);
-            HSSFCell cell18 = headerRow.createCell(18);
+            HSSFCell cell18 = headerRow.createCell(14);
             cell18.setCellValue("毕业院校");
             cell18.setCellStyle(headerStyle);
-            HSSFCell cell19 = headerRow.createCell(19);
+            HSSFCell cell19 = headerRow.createCell(15);
             cell19.setCellValue("入职日期");
             cell19.setCellStyle(headerStyle);
-            HSSFCell cell20 = headerRow.createCell(20);
+            HSSFCell cell20 = headerRow.createCell(16);
             cell20.setCellValue("在职状态");
             cell20.setCellStyle(headerStyle);
-            HSSFCell cell21 = headerRow.createCell(21);
+            HSSFCell cell21 = headerRow.createCell(17);
             cell21.setCellValue("邮箱");
             cell21.setCellStyle(headerStyle);
-            HSSFCell cell22 = headerRow.createCell(22);
+            HSSFCell cell22 = headerRow.createCell(18);
             cell22.setCellValue("合同期限(年)");
             cell22.setCellStyle(headerStyle);
-            HSSFCell cell23 = headerRow.createCell(23);
+            HSSFCell cell23 = headerRow.createCell(19);
             cell23.setCellValue("合同起始日期");
             cell23.setCellStyle(headerStyle);
-            HSSFCell cell24 = headerRow.createCell(24);
+            HSSFCell cell24 = headerRow.createCell(20);
             cell24.setCellValue("合同终止日期");
             cell24.setCellStyle(headerStyle);
             //6.装数据
@@ -169,32 +159,27 @@ public class PoiUtils {
                 row.createCell(1).setCellValue(emp.getName());
                 row.createCell(2).setCellValue(emp.getWorkID());
                 row.createCell(3).setCellValue(emp.getProvince());
-                HSSFCell birthdayCell = row.createCell(4);
-                birthdayCell.setCellValue(emp.getBirthday());
-                birthdayCell.setCellStyle(dateCellStyle);
-                row.createCell(6).setCellValue(emp.getWedlock());
-                row.createCell(7).setCellValue(emp.getNation().getName());
-                row.createCell(8).setCellValue(emp.getNativePlace());
-                row.createCell(9).setCellValue(emp.getPoliticsStatus().getName());
-                row.createCell(10).setCellValue(emp.getPhone());
-                row.createCell(11).setCellValue(emp.getAddress());
-                row.createCell(12).setCellValue(emp.getDepartment().getName());
-                row.createCell(13).setCellValue(emp.getJobLevel().getName());
-                row.createCell(14).setCellValue(emp.getPosition().getName());
-                row.createCell(15).setCellValue(emp.getEngageForm());
-                row.createCell(16).setCellValue(emp.getTiptopDegree());
-                row.createCell(17).setCellValue(emp.getSpecialty());
-                row.createCell(18).setCellValue(emp.getSchool());
-                HSSFCell beginDateCell = row.createCell(19);
+                row.createCell(4).setCellValue(emp.getNation().getName());
+                row.createCell(5).setCellValue(emp.getNativePlace());
+                row.createCell(6).setCellValue(emp.getPoliticsStatus().getName());
+                row.createCell(7).setCellValue(emp.getPhone());
+                row.createCell(8).setCellValue(emp.getAddress());
+                row.createCell(9).setCellValue(emp.getDepartment().getName());
+                row.createCell(10).setCellValue(emp.getJobLevel().getName());
+                row.createCell(11).setCellValue(emp.getPosition().getName());
+                row.createCell(12).setCellValue(emp.getIndustry());
+                row.createCell(13).setCellValue(emp.getSpecialty());
+                row.createCell(14).setCellValue(emp.getSchool());
+                HSSFCell beginDateCell = row.createCell(15);
                 beginDateCell.setCellValue(emp.getBeginDate());
                 beginDateCell.setCellStyle(dateCellStyle);
-                row.createCell(20).setCellValue(emp.getWorkState());
-                row.createCell(21).setCellValue(emp.getEmail());
-                row.createCell(22).setCellValue(emp.getContractTerm());
-                HSSFCell beginContractCell = row.createCell(23);
+                row.createCell(16).setCellValue(emp.getWorkState());
+                row.createCell(17).setCellValue(emp.getEmail());
+                row.createCell(18).setCellValue(emp.getContractTerm());
+                HSSFCell beginContractCell = row.createCell(19);
                 beginContractCell.setCellValue(emp.getBeginContract());
                 beginContractCell.setCellStyle(dateCellStyle);
-                HSSFCell endContractCell = row.createCell(24);
+                HSSFCell endContractCell = row.createCell(20);
                 endContractCell.setCellValue(emp.getEndContract());
                 endContractCell.setCellStyle(dateCellStyle);
             }
@@ -218,124 +203,134 @@ public class PoiUtils {
                                                 List<JobLevel> allJobLevels) {
         List<Employee> emps = new ArrayList<>();
         try {
-        HSSFWorkbook workbook =
-                new HSSFWorkbook(new POIFSFileSystem(file.getInputStream()));
-        int numberOfSheets = workbook.getNumberOfSheets();
-        for (int i = 0; i < numberOfSheets; i++) {
-        HSSFSheet sheet = workbook.getSheetAt(i);
-        int physicalNumberOfRows = sheet.getPhysicalNumberOfRows();
-        Employee employee;
-        for (int j = 0; j < physicalNumberOfRows; j++) {
-        if (j == 0) {
-            continue;//标题行
-        }
-        HSSFRow row = sheet.getRow(j);
-        if (row == null) {
-            continue;//没数据
-        }
-        int physicalNumberOfCells = row.getPhysicalNumberOfCells();
-        employee = new Employee();
-        for (int k = 0; k < physicalNumberOfCells; k++) {
-        HSSFCell cell = row.getCell(k);
-        switch (cell.getCellTypeEnum()) {
-        case STRING: {
-            String cellValue = cell.getStringCellValue();
-            if (cellValue == null) {
-                cellValue = "";
-            }
-            switch (k) {
-                case 1:
-                    employee.setName(cellValue);
-                    break;
-                case 2:
-                    employee.setWorkID(cellValue);
-                    break;
-                case 3:
-                    employee.setProvince(cellValue);
-                    break;
+            HSSFWorkbook workbook =
+                    new HSSFWorkbook(new POIFSFileSystem(file.getInputStream()));
+            int numberOfSheets = workbook.getNumberOfSheets();
+            System.err.println("numberOfSheets:" + numberOfSheets);
+            for (int i = 0; i < numberOfSheets; i++) {
+                System.err.println("进入循环了！");
+                HSSFSheet sheet = workbook.getSheetAt(i);
+                int physicalNumberOfRows = sheet.getPhysicalNumberOfRows();
+                Employee employee;
+                System.err.println("Rows = " + physicalNumberOfRows);
+                for (int j = 0; j < physicalNumberOfRows; j++) {//遍历行
+                    if (j == 0) {
+                        continue;//标题行
+                    }
+                    HSSFRow row = sheet.getRow(j);
+                    if (row == null) {
+                        continue;//没数据
+                    }
+                    int physicalNumberOfCells = row.getPhysicalNumberOfCells();
+                    employee = new Employee();
+                    System.err.println("physicalNumberOfCells = " + physicalNumberOfCells);
+                    for (int k = 0; k < physicalNumberOfCells; k++) {//遍历列
+                        System.err.println("k = " + k);
+                        HSSFCell cell = row.getCell(k);
+//                        System.out.println("cell.getCellTypeEnum(): " + cell.getCellTypeEnum());
+                        switch (cell.getCellTypeEnum()) {
+                            case STRING: {
+                                System.err.println("现在是STRING里的 k = " + k);
+                                String cellValue = cell.getStringCellValue();
+                                if (cellValue == null) {
+                                    cellValue = "";
+                                }
+                                System.out.println(cellValue);
+                                switch (k) {
+                                    case 1:
+                                        employee.setName(cellValue);
+                                        break;
+                                    case 2:
+                                        employee.setWorkID(cellValue);
+                                        break;
+                                    case 3:
+                                        employee.setProvince(cellValue);
+                                        break;
 
-                case 6:
-                    employee.setWedlock(cellValue);
-                    break;
-                case 7:
-                    int nationIndex = allNations.indexOf(new Nation(cellValue));
-                    employee.setNationId(allNations.get(nationIndex).getId());
-                    break;
-                case 8:
-                    employee.setNativePlace(cellValue);
-                    break;
-                case 9:
-                    int psIndex = allPolitics.indexOf(new PoliticsStatus(cellValue));
-                    employee.setPoliticId(allPolitics.get(psIndex).getId());
-                    break;
-                case 10:
-                    employee.setPhone(cellValue);
-                    break;
-                case 11:
-                    employee.setAddress(cellValue);
-                    break;
-                case 12:
-                    int depIndex = allDeps.indexOf(new Department(cellValue));
-                    employee.setDepartmentId(allDeps.get(depIndex).getId());
-                    break;
-                case 13:
-                    int jlIndex = allJobLevels.indexOf(new JobLevel(cellValue));
-                    employee.setJobLevelId(allJobLevels.get(jlIndex).getId());
-                    break;
-                case 14:
-                    int posIndex = allPos.indexOf(new Position(cellValue));
-                    employee.setPosId(allPos.get(posIndex).getId());
-                    break;
-                case 15:
-                    employee.setEngageForm(cellValue);
-                    break;
-                case 16:
-                    employee.setTiptopDegree(cellValue);
-                    break;
-                case 17:
-                    employee.setSpecialty(cellValue);
-                    break;
-                case 18:
-                    employee.setSchool(cellValue);
-                    break;
-                case 19:
-                case 20:
-                    employee.setWorkState(cellValue);
-                    break;
-                case 21:
-                    employee.setEmail(cellValue);
-                    break;
+                                    case 4:
+                                        int nationIndex = allNations.indexOf(new Nation(cellValue));
+                                        employee.setNationId(allNations.get(nationIndex).getId());
+                                        break;
+                                    case 5:
+                                        employee.setNativePlace(cellValue);
+                                        break;
+                                    case 6:
+                                        int psIndex = allPolitics.indexOf(new PoliticsStatus(cellValue));
+                                        employee.setPoliticId(allPolitics.get(psIndex).getId());
+                                        break;
+                                    case 7:
+                                        employee.setPhone(cellValue);
+                                        break;
+                                    case 8:
+                                        employee.setAddress(cellValue);
+                                        break;
+                                    case 9:
+                                        int depIndex = allDeps.indexOf(new Department(cellValue));
+                                        employee.setDepartmentId(allDeps.get(depIndex).getId());
+                                        break;
+                                    case 10:
+                                        int jlIndex = allJobLevels.indexOf(new JobLevel(cellValue));
+                                        employee.setJobLevelId(allJobLevels.get(jlIndex).getId());
+                                        break;
+                                    case 11:
+                                        int posIndex = allPos.indexOf(new Position(cellValue));
+                                        employee.setPosId(allPos.get(posIndex).getId());
+                                        break;
+                                    case 12:
+                                        employee.setIndustry(cellValue);
+                                        break;
+                                    case 13:
+                                        employee.setSpecialty(cellValue);
+                                        break;
+                                    case 14:
+                                        employee.setSchool(cellValue);
+                                        break;
+                                    case 16:
+                                        employee.setWorkState(cellValue);
+                                        break;
+                                    case 17:
+                                        employee.setEmail(cellValue);
+                                        break;
+                                }
+                            }
+                            break;
+                            default: {
+                                System.err.println("default k = " + k);
+                                switch (k) {
+                                    case 15:
+                                        employee.setBeginDate(cell.getDateCellValue());
+                                        break;
+                                    case 18:
+                                        employee.setContractTerm(cell.getNumericCellValue());
+                                        break;
+                                    case 19:
+                                        employee.setBeginContract(cell.getDateCellValue());
+                                        break;
+                                    case 20:
+                                        employee.setEndContract(cell.getDateCellValue());
+                                        break;
+                                    default:
+                                        break;
+
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    System.err.println("add了！！！");
+//                    System.err.println(employee);
+                    emps.add(employee);
+                }
             }
-        }
-        break;
-        default: {
-            switch (k) {
-                case 4:
-                    employee.setBirthday(cell.getDateCellValue());
-                    break;
-                case 19:
-                    employee.setBeginDate(cell.getDateCellValue());
-                    break;
-                case 22:
-                    employee.setContractTerm(cell.getNumericCellValue());
-                    break;
-                case 23:
-                    employee.setBeginContract(cell.getDateCellValue());
-                    break;
-                case 24:
-                    employee.setEndContract(cell.getDateCellValue());
-                    break;
-            }
-        }
-            break;
-        }
-        }
-            emps.add(employee);
-        }
-        }
+            System.err.println("try走完了!!!");
         } catch (IOException e) {
+            System.err.println("异常！！！！！！！！！！！！！！！");
             e.printStackTrace();
         }
+
+        System.err.println("rentrun了！！！");
+        System.err.println(emps);
+        System.err.println("rentrun了！！！");
         return emps;
     }
 }

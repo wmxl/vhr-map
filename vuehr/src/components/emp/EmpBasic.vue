@@ -668,20 +668,16 @@
                 </el-form-item>
               </div>
             </el-col>
+
             <el-col :span="5">
               <div>
                 <el-form-item label="行业:" prop="industry">
-                  <el-select v-model="emp.industry" style="width: 120px" size="mini" placeholder="行业">
-                    <el-option
-                      v-for="item in degrees"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.name">
-                    </el-option>
-                  </el-select>
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.industry" size="mini" style="width: 150px"
+                            placeholder="行业"></el-input>
                 </el-form-item>
               </div>
             </el-col>
+
             <el-col :span="6">
               <div>
                 <el-form-item label="毕业院校:" prop="school">
@@ -814,10 +810,7 @@
         joblevels: [],
         totalCount: -1,
         currentPage: 1,
-        degrees: [{id: 4, name: '汽车及零配件'}, {id: 5, name: '新能源'}, {id: 6, name: '批发/零售'}, {id: 7, name: '电气/电力/水利'}, {
-          id: 3,
-          name: '机械/设备/重工'
-        }, {id: 2, name: '专业服务(咨询、人力资源、财会)'}, {id: 1, name: '计算机软件'}, {id: 8, name: '其他'}],
+        
         deps: [],
         defaultProps: {
           label: 'name',
@@ -859,7 +852,6 @@
           jobLevelId: '',
           posId: '',
 
-          //engageForm: '',
 
           industry: '',
           specialty: '',
@@ -1129,7 +1121,6 @@
           departmentName: '所属部门...',
           jobLevelId: '',
           posId: '',
-          //engageForm: '',
           industry: '',
           specialty: '',
           school: '',

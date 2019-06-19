@@ -17,56 +17,17 @@ public class Employee {
     private String businessReceipt;
     private String businessScope;
 
-    public String getIndustry() {
-        return industry;
-    }
 
-    public void setIndustry(String industry) {
-        this.industry = industry;
-    }
 
     private String industry;
 
 
-    public String getPropertyValue() {
-        return propertyValue;
-    }
-
-    public void setPropertyValue(String propertyValue) {
-        this.propertyValue = propertyValue;
-    }
-
-    public String getEmployeeNum() {
-        return employeeNum;
-    }
-
-    public void setEmployeeNum(String employeeNum) {
-        this.employeeNum = employeeNum;
-    }
-
-    public String getProducts() {
-        return products;
-    }
-
-    public void setProducts(String products) {
-        this.products = products;
-    }
-
-    public String getPropertyType() {
-        return propertyType;
-    }
-
-    public void setPropertyType(String propertyType) {
-        this.propertyType = propertyType;
-    }
 
     private String propertyValue;
     private String employeeNum;
     private String products;
     private String propertyType;
 
-    private Date birthday;
-    private String wedlock;
     private Long nationId;
     private String nationName;
     private String nativePlace;
@@ -81,8 +42,6 @@ public class Employee {
     private String jobLevelName;
     private Long posId;
     private String posName;
-    private String engageForm;
-    private String tiptopDegree;
     private String specialty;
     private String school;
     private Date beginDate;
@@ -179,22 +138,6 @@ public class Employee {
 
     public void setProvince(String province) {
         this.province = province;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getWedlock() {
-        return wedlock;
-    }
-
-    public void setWedlock(String wedlock) {
-        this.wedlock = wedlock;
     }
 
     @JsonIgnore
@@ -310,21 +253,6 @@ public class Employee {
         this.posId = posId;
     }
 
-    public String getEngageForm() {
-        return engageForm;
-    }
-
-    public void setEngageForm(String engageForm) {
-        this.engageForm = engageForm;
-    }
-
-    public String getTiptopDegree() {
-        return tiptopDegree;
-    }
-
-    public void setTiptopDegree(String tiptopDegree) {
-        this.tiptopDegree = tiptopDegree;
-    }
 
     public String getSpecialty() {
         return specialty;
@@ -468,5 +396,95 @@ public class Employee {
 
     public void setBusinessScope(String businessScope) {
         this.businessScope = businessScope;
+    }
+    public String getPropertyValue() {
+        return propertyValue;
+    }
+
+    public void setPropertyValue(String propertyValue) {
+        this.propertyValue = propertyValue;
+    }
+
+    public String getEmployeeNum() {
+        return employeeNum;
+    }
+
+    public void setEmployeeNum(String employeeNum) {
+        this.employeeNum = employeeNum;
+    }
+
+    public String getProducts() {
+        return products;
+    }
+
+    public void setProducts(String products) {
+        this.products = products;
+    }
+
+    public String getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
+    }
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", highSea='" + highSea + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", county='" + county + '\'' +
+                ", website='" + website + '\'' +
+                ", remark='" + remark + '\'' +
+                ", businessReceipt='" + businessReceipt + '\'' +
+                ", businessScope='" + businessScope + '\'' +
+                ", industry='" + industry + '\'' +
+                ", propertyValue='" + propertyValue + '\'' +
+                ", employeeNum='" + employeeNum + '\'' +
+                ", products='" + products + '\'' +
+                ", propertyType='" + propertyType + '\'' +
+                ", nationId=" + nationId +
+                ", nationName='" + nationName + '\'' +
+                ", nativePlace='" + nativePlace + '\'' +
+                ", politicName='" + politicName + '\'' +
+                ", politicId=" + politicId +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", departmentId=" + departmentId +
+                ", departmentName='" + departmentName + '\'' +
+                ", jobLevelId=" + jobLevelId +
+                ", jobLevelName='" + jobLevelName + '\'' +
+                ", posId=" + posId +
+                ", posName='" + posName + '\'' +
+                ", specialty='" + specialty + '\'' +
+                ", school='" + school + '\'' +
+                ", beginDate=" + beginDate +
+                ", workState='" + workState + '\'' +
+                ", workID='" + workID + '\'' +
+                ", contractTerm=" + contractTerm +
+                ", conversionTime=" + conversionTime +
+                ", notWorkDate=" + notWorkDate +
+                ", beginContract=" + beginContract +
+                ", endContract=" + endContract +
+                ", workAge=" + workAge +
+                ", department=" + department +
+                ", nation=" + nation +
+                ", jobLevel=" + jobLevel +
+                ", position=" + position +
+                ", politicsStatus=" + politicsStatus +
+                ", salary=" + salary +
+                '}';
     }
 }
