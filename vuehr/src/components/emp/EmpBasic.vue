@@ -65,7 +65,7 @@
                     </el-option>
                   </el-select>
                 </el-col>
-                <el-col :span="4">
+<!--                 <el-col :span="4">
                   民族:
                   <el-select v-model="emp.nationId" style="width: 130px" size="mini" placeholder="请选择民族">
                     <el-option
@@ -75,7 +75,7 @@
                       :value="item.id">
                     </el-option>
                   </el-select>
-                </el-col>
+                </el-col> -->
                 <el-col :span="4">
                   职位:
                   <el-select v-model="emp.posId" style="width: 130px" size="mini" placeholder="请选择职位">
@@ -270,11 +270,11 @@
 <!--              label="婚姻状况">-->
 <!--            </el-table-column>-->
 
-            <el-table-column
+            <!-- <el-table-column
               width="50"
               prop="nation.name"
               label="民族">
-            </el-table-column>
+            </el-table-column> -->
             <el-table-column
               prop="nativePlace"
               width="80"
@@ -562,7 +562,7 @@
           </el-row>
 <!--          第二行-->
           <el-row>
-            <el-col :span="6">
+            <!-- <el-col :span="6">
               <div>
                 <el-form-item label="民族:" prop="nationId">
                   <el-select v-model="emp.nationId" style="width: 150px" size="mini" placeholder="请选择民族">
@@ -575,7 +575,7 @@
                   </el-select>
                 </el-form-item>
               </div>
-            </el-col>
+            </el-col> -->
             <el-col :span="5">
               <div>
                 <el-form-item label="籍贯:" prop="nativePlace">
@@ -727,7 +727,7 @@
         dialogTitle: '',
         multipleSelection: [],
         depTextColor: '#c0c4cc',
-        nations: [],
+        // nations: [],
         politics: [],
         positions: [],
         joblevels: [],
@@ -760,7 +760,7 @@
           employeeNum: '',
           products: '',
           propertyType: '',
-          nationId: '',
+          // nationId: '',
           nativePlace: '',
           politicId: '',
           email: '',
@@ -887,7 +887,7 @@
       loadEmps(){
         var _this = this;
         this.tableLoading = true;
-        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&politicId=" + this.emp.politicId + "&nationId=" + this.emp.nationId + "&posId=" + this.emp.posId + "&jobLevelId=" + this.emp.jobLevelId  + "&departmentId=" + this.emp.departmentId + "&beginDateScope=" + this.beginDateScope).then(resp=> {
+        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&politicId=" + this.emp.politicId + "&posId=" + this.emp.posId + "&jobLevelId=" + this.emp.jobLevelId  + "&departmentId=" + this.emp.departmentId + "&beginDateScope=" + this.beginDateScope).then(resp=> {
           this.tableLoading = false;
 
           if (resp && resp.status == 200) {
@@ -966,7 +966,7 @@
         this.getRequest("/employee/basic/basicdata").then(resp=> {
           if (resp && resp.status == 200) {
             var data = resp.data;
-            _this.nations = data.nations;
+            // _this.nations = data.nations;
             _this.politics = data.politics;
             _this.deps = data.deps;
             _this.positions = data.positions;
@@ -980,7 +980,7 @@
         this.dialogTitle = "编辑员工";
         this.emp = row;
         // this.emp.birthday = this.formatDate(row.birthday);
-        this.emp.nationId = row.nation.id;
+        // this.emp.nationId = row.nation.id;
         this.emp.politicId = row.politicsStatus.id;
         this.emp.departmentId = row.department.id;
         this.emp.departmentName = row.department.name;
@@ -1023,7 +1023,7 @@
           products: '',
           propertyType: '',
 
-          nationId: '',
+          // nationId: '',
           nativePlace: '',
           politicId: '',
           email: '',

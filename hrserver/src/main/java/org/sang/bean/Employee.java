@@ -16,20 +16,13 @@ public class Employee {
     private String remark;
     private String businessReceipt;
     private String businessScope;
-
-
-
     private String industry;
-
-
 
     private String propertyValue;
     private String employeeNum;
     private String products;
     private String propertyType;
 
-    private Long nationId;
-    private String nationName;
     private String nativePlace;
     private String politicName;
     private Long politicId;
@@ -48,7 +41,6 @@ public class Employee {
     private String workID;
     private Integer workAge;
     private Department department;
-    private Nation nation;
     private JobLevel jobLevel;
     private Position position;
     private PoliticsStatus politicsStatus;
@@ -76,14 +68,6 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public Nation getNation() {
-        return nation;
-    }
-
-    public void setNation(Nation nation) {
-        this.nation = nation;
     }
 
     public JobLevel getJobLevel() {
@@ -134,24 +118,6 @@ public class Employee {
         this.province = province;
     }
 
-    @JsonIgnore
-    public Long getNationId() {
-        return nationId;
-    }
-
-    public void setNationId(Long nationId) {
-        this.nationId = nationId;
-    }
-
-    @JsonIgnore
-    public String getNationName() {
-        return nationName;
-    }
-
-    public void setNationName(String nationName) {
-        this.nationName = nationName;
-    }
-
     public String getNativePlace() {
         return nativePlace;
     }
@@ -160,14 +126,14 @@ public class Employee {
         this.nativePlace = nativePlace;
     }
 
-    @JsonIgnore
-    public String getPoliticName() {
-        return politicName;
-    }
-
-    public void setPoliticName(String politicName) {
-        this.politicName = politicName;
-    }
+//    @JsonIgnore
+//    public String getPoliticName() {
+//        return politicName;
+//    }
+//
+//    public void setPoliticName(String politicName) {
+//        this.politicName = politicName;
+//    }
 
     @JsonIgnore
     public Long getPoliticId() {
@@ -400,8 +366,6 @@ public class Employee {
                 ", employeeNum='" + employeeNum + '\'' +
                 ", products='" + products + '\'' +
                 ", propertyType='" + propertyType + '\'' +
-                ", nationId=" + nationId +
-                ", nationName='" + nationName + '\'' +
                 ", nativePlace='" + nativePlace + '\'' +
                 ", politicName='" + politicName + '\'' +
                 ", politicId=" + politicId +
@@ -420,7 +384,6 @@ public class Employee {
                 ", workID='" + workID + '\'' +
                 ", workAge=" + workAge +
                 ", department=" + department +
-                ", nation=" + nation +
                 ", jobLevel=" + jobLevel +
                 ", position=" + position +
                 ", politicsStatus=" + politicsStatus +

@@ -149,7 +149,6 @@ public class PoiUtils {
                 row.createCell(1).setCellValue(emp.getName());
                 row.createCell(2).setCellValue(emp.getWorkID());
                 row.createCell(3).setCellValue(emp.getProvince());
-                row.createCell(4).setCellValue(emp.getNation().getName());
                 row.createCell(5).setCellValue(emp.getNativePlace());
                 row.createCell(6).setCellValue(emp.getPoliticsStatus().getName());
                 row.createCell(7).setCellValue(emp.getPhone());
@@ -178,7 +177,6 @@ public class PoiUtils {
     }
 
     public static List<Employee> importEmp2List(MultipartFile file,
-                                                List<Nation> allNations,
                                                 List<PoliticsStatus> allPolitics,
                                                 List<Department> allDeps,
                                                 List<Position> allPos,
@@ -228,10 +226,7 @@ public class PoiUtils {
                                     case 3:
                                         employee.setProvince(cellValue);
                                         break;
-
                                     case 4:
-                                        int nationIndex = allNations.indexOf(new Nation(cellValue));
-                                        employee.setNationId(allNations.get(nationIndex).getId());
                                         break;
                                     case 5:
                                         employee.setNativePlace(cellValue);

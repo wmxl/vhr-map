@@ -1,7 +1,6 @@
 package org.sang.service;
 
 import org.sang.bean.Employee;
-import org.sang.bean.Nation;
 import org.sang.bean.PoliticsStatus;
 import org.sang.mapper.EmpMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +26,6 @@ public class EmpService {
     SimpleDateFormat birthdayFormat = new SimpleDateFormat("yyyy-MM-dd");
     DecimalFormat decimalFormat = new DecimalFormat("##.00");
 
-    public List<Nation> getAllNations() {
-        return empMapper.getAllNations();
-    }
-
     public List<PoliticsStatus> getAllPolitics() {
         return empMapper.getAllPolitics();
     }
@@ -44,33 +39,13 @@ public class EmpService {
         return maxWorkID == null ? 0 : maxWorkID;
     }
 
-    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long politicId, Long nationId, Long posId, Long jobLevelId, String engageForm, Long departmentId, String beginDateScope) {
+    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long politicId, Long posId, Long jobLevelId, Long departmentId) {
         int start = (page - 1) * size;
-        Date startBeginDate = null;
-        Date endBeginDate = null;
-        if (beginDateScope != null && beginDateScope.contains(",")) {
-            try {
-                String[] split = beginDateScope.split(",");
-                startBeginDate = birthdayFormat.parse(split[0]);
-                endBeginDate = birthdayFormat.parse(split[1]);
-            } catch (ParseException e) {
-            }
-        }
-        return empMapper.getEmployeeByPage(start, size, keywords, politicId, nationId, posId, jobLevelId, engageForm, departmentId, startBeginDate, endBeginDate);
+        return empMapper.getEmployeeByPage(start, size, keywords, politicId, posId, jobLevelId, departmentId);
     }
 
-    public Long getCountByKeywords(String keywords, Long politicId, Long nationId, Long posId, Long jobLevelId, String engageForm, Long departmentId, String beginDateScope) {
-        Date startBeginDate = null;
-        Date endBeginDate = null;
-        if (beginDateScope != null && beginDateScope.contains(",")) {
-            try {
-                String[] split = beginDateScope.split(",");
-                startBeginDate = birthdayFormat.parse(split[0]);
-                endBeginDate = birthdayFormat.parse(split[1]);
-            } catch (ParseException e) {
-            }
-        }
-        return empMapper.getCountByKeywords(keywords, politicId, nationId, posId, jobLevelId, engageForm, departmentId, startBeginDate, endBeginDate);
+    public Long getCountByKeywords(String keywords, Long politicId, Long posId, Long jobLevelId, Long departmentId) {
+        return empMapper.getCountByKeywords(keywords, politicId, posId, jobLevelId, departmentId);
     }
 
     public int updateEmp(Employee employee) {
@@ -83,7 +58,7 @@ public class EmpService {
     }
 
     public List<Employee> getAllEmployees() {
-        return empMapper.getEmployeeByPage(null, null, "", null, null, null, null, null, null, null, null);
+        return empMapper.getEmployeeByPage(null, null, "", null, null, null, null);
     }
 
     public int addEmps(List<Employee> emps) {
