@@ -44,14 +44,8 @@ public class Employee {
     private String posName;
     private String specialty;
     private String school;
-    private Date beginDate;
     private String workState;
     private String workID;
-    private Double contractTerm;
-    private Date conversionTime;
-    private Date notWorkDate;
-    private Date beginContract;
-    private Date endContract;
     private Integer workAge;
     private Department department;
     private Nation nation;
@@ -270,14 +264,6 @@ public class Employee {
         this.school = school;
     }
 
-    public Date getBeginDate() {
-        return beginDate;
-    }
-
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
-    }
-
     public String getWorkState() {
         return workState;
     }
@@ -292,46 +278,6 @@ public class Employee {
 
     public void setWorkID(String workID) {
         this.workID = workID;
-    }
-
-    public Double getContractTerm() {
-        return contractTerm;
-    }
-
-    public void setContractTerm(Double contractTerm) {
-        this.contractTerm = contractTerm;
-    }
-
-    public Date getConversionTime() {
-        return conversionTime;
-    }
-
-    public void setConversionTime(Date conversionTime) {
-        this.conversionTime = conversionTime;
-    }
-
-    public Date getNotWorkDate() {
-        return notWorkDate;
-    }
-
-    public void setNotWorkDate(Date notWorkDate) {
-        this.notWorkDate = notWorkDate;
-    }
-
-    public Date getBeginContract() {
-        return beginContract;
-    }
-
-    public void setBeginContract(Date beginContract) {
-        this.beginContract = beginContract;
-    }
-
-    public Date getEndContract() {
-        return endContract;
-    }
-
-    public void setEndContract(Date endContract) {
-        this.endContract = endContract;
     }
 
     public Integer getWorkAge() {
@@ -470,14 +416,8 @@ public class Employee {
                 ", posName='" + posName + '\'' +
                 ", specialty='" + specialty + '\'' +
                 ", school='" + school + '\'' +
-                ", beginDate=" + beginDate +
                 ", workState='" + workState + '\'' +
                 ", workID='" + workID + '\'' +
-                ", contractTerm=" + contractTerm +
-                ", conversionTime=" + conversionTime +
-                ", notWorkDate=" + notWorkDate +
-                ", beginContract=" + beginContract +
-                ", endContract=" + endContract +
                 ", workAge=" + workAge +
                 ", department=" + department +
                 ", nation=" + nation +

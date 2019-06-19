@@ -35,9 +35,6 @@ public class EmailRunnable implements Runnable {
             Context ctx = new Context();
             ctx.setVariable("name", employee.getName());
             ctx.setVariable("workID", employee.getWorkID());
-            ctx.setVariable("contractTerm", employee.getContractTerm());
-            ctx.setVariable("beginContract", employee.getBeginContract());
-            ctx.setVariable("endContract", employee.getEndContract());
             ctx.setVariable("departmentName", employee.getDepartmentName());
             ctx.setVariable("posName", employee.getPosName());
             String mail = templateEngine.process("email.html", ctx);

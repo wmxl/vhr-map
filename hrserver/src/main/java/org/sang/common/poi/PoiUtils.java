@@ -133,24 +133,14 @@ public class PoiUtils {
             HSSFCell cell18 = headerRow.createCell(14);
             cell18.setCellValue("毕业院校");
             cell18.setCellStyle(headerStyle);
-            HSSFCell cell19 = headerRow.createCell(15);
-            cell19.setCellValue("入职日期");
-            cell19.setCellStyle(headerStyle);
+
             HSSFCell cell20 = headerRow.createCell(16);
             cell20.setCellValue("在职状态");
             cell20.setCellStyle(headerStyle);
             HSSFCell cell21 = headerRow.createCell(17);
             cell21.setCellValue("邮箱");
             cell21.setCellStyle(headerStyle);
-            HSSFCell cell22 = headerRow.createCell(18);
-            cell22.setCellValue("合同期限(年)");
-            cell22.setCellStyle(headerStyle);
-            HSSFCell cell23 = headerRow.createCell(19);
-            cell23.setCellValue("合同起始日期");
-            cell23.setCellStyle(headerStyle);
-            HSSFCell cell24 = headerRow.createCell(20);
-            cell24.setCellValue("合同终止日期");
-            cell24.setCellStyle(headerStyle);
+
             //6.装数据
             for (int i = 0; i < emps.size(); i++) {
                 HSSFRow row = sheet.createRow(i + 1);
@@ -170,18 +160,10 @@ public class PoiUtils {
                 row.createCell(12).setCellValue(emp.getIndustry());
                 row.createCell(13).setCellValue(emp.getSpecialty());
                 row.createCell(14).setCellValue(emp.getSchool());
-                HSSFCell beginDateCell = row.createCell(15);
-                beginDateCell.setCellValue(emp.getBeginDate());
-                beginDateCell.setCellStyle(dateCellStyle);
+
                 row.createCell(16).setCellValue(emp.getWorkState());
                 row.createCell(17).setCellValue(emp.getEmail());
-                row.createCell(18).setCellValue(emp.getContractTerm());
-                HSSFCell beginContractCell = row.createCell(19);
-                beginContractCell.setCellValue(emp.getBeginContract());
-                beginContractCell.setCellStyle(dateCellStyle);
-                HSSFCell endContractCell = row.createCell(20);
-                endContractCell.setCellValue(emp.getEndContract());
-                endContractCell.setCellStyle(dateCellStyle);
+
             }
             headers = new HttpHeaders();
             headers.setContentDispositionFormData("attachment",
@@ -298,16 +280,12 @@ public class PoiUtils {
                                 System.err.println("default k = " + k);
                                 switch (k) {
                                     case 15:
-                                        employee.setBeginDate(cell.getDateCellValue());
                                         break;
                                     case 18:
-                                        employee.setContractTerm(cell.getNumericCellValue());
                                         break;
                                     case 19:
-                                        employee.setBeginContract(cell.getDateCellValue());
                                         break;
                                     case 20:
-                                        employee.setEndContract(cell.getDateCellValue());
                                         break;
                                     default:
                                         break;

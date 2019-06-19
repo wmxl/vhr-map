@@ -20,9 +20,8 @@
       phone, address, departmentId,
       jobLevelId, posId,
         industry, specialty, school,
-      beginDate,workID,
-      contractTerm, conversionTime,
-      beginContract, endContract, workAge
+      workID,
+       workAge
       )
     values (#{name,jdbcType=VARCHAR}, #{highSea,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
         #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR},
@@ -36,9 +35,7 @@
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER},
       #{jobLevelId,jdbcType=INTEGER}, #{posId,jdbcType=INTEGER},
       #{industry,jdbcType=VARCHAR}, #{specialty,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR},
-      #{beginDate,jdbcType=DATE},#{workID,jdbcType=BIGINT},
-      #{contractTerm,jdbcType=BIGINT}, #{conversionTime,jdbcType=DATE},
-      #{beginContract,jdbcType=DATE}, #{endContract,jdbcType=DATE}, #{workAge,jdbcType=INTEGER}
+      #{workID,jdbcType=BIGINT}, #{workAge,jdbcType=INTEGER}
       )
     </insert>
     <select id="getMaxWorkID" resultType="Long">
@@ -75,14 +72,8 @@
         <result column="industry" property="industry"/>
         <result column="specialty" property="specialty"/>
         <result column="school" property="school"/>
-        <result column="beginDate" property="beginDate"/>
         <result column="workState" property="workState"/>
         <result column="workID" property="workID"/>
-        <result column="contractTerm" property="contractTerm"/>
-        <result column="conversionTime" property="conversionTime"/>
-        <result column="notWorkDate" property="notWorkDate"/>
-        <result column="beginContract" property="beginContract"/>
-        <result column="endContract" property="endContract"/>
         <result column="workAge" property="workAge"/>
         <association property="department" javaType="org.sang.bean.Department">
             <id property="id" column="did"/>
@@ -144,9 +135,7 @@
         <if test="departmentId!=null and departmentId!=''">
             AND e.departmentId=#{departmentId}
         </if>
-        <if test="startBeginDate!=null and endBeginDate!=null">
-            AND e.beginDate BETWEEN #{startBeginDate} AND #{endBeginDate}
-        </if>
+<!--        分页-->
         <if test="start!=null and size!=null">
             order by e.id limit #{start},#{size}
         </if>
@@ -168,9 +157,6 @@
         </if>
         <if test="departmentId!=null and departmentId!=''">
             AND e.departmentId=#{departmentId}
-        </if>
-        <if test="startBeginDate!=null and endBeginDate!=null">
-            AND e.beginDate BETWEEN #{startBeginDate} AND #{endBeginDate}
         </if>
     </select>
     <update id="updateEmp">
@@ -218,11 +204,6 @@
             <if test="emp.propertyType != null">
                 propertyType = #{emp.propertyType,jdbcType=VARCHAR},
             </if>
-
-
-
-
-
             <if test="emp.nationId != null">
                 nationId = #{emp.nationId,jdbcType=INTEGER},
             </if>
@@ -260,26 +241,8 @@
             <if test="emp.school != null">
                 school = #{emp.school,jdbcType=VARCHAR},
             </if>
-            <if test="emp.beginDate != null">
-                beginDate = #{emp.beginDate,jdbcType=DATE},
-            </if>
             <if test="emp.workState != null">
                 workState = #{emp.workState,jdbcType=CHAR},
-            </if>
-            <if test="emp.contractTerm != null">
-                contractTerm = #{emp.contractTerm,jdbcType=DOUBLE},
-            </if>
-            <if test="emp.conversionTime != null">
-                conversionTime = #{emp.conversionTime,jdbcType=DATE},
-            </if>
-            <if test="emp.notWorkDate != null">
-                notWorkDate = #{emp.notWorkDate,jdbcType=DATE},
-            </if>
-            <if test="emp.beginContract != null">
-                beginContract = #{emp.beginContract,jdbcType=DATE},
-            </if>
-            <if test="emp.endContract != null">
-                endContract = #{emp.endContract,jdbcType=DATE},
             </if>
         </set>
         where id = #{emp.id,jdbcType=BIGINT}
@@ -299,9 +262,7 @@
         phone, address, departmentId,
         jobLevelId, posId,
         industry, specialty, school,
-        beginDate,workID,
-        contractTerm, conversionTime,
-        beginContract, endContract, workAge
+        workID, workAge
         )
         values
         <foreach collection="emps" item="emp" separator=",">
@@ -316,9 +277,7 @@
             #{emp.phone,jdbcType=VARCHAR}, #{emp.address,jdbcType=VARCHAR}, #{emp.departmentId,jdbcType=BIGINT},
             #{emp.jobLevelId,jdbcType=BIGINT}, #{emp.posId,jdbcType=BIGINT},
             #{emp.industry,jdbcType=VARCHAR}, #{emp.specialty,jdbcType=VARCHAR}, #{emp.school,jdbcType=VARCHAR},
-            #{emp.beginDate,jdbcType=DATE},#{emp.workID,jdbcType=BIGINT},
-            #{emp.contractTerm,jdbcType=BIGINT}, #{emp.conversionTime,jdbcType=DATE},
-            #{emp.beginContract,jdbcType=DATE}, #{emp.endContract,jdbcType=DATE}, #{emp.workAge,jdbcType=INTEGER}
+            #{emp.workID,jdbcType=BIGINT}, #{emp.workAge,jdbcType=INTEGER}
             )
         </foreach>
     </insert>

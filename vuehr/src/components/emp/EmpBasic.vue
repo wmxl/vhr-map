@@ -122,7 +122,7 @@
                     </div>
                   </el-popover>
                 </el-col>
-                <el-col :span="10">
+<!--                 <el-col :span="10">
                   入职日期:
                   <el-date-picker
                     v-model="beginDateScope"
@@ -134,7 +134,7 @@
                     start-placeholder="开始日期"
                     end-placeholder="结束日期">
                   </el-date-picker>
-                </el-col>
+                </el-col> -->
                 <el-col :span="5" :offset="4">
                   <el-button size="mini" @click="cancelSearch">取消</el-button>
                   <el-button icon="el-icon-search" type="primary" size="mini" @click="searchEmp">搜索</el-button>
@@ -325,7 +325,7 @@
 <!--              label="聘用形式">-->
 <!--            </el-table-column>-->
 
-            <el-table-column
+            <!-- <el-table-column
               width="85"
               align="left"
               label="入职日期">
@@ -347,14 +347,14 @@
               width="95"
               align="left"
               label="合同截至日期">
-              <template slot-scope="scope">{{ scope.row.endContract | formatDate}}</template>
-            </el-table-column>
-            <el-table-column
+              <template slot-scope="scope">{{ scope.row.endContract | formatDate}}</template> -->
+            <!-- </el-table-column> -->
+<!--             <el-table-column
               align="left"
               width="70"
               label="合同期限">
               <template slot-scope="scope">{{ scope.row.contractTerm}}年</template>
-            </el-table-column>
+            </el-table-column> -->
             <el-table-column
               align="left"
               prop="industry"
@@ -696,88 +696,11 @@
             </el-col>
           </el-row>
           <el-row>
-<!--            第五行-->
-            <el-col :span="6">
-              <div>
-                <el-form-item label="入职日期:" prop="beginDate">
-                  <el-date-picker
-                    v-model="emp.beginDate"
-                    size="mini"
-                    style="width: 130px"
-                    type="date"
-                    value-format="yyyy-MM-dd HH:mm:ss"
-                    placeholder="入职日期">
-                  </el-date-picker>
-                </el-form-item>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div>
-                <el-form-item label="转正日期:" prop="conversionTime">
-                  <el-date-picker
-                    v-model="emp.conversionTime"
-                    size="mini"
-                    style="width: 130px"
-                    value-format="yyyy-MM-dd HH:mm:ss"
-                    type="date"
-                    placeholder="转正日期">
-                  </el-date-picker>
-                </el-form-item>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div>
-                <el-form-item label="合同起始日期:" prop="beginContract">
-                  <el-date-picker
-                    v-model="emp.beginContract"
-                    size="mini"
-                    value-format="yyyy-MM-dd HH:mm:ss"
-                    style="width: 135px"
-                    type="date"
-                    placeholder="合同起始日期">
-                  </el-date-picker>
-                </el-form-item>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div>
-                <el-form-item label="合同终止日期:" prop="endContract">
-                  <el-date-picker
-                    v-model="emp.endContract"
-                    value-format="yyyy-MM-dd HH:mm:ss"
-                    size="mini"
-                    style="width: 135px"
-                    type="date"
-                    placeholder="合同终止日期">
-                  </el-date-picker>
-                </el-form-item>
-              </div>
-            </el-col>
+            第五行
+            
           </el-row>
-<!--            第六行-->
-<!--          <el-row>-->
-<!--            <el-col :span="8">-->
-<!--              <div>-->
-<!--                <el-form-item label="聘用形式:" prop="engageForm">-->
-<!--                  <el-radio-group v-model="emp.engageForm">-->
-<!--                    <el-radio label="劳动合同">劳动合同</el-radio>-->
-<!--                    <el-radio style="margin-left: 15px" label="劳务合同">劳务合同</el-radio>-->
-<!--                  </el-radio-group>-->
-<!--                </el-form-item>-->
-<!--              </div>-->
-<!--            </el-col>-->
-<!--            <el-col :span="8">-->
-<!--              <div>-->
-<!--                <el-form-item label="婚姻状况:" prop="wedlock">-->
-<!--                  <el-radio-group v-model="emp.wedlock">-->
-<!--                    <el-radio label="已婚">已婚</el-radio>-->
-<!--                    <el-radio style="margin-left: 15px" label="未婚">未婚</el-radio>-->
-<!--                    <el-radio style="margin-left: 15px" label="离异">离异</el-radio>-->
-<!--                  </el-radio-group>-->
-<!--                </el-form-item>-->
-<!--              </div>-->
-<!--            </el-col>-->
-<!--          </el-row>-->
+          第六行
+          </el-row>
           <span slot="footer" class="dialog-footer">
             <el-button size="mini" @click="cancelEidt">取 消</el-button>
             <el-button size="mini" type="primary" @click="addEmp('addEmpForm')">确 定</el-button>
@@ -798,7 +721,7 @@
         emps: [],
         keywords: '',
         fileUploadBtnText: '导入数据',
-        beginDateScope: '',
+        // beginDateScope: '',
         faangledoubleup: 'fa-angle-double-up',
         faangledoubledown: 'fa-angle-double-down',
         dialogTitle: '',
@@ -837,10 +760,6 @@
           employeeNum: '',
           products: '',
           propertyType: '',
-
-          // birthday: '',
-          //wedlock: '',
-
           nationId: '',
           nativePlace: '',
           politicId: '',
@@ -856,14 +775,14 @@
           industry: '',
           specialty: '',
           school: '',
-          beginDate: '',
+          // beginDate: '',
           workState: '',
           workID: '',
-          contractTerm: '',
-          conversionTime: '',
-          notWorkDate: '',
-          beginContract: '',
-          endContract: '',
+          // contractTerm: '',
+          // conversionTime: '',
+          // notWorkDate: '',
+          // beginContract: '',
+          // endContract: '',
           workAge: ''
         },
         rules: {
@@ -873,7 +792,6 @@
             message: '邮箱格式不正确',
             trigger: 'blur'
           }],
-          // workAge: [{required: true, message: '必填:工龄', trigger: 'blur'}]
         }
       };
     },
@@ -902,7 +820,7 @@
       cancelSearch(){
         this.advanceSearchViewVisible = false;
         this.emptyEmpData();
-        this.beginDateScope = '';
+        // this.beginDateScope = '';
         this.loadEmps();
       },
       showAdvanceSearchView(){
@@ -910,7 +828,7 @@
         this.keywords = '';
         if (!this.advanceSearchViewVisible) {
           this.emptyEmpData();
-          this.beginDateScope = '';
+          // this.beginDateScope = '';
           this.loadEmps();
         }
       },
@@ -1062,10 +980,6 @@
         this.dialogTitle = "编辑员工";
         this.emp = row;
         // this.emp.birthday = this.formatDate(row.birthday);
-        this.emp.conversionTime = this.formatDate(row.conversionTime);
-        this.emp.beginContract = this.formatDate(row.beginContract);
-        this.emp.endContract = this.formatDate(row.endContract);
-        this.emp.beginDate = this.formatDate(row.beginDate);
         this.emp.nationId = row.nation.id;
         this.emp.politicId = row.politicsStatus.id;
         this.emp.departmentId = row.department.id;
@@ -1109,8 +1023,6 @@
           products: '',
           propertyType: '',
 
-          // birthday: '',
-          //wedlock: '',
           nationId: '',
           nativePlace: '',
           politicId: '',
@@ -1124,14 +1036,14 @@
           industry: '',
           specialty: '',
           school: '',
-          beginDate: '',
+          // beginDate: '',
           workState: '',
           workID: '',
-          contractTerm: '',
-          conversionTime: '',
-          notWorkDate: '',
-          beginContract: '',
-          endContract: '',
+          // contractTerm: '',
+          // conversionTime: '',
+          // notWorkDate: '',
+          // beginContract: '',
+          // endContract: '',
           workAge: ''
         }
       }
