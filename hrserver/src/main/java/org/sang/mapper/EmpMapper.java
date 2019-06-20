@@ -13,8 +13,6 @@ public interface EmpMapper {
 
     int addEmp(Employee employee);
 
-    Long getMaxWorkID();
-
     List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("posId") Long posId, @Param("jobLevelId") Long jobLevelId, @Param("departmentId")Long  departmentId);
 
     Long getCountByKeywords(@Param("keywords") String keywords, @Param("posId") Long posId, @Param("jobLevelId") Long jobLevelId, @Param("departmentId")Long  departmentId);

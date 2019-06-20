@@ -48,14 +48,10 @@ public class EmpBasicController {
         map.put("deps", departmentService.getDepByPid(-1L));
         map.put("positions", positionService.getAllPos());
         map.put("joblevels", jobLevelService.getAllJobLevels());
-        map.put("workID", String.format("%08d", empService.getMaxWorkID() + 1));
         return map;
     }
 
-    @RequestMapping("/maxWorkID")
-    public String maxWorkID() {
-        return String.format("%08d", empService.getMaxWorkID() + 1);
-    }
+
 
     @RequestMapping(value = "/emp", method = RequestMethod.POST)
     public RespBean addEmp(Employee employee) {

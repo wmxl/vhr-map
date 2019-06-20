@@ -34,7 +34,6 @@ public class EmailRunnable implements Runnable {
             helper.setSubject("XXX集团：通知");
             Context ctx = new Context();
             ctx.setVariable("name", employee.getName());
-            ctx.setVariable("workID", employee.getWorkID());
             ctx.setVariable("departmentName", employee.getDepartmentName());
             ctx.setVariable("posName", employee.getPosName());
             String mail = templateEngine.process("email.html", ctx);

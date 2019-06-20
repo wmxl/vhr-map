@@ -576,23 +576,6 @@
                 </el-form-item>
               </div>
             </el-col>
-
-            <el-col :span="6">
-              <div>
-                <el-form-item label="毕业院校:" prop="school">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.school" size="mini" style="width: 150px"
-                            placeholder="毕业院校名称"></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
-            <el-col :span="7">
-              <div>
-                <el-form-item label="专业名称:" prop="specialty">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.specialty" size="mini" style="width: 200px"
-                            placeholder="专业名称"></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
           </el-row>
           <el-row>
             第五行
@@ -665,12 +648,7 @@
           posId: '',
 
           industry: '',
-          specialty: '',
-          school: '',
-          workState: '',
           workID: '',
-
-          workAge: ''
         },
         rules: {
           name: [{required: true, message: '必填:姓名', trigger: 'blur'}],
@@ -876,8 +854,8 @@
         this.emp.jobLevelId = row.jobLevel.id;
         this.emp.posId = row.position.id;
 
-        delete this.emp.workAge;
-        delete this.emp.notWorkDate;
+        // delete this.emp.workAge;
+        // delete this.emp.notWorkDate;
         // delete this.emp.salary;
         this.dialogVisible = true;
       },
@@ -885,11 +863,11 @@
         this.dialogTitle = "添加员工";
         this.dialogVisible = true;
         var _this = this;
-        this.getRequest("/employee/basic/maxWorkID").then(resp=> {
-          if (resp && resp.status == 200) {
-            _this.emp.workID = resp.data;
-          }
-        })
+        // this.getRequest("/employee/basic/maxWorkID").then(resp=> {
+        //   if (resp && resp.status == 200) {
+        //     _this.emp.workID = resp.data;
+        //   }
+        // })
       },
       emptyEmpData(){
         this.emp = {
@@ -916,13 +894,7 @@
           jobLevelId: '',
           posId: '',
           industry: '',
-          specialty: '',
-          school: '',
-
-          workState: '',
           workID: '',
-
-          workAge: ''
         }
       }
     }

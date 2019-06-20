@@ -29,11 +29,6 @@ public class Employee {
     private String jobLevelName;
     private Long posId;
     private String posName;
-    private String specialty;
-    private String school;
-    private String workState;//xx
-    private String workID;
-    private Integer workAge;//xx
     private Department department;
     private JobLevel jobLevel;
     private Position position;
@@ -165,47 +160,6 @@ public class Employee {
     }
 
 
-    public String getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
-    }
-
-    public String getSchool() {
-        return school;
-    }
-
-    public void setSchool(String school) {
-        this.school = school;
-    }
-
-    public String getWorkState() {
-        return workState;
-    }
-
-    public void setWorkState(String workState) {
-        this.workState = workState;
-    }
-
-    public String getWorkID() {
-        return workID;
-    }
-
-    public void setWorkID(String workID) {
-        this.workID = workID;
-    }
-
-    public Integer getWorkAge() {
-        return workAge;
-    }
-
-    public void setWorkAge(Integer workAge) {
-        this.workAge = workAge;
-    }
-
-
     public void setHighSea(String highSea) {
         this.highSea = highSea;
     }
@@ -326,11 +280,6 @@ public class Employee {
                 ", jobLevelName='" + jobLevelName + '\'' +
                 ", posId=" + posId +
                 ", posName='" + posName + '\'' +
-                ", specialty='" + specialty + '\'' +
-                ", school='" + school + '\'' +
-                ", workState='" + workState + '\'' +
-                ", workID='" + workID + '\'' +
-                ", workAge=" + workAge +
                 ", department=" + department +
                 ", jobLevel=" + jobLevel +
                 ", position=" + position +

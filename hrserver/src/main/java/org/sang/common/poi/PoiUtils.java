@@ -99,16 +99,6 @@ public class PoiUtils {
             cell3.setCellValue("性别");
             cell3.setCellStyle(headerStyle);
 
-
-            HSSFCell cell7 = headerRow.createCell(4);
-            cell7.setCellValue("民族");
-            cell7.setCellStyle(headerStyle);
-            HSSFCell cell8 = headerRow.createCell(5);
-            cell8.setCellValue("籍贯");
-            cell8.setCellStyle(headerStyle);
-            HSSFCell cell9 = headerRow.createCell(6);
-            cell9.setCellValue("政治面貌");
-            cell9.setCellStyle(headerStyle);
             HSSFCell cell10 = headerRow.createCell(7);
             cell10.setCellValue("电话号码");
             cell10.setCellStyle(headerStyle);
@@ -128,15 +118,7 @@ public class PoiUtils {
             cell16.setCellValue("行业");
             cell16.setCellStyle(headerStyle);
             HSSFCell cell17 = headerRow.createCell(13);
-            cell17.setCellValue("专业");
-            cell17.setCellStyle(headerStyle);
-            HSSFCell cell18 = headerRow.createCell(14);
-            cell18.setCellValue("毕业院校");
-            cell18.setCellStyle(headerStyle);
 
-            HSSFCell cell20 = headerRow.createCell(16);
-            cell20.setCellValue("在职状态");
-            cell20.setCellStyle(headerStyle);
             HSSFCell cell21 = headerRow.createCell(17);
             cell21.setCellValue("邮箱");
             cell21.setCellStyle(headerStyle);
@@ -147,7 +129,6 @@ public class PoiUtils {
                 Employee emp = emps.get(i);
                 row.createCell(0).setCellValue(emp.getId());
                 row.createCell(1).setCellValue(emp.getName());
-                row.createCell(2).setCellValue(emp.getWorkID());
                 row.createCell(3).setCellValue(emp.getProvince());
                 row.createCell(7).setCellValue(emp.getPhone());
                 row.createCell(8).setCellValue(emp.getAddress());
@@ -155,10 +136,7 @@ public class PoiUtils {
                 row.createCell(10).setCellValue(emp.getJobLevel().getName());
                 row.createCell(11).setCellValue(emp.getPosition().getName());
                 row.createCell(12).setCellValue(emp.getIndustry());
-                row.createCell(13).setCellValue(emp.getSpecialty());
-                row.createCell(14).setCellValue(emp.getSchool());
 
-                row.createCell(16).setCellValue(emp.getWorkState());
                 row.createCell(17).setCellValue(emp.getEmail());
 
             }
@@ -219,7 +197,6 @@ public class PoiUtils {
                                         employee.setName(cellValue);
                                         break;
                                     case 2:
-                                        employee.setWorkID(cellValue);
                                         break;
                                     case 3:
                                         employee.setProvince(cellValue);
@@ -253,13 +230,10 @@ public class PoiUtils {
                                         employee.setIndustry(cellValue);
                                         break;
                                     case 13:
-                                        employee.setSpecialty(cellValue);
                                         break;
                                     case 14:
-                                        employee.setSchool(cellValue);
                                         break;
                                     case 16:
-                                        employee.setWorkState(cellValue);
                                         break;
                                     case 17:
                                         employee.setEmail(cellValue);

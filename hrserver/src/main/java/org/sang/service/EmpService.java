@@ -30,11 +30,6 @@ public class EmpService {
         return empMapper.addEmp(employee);
     }
 
-    public Long getMaxWorkID() {
-        Long maxWorkID = empMapper.getMaxWorkID();
-        return maxWorkID == null ? 0 : maxWorkID;
-    }
-
     public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long posId, Long jobLevelId, Long departmentId) {
         int start = (page - 1) * size;
         return empMapper.getEmployeeByPage(start, size, keywords, posId, jobLevelId, departmentId);
