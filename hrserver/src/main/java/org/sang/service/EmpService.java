@@ -64,8 +64,8 @@ public class EmpService {
         return empMapper.addEmps(emps);
     }
 
-    public List<Employee> getEmployeeByPageShort(Integer page, Integer size) {
-        int start = (page - 1) * size;
-        return empMapper.getEmployeeByPageShort(start,size);
-    }
+//    public List<Employee> getEmployeeByPageShort(Integer page, Integer size) {
+//        int start = (page - 1) * size;
+//        return empMapper.getEmployeeByPageShort(start,size);
+//    }
 }

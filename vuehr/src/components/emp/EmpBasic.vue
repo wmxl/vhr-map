@@ -780,10 +780,10 @@
             _this.emps = data.emps;
             _this.totalCount = data.count;
 
-            console.log("start")
-            console.log(data.emps)
-            console.log(data.emps[0])
-            console.log("end")
+            // console.log("start")
+            // console.log(data.emps)
+            // console.log(data.emps[0])
+            // console.log("end")
 
 //            _this.emptyEmpData();
           }
@@ -858,7 +858,6 @@
         this.getRequest("/employee/basic/basicdata").then(resp=> {
           if (resp && resp.status == 200) {
             var data = resp.data;
-            // _this.nations = data.nations;
             _this.deps = data.deps;
             _this.positions = data.positions;
             _this.joblevels = data.joblevels;
@@ -867,7 +866,8 @@
         })
       },
       showEditEmpView(row){
-        console.log(row)
+        console.log("showEditEmpView");
+        console.log(row);
         this.dialogTitle = "编辑员工";
         this.emp = row;
 
@@ -878,7 +878,7 @@
 
         delete this.emp.workAge;
         delete this.emp.notWorkDate;
-        delete this.emp.salary;
+        // delete this.emp.salary;
         this.dialogVisible = true;
       },
       showAddEmpView(){

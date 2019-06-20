@@ -31,21 +31,12 @@ public class Employee {
     private String posName;
     private String specialty;
     private String school;
-    private String workState;
+    private String workState;//xx
     private String workID;
-    private Integer workAge;
+    private Integer workAge;//xx
     private Department department;
     private JobLevel jobLevel;
     private Position position;
-    private Salary salary;
-
-    public Salary getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Salary salary) {
-        this.salary = salary;
-    }
 
     public String getPosName() {
         return posName;
@@ -343,7 +334,6 @@ public class Employee {
                 ", department=" + department +
                 ", jobLevel=" + jobLevel +
                 ", position=" + position +
-                ", salary=" + salary +
                 '}';
     }
 }
