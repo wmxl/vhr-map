@@ -54,28 +54,6 @@
               style="margin-bottom: 10px;border: 1px;border-radius: 5px;border-style: solid;padding: 5px 0px 5px 0px;box-sizing:border-box;border-color: #20a0ff"
               v-show="advanceSearchViewVisible">
               <el-row>
-                <el-col :span="5">
-                  政治面貌:
-                  <el-select v-model="emp.politicId" style="width: 130px" size="mini" placeholder="政治面貌">
-                    <el-option
-                      v-for="item in politics"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id">
-                    </el-option>
-                  </el-select>
-                </el-col>
-<!--                 <el-col :span="4">
-                  民族:
-                  <el-select v-model="emp.nationId" style="width: 130px" size="mini" placeholder="请选择民族">
-                    <el-option
-                      v-for="item in nations"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id">
-                    </el-option>
-                  </el-select>
-                </el-col> -->
                 <el-col :span="4">
                   职位:
                   <el-select v-model="emp.posId" style="width: 130px" size="mini" placeholder="请选择职位">
@@ -98,13 +76,6 @@
                     </el-option>
                   </el-select>
                 </el-col>
-<!--                <el-col :span="7">-->
-<!--                  聘用形式:-->
-<!--                  <el-radio-group v-model="emp.engageForm">-->
-<!--                    <el-radio label="劳动合同">劳动合同</el-radio>-->
-<!--                    <el-radio style="margin-left: 15px" label="劳务合同">劳务合同</el-radio>-->
-<!--                  </el-radio-group>-->
-<!--                </el-col>-->
               </el-row>
               <el-row style="margin-top: 10px">
                 <el-col :span="5">
@@ -122,19 +93,7 @@
                     </div>
                   </el-popover>
                 </el-col>
-<!--                 <el-col :span="10">
-                  入职日期:
-                  <el-date-picker
-                    v-model="beginDateScope"
-                    unlink-panels
-                    size="mini"
-                    type="daterange"
-                    value-format="yyyy-MM-dd"
-                    range-separator="至"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期">
-                  </el-date-picker>
-                </el-col> -->
+
                 <el-col :span="5" :offset="4">
                   <el-button size="mini" @click="cancelSearch">取消</el-button>
                   <el-button icon="el-icon-search" type="primary" size="mini" @click="searchEmp">搜索</el-button>
@@ -275,14 +234,8 @@
               prop="nation.name"
               label="民族">
             </el-table-column> -->
-            <el-table-column
-              prop="nativePlace"
-              width="80"
-              label="籍贯">
-            </el-table-column>
-            <el-table-column
-              prop="politicsStatus.name"
-              label="政治面貌">
+            
+
             </el-table-column>
             <el-table-column
               prop="email"
@@ -417,8 +370,8 @@
                 </el-form-item>
               </div>
             </el-col>
-            <el-col :span="5">
 
+            <el-col :span="5">
               <div>
                 <el-form-item label="公海:" prop="highSea">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.highSea" size="mini" style="width: 150px"
@@ -523,66 +476,12 @@
                             placeholder="请输入industry"></el-input>
                 </el-form-item>
               </div>
-            </el-col>
-
-
-
-
-            <!-- <el-col :span="6">
-              <div>
-                <el-form-item label="出生日期:" prop="birthday">
-                  <el-date-picker
-                    v-model="emp.birthday"
-                    size="mini"
-                    value-format="yyyy-MM-dd HH:mm:ss"
-                    style="width: 150px"
-                    type="date"
-                    placeholder="出生日期">
-                  </el-date-picker>
-                </el-form-item>
-              </div>
-            </el-col> -->
-
-
-            <el-col :span="7">
-              <div>
-                <el-form-item label="政治面貌:" prop="politicId">
-                  <el-select v-model="emp.politicId" style="width: 200px" size="mini" placeholder="政治面貌">
-                    <el-option
-                      v-for="item in politics"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-              </div>
-            </el-col>
+            </el-col>           
 
           </el-row>
-<!--          第二行-->
+          第二行
           <el-row>
-            <!-- <el-col :span="6">
-              <div>
-                <el-form-item label="民族:" prop="nationId">
-                  <el-select v-model="emp.nationId" style="width: 150px" size="mini" placeholder="请选择民族">
-                    <el-option
-                      v-for="item in nations"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-              </div>
-            </el-col> -->
-            <el-col :span="5">
-              <div>
-                <el-form-item label="籍贯:" prop="nativePlace">
-                  <el-input v-model="emp.nativePlace" size="mini" style="width: 120px" placeholder="员工籍贯"></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
+            
             <el-col :span="6">
               <div>
                 <el-form-item label="电子邮箱:" prop="email">
@@ -721,14 +620,11 @@
         emps: [],
         keywords: '',
         fileUploadBtnText: '导入数据',
-        // beginDateScope: '',
         faangledoubleup: 'fa-angle-double-up',
         faangledoubledown: 'fa-angle-double-down',
         dialogTitle: '',
         multipleSelection: [],
         depTextColor: '#c0c4cc',
-        // nations: [],
-        politics: [],
         positions: [],
         joblevels: [],
         totalCount: -1,
@@ -760,9 +656,6 @@
           employeeNum: '',
           products: '',
           propertyType: '',
-          // nationId: '',
-          nativePlace: '',
-          politicId: '',
           email: '',
           phone: '',
           address: '',
@@ -771,18 +664,12 @@
           jobLevelId: '',
           posId: '',
 
-
           industry: '',
           specialty: '',
           school: '',
-          // beginDate: '',
           workState: '',
           workID: '',
-          // contractTerm: '',
-          // conversionTime: '',
-          // notWorkDate: '',
-          // beginContract: '',
-          // endContract: '',
+
           workAge: ''
         },
         rules: {
@@ -820,7 +707,6 @@
       cancelSearch(){
         this.advanceSearchViewVisible = false;
         this.emptyEmpData();
-        // this.beginDateScope = '';
         this.loadEmps();
       },
       showAdvanceSearchView(){
@@ -828,7 +714,6 @@
         this.keywords = '';
         if (!this.advanceSearchViewVisible) {
           this.emptyEmpData();
-          // this.beginDateScope = '';
           this.loadEmps();
         }
       },
@@ -887,7 +772,7 @@
       loadEmps(){
         var _this = this;
         this.tableLoading = true;
-        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&politicId=" + this.emp.politicId + "&posId=" + this.emp.posId + "&jobLevelId=" + this.emp.jobLevelId  + "&departmentId=" + this.emp.departmentId + "&beginDateScope=" + this.beginDateScope).then(resp=> {
+        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&posId=" + this.emp.posId + "&jobLevelId=" + this.emp.jobLevelId  + "&departmentId=" + this.emp.departmentId + "&beginDateScope=" + this.beginDateScope).then(resp=> {
           this.tableLoading = false;
 
           if (resp && resp.status == 200) {
@@ -910,10 +795,16 @@
           if (valid) {
             if (this.emp.id) {
               //更新
+              console.log("进入更新");
               this.tableLoading = true;
               this.putRequest("/employee/basic/emp", this.emp).then(resp=> {
+                console.log("进入更新putRequest");
+                console.log(resp)
+                console.log(resp.status)
+
                 _this.tableLoading = false;
                 if (resp && resp.status == 200) {
+                  console.log("进入更新if");
                   var data = resp.data;
                   _this.dialogVisible = false;
                   _this.emptyEmpData();
@@ -962,12 +853,12 @@
         this.depTextColor = '#606266';
       },
       initData(){
+        console.log("initData");
         var _this = this;
         this.getRequest("/employee/basic/basicdata").then(resp=> {
           if (resp && resp.status == 200) {
             var data = resp.data;
             // _this.nations = data.nations;
-            _this.politics = data.politics;
             _this.deps = data.deps;
             _this.positions = data.positions;
             _this.joblevels = data.joblevels;
@@ -979,18 +870,12 @@
         console.log(row)
         this.dialogTitle = "编辑员工";
         this.emp = row;
-        // this.emp.birthday = this.formatDate(row.birthday);
-        // this.emp.nationId = row.nation.id;
-        this.emp.politicId = row.politicsStatus.id;
+
         this.emp.departmentId = row.department.id;
         this.emp.departmentName = row.department.name;
         this.emp.jobLevelId = row.jobLevel.id;
         this.emp.posId = row.position.id;
-//        delete this.emp.department;
-//        delete this.emp.jobLevel;
-//        delete this.emp.position;
-//        delete this.emp.nation;
-//        delete this.emp.politicsStatus;
+
         delete this.emp.workAge;
         delete this.emp.notWorkDate;
         delete this.emp.salary;
@@ -1023,9 +908,6 @@
           products: '',
           propertyType: '',
 
-          // nationId: '',
-          nativePlace: '',
-          politicId: '',
           email: '',
           phone: '',
           address: '',
@@ -1036,14 +918,10 @@
           industry: '',
           specialty: '',
           school: '',
-          // beginDate: '',
+
           workState: '',
           workID: '',
-          // contractTerm: '',
-          // conversionTime: '',
-          // notWorkDate: '',
-          // beginContract: '',
-          // endContract: '',
+
           workAge: ''
         }
       }

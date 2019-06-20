@@ -45,7 +45,6 @@ public class EmpBasicController {
     @RequestMapping(value = "/basicdata", method = RequestMethod.GET)
     public Map<String, Object> getAllNations() {
         Map<String, Object> map = new HashMap<>();
-        map.put("politics", empService.getAllPolitics());
         map.put("deps", departmentService.getDepByPid(-1L));
         map.put("positions", positionService.getAllPos());
         map.put("joblevels", jobLevelService.getAllJobLevels());
@@ -95,14 +94,13 @@ public class EmpBasicController {
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "") String keywords,
-            Long politicId, Long posId,
+             Long posId,
             Long jobLevelId, String engageForm,
             Long departmentId, String beginDateScope) {
         Map<String, Object> map = new HashMap<>();
         List<Employee> employeeByPage = empService.getEmployeeByPage(page, size,
-                keywords,politicId, posId, jobLevelId,departmentId);
-        Long count = empService.getCountByKeywords(keywords, politicId,
-                posId,jobLevelId, departmentId);
+                keywords, posId, jobLevelId,departmentId);
+        Long count = empService.getCountByKeywords(keywords,posId,jobLevelId, departmentId);
         map.put("emps", employeeByPage);
         map.put("count", count);
         return map;
@@ -115,7 +113,7 @@ public class EmpBasicController {
 
     @RequestMapping(value = "/importEmp", method = RequestMethod.POST)
     public RespBean importEmp(MultipartFile file) {
-        List<Employee> emps = PoiUtils.importEmp2List(file, empService.getAllPolitics(),
+        List<Employee> emps = PoiUtils.importEmp2List(file,
                 departmentService.getAllDeps(), positionService.getAllPos(),
                 jobLevelService.getAllJobLevels());
         System.out.println("controller:");

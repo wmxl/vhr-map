@@ -2,7 +2,6 @@ package org.sang.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.sang.bean.Employee;
-import org.sang.bean.PoliticsStatus;
 
 import java.util.Date;
 import java.util.List;
@@ -12,15 +11,13 @@ import java.util.List;
  */
 public interface EmpMapper {
 
-    List<PoliticsStatus> getAllPolitics();
-
     int addEmp(Employee employee);
 
     Long getMaxWorkID();
 
-    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("politicId") Long politicId, @Param("posId") Long posId, @Param("jobLevelId") Long jobLevelId, @Param("departmentId")Long  departmentId);
+    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("posId") Long posId, @Param("jobLevelId") Long jobLevelId, @Param("departmentId")Long  departmentId);
 
-    Long getCountByKeywords(@Param("keywords") String keywords, @Param("politicId") Long politicId, @Param("posId") Long posId, @Param("jobLevelId") Long jobLevelId, @Param("departmentId")Long  departmentId);
+    Long getCountByKeywords(@Param("keywords") String keywords, @Param("posId") Long posId, @Param("jobLevelId") Long jobLevelId, @Param("departmentId")Long  departmentId);
 
     int updateEmp(@Param("emp") Employee employee);
 

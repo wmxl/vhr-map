@@ -11,21 +11,15 @@ public class Employee {
     private String province;
     private String city;
     private String county;
-
     private String website;
     private String remark;
     private String businessReceipt;
     private String businessScope;
     private String industry;
-
     private String propertyValue;
     private String employeeNum;
     private String products;
     private String propertyType;
-
-    private String nativePlace;
-    private String politicName;
-    private Long politicId;
     private String email;
     private String phone;
     private String address;
@@ -43,7 +37,6 @@ public class Employee {
     private Department department;
     private JobLevel jobLevel;
     private Position position;
-    private PoliticsStatus politicsStatus;
     private Salary salary;
 
     public Salary getSalary() {
@@ -86,14 +79,6 @@ public class Employee {
         this.position = position;
     }
 
-    public PoliticsStatus getPoliticsStatus() {
-        return politicsStatus;
-    }
-
-    public void setPoliticsStatus(PoliticsStatus politicsStatus) {
-        this.politicsStatus = politicsStatus;
-    }
-
     public Long getId() {
         return id;
     }
@@ -118,31 +103,6 @@ public class Employee {
         this.province = province;
     }
 
-    public String getNativePlace() {
-        return nativePlace;
-    }
-
-    public void setNativePlace(String nativePlace) {
-        this.nativePlace = nativePlace;
-    }
-
-//    @JsonIgnore
-//    public String getPoliticName() {
-//        return politicName;
-//    }
-//
-//    public void setPoliticName(String politicName) {
-//        this.politicName = politicName;
-//    }
-
-    @JsonIgnore
-    public Long getPoliticId() {
-        return politicId;
-    }
-
-    public void setPoliticId(Long politicId) {
-        this.politicId = politicId;
-    }
 
     public String getEmail() {
         return email;
@@ -366,9 +326,6 @@ public class Employee {
                 ", employeeNum='" + employeeNum + '\'' +
                 ", products='" + products + '\'' +
                 ", propertyType='" + propertyType + '\'' +
-                ", nativePlace='" + nativePlace + '\'' +
-                ", politicName='" + politicName + '\'' +
-                ", politicId=" + politicId +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
@@ -386,7 +343,6 @@ public class Employee {
                 ", department=" + department +
                 ", jobLevel=" + jobLevel +
                 ", position=" + position +
-                ", politicsStatus=" + politicsStatus +
                 ", salary=" + salary +
                 '}';
     }

@@ -149,8 +149,6 @@ public class PoiUtils {
                 row.createCell(1).setCellValue(emp.getName());
                 row.createCell(2).setCellValue(emp.getWorkID());
                 row.createCell(3).setCellValue(emp.getProvince());
-                row.createCell(5).setCellValue(emp.getNativePlace());
-                row.createCell(6).setCellValue(emp.getPoliticsStatus().getName());
                 row.createCell(7).setCellValue(emp.getPhone());
                 row.createCell(8).setCellValue(emp.getAddress());
                 row.createCell(9).setCellValue(emp.getDepartment().getName());
@@ -177,7 +175,7 @@ public class PoiUtils {
     }
 
     public static List<Employee> importEmp2List(MultipartFile file,
-                                                List<PoliticsStatus> allPolitics,
+
                                                 List<Department> allDeps,
                                                 List<Position> allPos,
                                                 List<JobLevel> allJobLevels) {
@@ -229,11 +227,9 @@ public class PoiUtils {
                                     case 4:
                                         break;
                                     case 5:
-                                        employee.setNativePlace(cellValue);
                                         break;
                                     case 6:
-                                        int psIndex = allPolitics.indexOf(new PoliticsStatus(cellValue));
-                                        employee.setPoliticId(allPolitics.get(psIndex).getId());
+
                                         break;
                                     case 7:
                                         employee.setPhone(cellValue);
