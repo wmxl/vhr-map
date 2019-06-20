@@ -33,8 +33,8 @@ public class EmpBasicController {
     DepartmentService departmentService; //删掉
     @Autowired
     PositionService positionService;//职位 -> 资质类型
-    @Autowired
-    JobLevelService jobLevelService; //删掉
+//    @Autowired
+//    JobLevelService jobLevelService; //删掉
     @Autowired
     ExecutorService executorService;
     @Autowired
@@ -47,7 +47,7 @@ public class EmpBasicController {
         Map<String, Object> map = new HashMap<>();
         map.put("deps", departmentService.getDepByPid(-1L));
         map.put("positions", positionService.getAllPos());
-        map.put("joblevels", jobLevelService.getAllJobLevels());
+//        map.put("joblevels", jobLevelService.getAllJobLevels());
         return map;
     }
 
@@ -91,12 +91,16 @@ public class EmpBasicController {
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "") String keywords,
              Long posId,
-            Long jobLevelId, String engageForm,
-            Long departmentId, String beginDateScope) {
+//            Long jobLevelId,
+            Long departmentId) {
         Map<String, Object> map = new HashMap<>();
         List<Employee> employeeByPage = empService.getEmployeeByPage(page, size,
-                keywords, posId, jobLevelId,departmentId);
-        Long count = empService.getCountByKeywords(keywords,posId,jobLevelId, departmentId);
+                keywords, posId,
+//                jobLevelId,
+                departmentId);
+        Long count = empService.getCountByKeywords(keywords,posId,
+//                jobLevelId,
+                departmentId);
         map.put("emps", employeeByPage);
         map.put("count", count);
         return map;
@@ -110,8 +114,10 @@ public class EmpBasicController {
     @RequestMapping(value = "/importEmp", method = RequestMethod.POST)
     public RespBean importEmp(MultipartFile file) {
         List<Employee> emps = PoiUtils.importEmp2List(file,
-                departmentService.getAllDeps(), positionService.getAllPos(),
-                jobLevelService.getAllJobLevels());
+                departmentService.getAllDeps(),
+                positionService.getAllPos()
+//                ,jobLevelService.getAllJobLevels()
+        );
         System.out.println("controller:");
         System.out.println(emps);
         if (empService.addEmps(emps) == emps.size()) {

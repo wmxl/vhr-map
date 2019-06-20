@@ -155,8 +155,9 @@ public class PoiUtils {
     public static List<Employee> importEmp2List(MultipartFile file,
 
                                                 List<Department> allDeps,
-                                                List<Position> allPos,
-                                                List<JobLevel> allJobLevels) {
+                                                List<Position> allPos
+//            , List<JobLevel> allJobLevels
+    ) {
         List<Employee> emps = new ArrayList<>();
         try {
             HSSFWorkbook workbook =
@@ -219,8 +220,8 @@ public class PoiUtils {
                                         employee.setDepartmentId(allDeps.get(depIndex).getId());
                                         break;
                                     case 10:
-                                        int jlIndex = allJobLevels.indexOf(new JobLevel(cellValue));
-                                        employee.setJobLevelId(allJobLevels.get(jlIndex).getId());
+//                                        int jlIndex = allJobLevels.indexOf(new JobLevel(cellValue));
+//                                        employee.setJobLevelId(allJobLevels.get(jlIndex).getId());
                                         break;
                                     case 11:
                                         int posIndex = allPos.indexOf(new Position(cellValue));

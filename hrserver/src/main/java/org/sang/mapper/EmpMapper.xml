@@ -10,7 +10,8 @@
         propertyValue, employeeNum, products, propertyType,
         email,
         phone, address, departmentId,
-        jobLevelId, posId,
+<!--        jobLevelId, -->
+        posId,
         industry
       )
     values (#{name,jdbcType=VARCHAR}, #{highSea,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
@@ -19,7 +20,8 @@
         #{propertyValue,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR}, #{propertyType,jdbcType=VARCHAR},
         #{email,jdbcType=VARCHAR},
         #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER},
-        #{jobLevelId,jdbcType=INTEGER}, #{posId,jdbcType=INTEGER},
+<!--        #{jobLevelId,jdbcType=INTEGER}, -->
+        #{posId,jdbcType=INTEGER},
         #{industry,jdbcType=VARCHAR}
       )
     </insert>
@@ -47,18 +49,18 @@
         <result column="phone" property="phone"/>
         <result column="address" property="address"/>
         <result column="departmentId" property="departmentId"/>
-        <result column="jobLevelId" property="jobLevelId"/>
+<!--        <result column="jobLevelId" property="jobLevelId"/>-->
         <result column="posId" property="posId"/>
         <result column="industry" property="industry"/>
         <association property="department" javaType="org.sang.bean.Department">
             <id property="id" column="did"/>
             <result property="name" column="dname"/>
         </association>
-        <association property="jobLevel" javaType="org.sang.bean.JobLevel">
-            <id property="id" column="jlid"/>
-            <result property="name" column="jlname"/>
-            <result property="titleLevel" column="jlTitleLevel"/>
-        </association>
+<!--        <association property="jobLevel" javaType="org.sang.bean.JobLevel">-->
+<!--            <id property="id" column="jlid"/>-->
+<!--            <result property="name" column="jlname"/>-->
+<!--            <result property="titleLevel" column="jlTitleLevel"/>-->
+<!--        </association>-->
 
         <association property="position" javaType="org.sang.bean.Position">
             <id property="id" column="pid"/>
@@ -68,19 +70,23 @@
 
     </resultMap>
     <select id="getEmployeeByPage" resultMap="BaseResultMap">
-        select e.*, jl.`id` as jlid,jl.`name` as jlname,jl.`titleLevel` as jlTitleLevel,d.`id` as did,d.`name` as
-        dname, p.`id` as pid,p.`name` as pname
-        from employee e, joblevel jl, department d, position p
-        where e.`posId`=p.`id` and e.`jobLevelId`=jl.`id` and e.`departmentId`=d.id
+<!--        select e.*, jl.`id` as jlid,jl.`name` as jlname,jl.`titleLevel` as jlTitleLevel,d.`id` as did,d.`name` as-->
+<!--        dname, p.`id` as pid,p.`name` as pname-->
+<!--        from employee e, joblevel jl, department d, position p-->
+<!--        where e.`posId`=p.`id` and e.`jobLevelId`=jl.`id` and e.`departmentId`=d.id-->
+<!--        and e.`name` like concat('%',#{keywords},'%')-->
+        select e.*, d.`id` as did,d.`name` as dname, p.`id` as pid,p.`name` as pname
+        from employee e, department d, position p
+        where e.`posId`=p.`id` and e.`departmentId`=d.id
         and e.`name` like concat('%',#{keywords},'%')
 
 
         <if test="posId!=null and posId!=''">
             AND e.posId=#{posId}
         </if>
-        <if test="jobLevelId!=null and jobLevelId!=''">
-            AND e.jobLevelId=#{jobLevelId}
-        </if>
+<!--        <if test="jobLevelId!=null and jobLevelId!=''">-->
+<!--            AND e.jobLevelId=#{jobLevelId}-->
+<!--        </if>-->
         <if test="departmentId!=null and departmentId!=''">
             AND e.departmentId=#{departmentId}
         </if>
@@ -95,9 +101,9 @@
         <if test="posId!=null and posId!=''">
             AND e.posId=#{posId}
         </if>
-        <if test="jobLevelId!=null and jobLevelId!=''">
-            AND e.jobLevelId=#{jobLevelId}
-        </if>
+<!--        <if test="jobLevelId!=null and jobLevelId!=''">-->
+<!--            AND e.jobLevelId=#{jobLevelId}-->
+<!--        </if>-->
         <if test="departmentId!=null and departmentId!=''">
             AND e.departmentId=#{departmentId}
         </if>
@@ -157,9 +163,9 @@
             <if test="emp.departmentId != null">
                 departmentId = #{emp.departmentId,jdbcType=INTEGER},
             </if>
-            <if test="emp.jobLevelId != null">
-                jobLevelId = #{emp.jobLevelId,jdbcType=INTEGER},
-            </if>
+<!--            <if test="emp.jobLevelId != null">-->
+<!--                jobLevelId = #{emp.jobLevelId,jdbcType=INTEGER},-->
+<!--            </if>-->
             <if test="emp.posId != null">
                 posId = #{emp.posId,jdbcType=INTEGER},
             </if>
@@ -182,7 +188,8 @@
 
         email,
         phone, address, departmentId,
-        jobLevelId, posId,
+<!--        jobLevelId, -->
+        posId,
         industry
         )
         values
@@ -194,8 +201,10 @@
 
             #{propertyValue,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR}, #{propertyType,jdbcType=VARCHAR},
             #{emp.email,jdbcType=VARCHAR},
-            #{emp.phone,jdbcType=VARCHAR}, #{emp.address,jdbcType=VARCHAR}, #{emp.departmentId,jdbcType=BIGINT},
-            #{emp.jobLevelId,jdbcType=BIGINT}, #{emp.posId,jdbcType=BIGINT},
+            #{emp.phone,jdbcType=VARCHAR}, #{emp.address,jdbcType=VARCHAR},
+            #{emp.departmentId,jdbcType=BIGINT},
+<!--            #{emp.jobLevelId,jdbcType=BIGINT}, -->
+            #{emp.posId,jdbcType=BIGINT},
             #{emp.industry,jdbcType=VARCHAR}
             )
         </foreach>

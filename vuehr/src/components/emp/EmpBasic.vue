@@ -65,7 +65,7 @@
                     </el-option>
                   </el-select>
                 </el-col>
-                <el-col :span="4">
+                <!-- <el-col :span="4">
                   职称:
                   <el-select v-model="emp.jobLevelId" style="width: 130px" size="mini" placeholder="请选择职称">
                     <el-option
@@ -75,7 +75,7 @@
                       :value="item.id">
                     </el-option>
                   </el-select>
-                </el-col>
+                </el-col> -->
               </el-row>
               <el-row style="margin-top: 10px">
                 <el-col :span="5">
@@ -266,48 +266,13 @@
               prop="position.name"
               label="职位">
             </el-table-column>
-            <el-table-column
+           <!--  <el-table-column
               prop="jobLevel.name"
               width="100"
               align="left"
               label="职称">
-            </el-table-column>
-
-<!--            <el-table-column-->
-<!--              prop="engageForm"-->
-<!--              label="聘用形式">-->
-<!--            </el-table-column>-->
-
-            <!-- <el-table-column
-              width="85"
-              align="left"
-              label="入职日期">
-              <template slot-scope="scope">{{ scope.row.beginDate | formatDate}}</template>
-            </el-table-column>
-            <el-table-column
-              width="85"
-              align="left"
-              label="转正日期">
-              <template slot-scope="scope">{{ scope.row.conversionTime | formatDate}}</template>
-            </el-table-column>
-            <el-table-column
-              width="95"
-              align="left"
-              label="合同起始日期">
-              <template slot-scope="scope">{{ scope.row.beginContract | formatDate}}</template>
-            </el-table-column>
-            <el-table-column
-              width="95"
-              align="left"
-              label="合同截至日期">
-              <template slot-scope="scope">{{ scope.row.endContract | formatDate}}</template> -->
-            <!-- </el-table-column> -->
-<!--             <el-table-column
-              align="left"
-              width="70"
-              label="合同期限">
-              <template slot-scope="scope">{{ scope.row.contractTerm}}年</template>
             </el-table-column> -->
+
             <el-table-column
               align="left"
               prop="industry"
@@ -516,7 +481,7 @@
                 </el-form-item>
               </div>
             </el-col>
-            <el-col :span="5">
+            <!-- <el-col :span="5">
               <div>
                 <el-form-item label="职称:" prop="jobLevelId">
                   <el-select v-model="emp.jobLevelId" style="width: 120px" size="mini" placeholder="请选择职称">
@@ -529,7 +494,7 @@
                   </el-select>
                 </el-form-item>
               </div>
-            </el-col>
+            </el-col> -->
             <el-col :span="6">
               <div>
                 <el-form-item label="所属部门:" prop="departmentId">
@@ -609,7 +574,7 @@
         multipleSelection: [],
         depTextColor: '#c0c4cc',
         positions: [],
-        joblevels: [],
+        // joblevels: [],
         totalCount: -1,
         currentPage: 1,
         
@@ -644,7 +609,7 @@
           address: '',
           departmentId: '',
           departmentName: '所属部门...',
-          jobLevelId: '',
+          // jobLevelId: '',
           posId: '',
 
           industry: '',
@@ -750,7 +715,9 @@
       loadEmps(){
         var _this = this;
         this.tableLoading = true;
-        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&posId=" + this.emp.posId + "&jobLevelId=" + this.emp.jobLevelId  + "&departmentId=" + this.emp.departmentId + "&beginDateScope=" + this.beginDateScope).then(resp=> {
+        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&posId=" + this.emp.posId + 
+          // "&jobLevelId=" + this.emp.jobLevelId  + 
+          "&departmentId=" + this.emp.departmentId).then(resp=> {
           this.tableLoading = false;
 
           if (resp && resp.status == 200) {
@@ -838,7 +805,7 @@
             var data = resp.data;
             _this.deps = data.deps;
             _this.positions = data.positions;
-            _this.joblevels = data.joblevels;
+            // _this.joblevels = data.joblevels;
             _this.emp.workID = data.workID;
           }
         })
@@ -848,26 +815,18 @@
         console.log(row);
         this.dialogTitle = "编辑员工";
         this.emp = row;
-
         this.emp.departmentId = row.department.id;
         this.emp.departmentName = row.department.name;
-        this.emp.jobLevelId = row.jobLevel.id;
+        // this.emp.jobLevelId = row.jobLevel.id;
         this.emp.posId = row.position.id;
 
-        // delete this.emp.workAge;
-        // delete this.emp.notWorkDate;
-        // delete this.emp.salary;
         this.dialogVisible = true;
       },
       showAddEmpView(){
         this.dialogTitle = "添加员工";
         this.dialogVisible = true;
         var _this = this;
-        // this.getRequest("/employee/basic/maxWorkID").then(resp=> {
-        //   if (resp && resp.status == 200) {
-        //     _this.emp.workID = resp.data;
-        //   }
-        // })
+
       },
       emptyEmpData(){
         this.emp = {
@@ -880,18 +839,16 @@
           remark: '',
           businessReceipt: '',
           businessScope: '',
-
           propertyValue: '',
           employeeNum: '',
           products: '',
           propertyType: '',
-
           email: '',
           phone: '',
           address: '',
           departmentId: '',
           departmentName: '所属部门...',
-          jobLevelId: '',
+          // jobLevelId: '',
           posId: '',
           industry: '',
           workID: '',
