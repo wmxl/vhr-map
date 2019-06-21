@@ -331,9 +331,9 @@
 
             <el-col :span="5">
               <div>
-                <el-form-item label="县:" prop="county">
+                <el-form-item label="地区(县):" prop="county">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.county" size="mini" style="width: 150px"
-                            placeholder="请输入县"></el-input>
+                            placeholder="请输入地区(县)"></el-input>
                 </el-form-item>
               </div>
             </el-col>
