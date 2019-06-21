@@ -65,35 +65,9 @@
                     </el-option>
                   </el-select>
                 </el-col>
-                <!-- <el-col :span="4">
-                  职称:
-                  <el-select v-model="emp.jobLevelId" style="width: 130px" size="mini" placeholder="请选择职称">
-                    <el-option
-                      v-for="item in joblevels"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id">
-                    </el-option>
-                  </el-select>
-                </el-col> -->
+
               </el-row>
               <el-row style="margin-top: 10px">
-                <!-- <el-col :span="5">
-                  所属部门:
-                  <el-popover
-                    v-model="showOrHidePop2"
-                    placement="right"
-                    title="请选择部门"
-                    trigger="manual">
-                    <el-tree :data="deps" :default-expand-all="true" :props="defaultProps" :expand-on-click-node="false"
-                             @node-click="handleNodeClick2"></el-tree>
-                    <div slot="reference"
-                         style="width: 130px;height: 26px;display: inline-flex;font-size:13px;border: 1px;border-radius: 5px;border-style: solid;padding-left: 13px;box-sizing:border-box;border-color: #dcdfe6;cursor: pointer;align-items: center"
-                         @click="showDepTree2" v-bind:style="{color: depTextColor}">{{emp.departmentName}}
-                    </div>
-                  </el-popover>
-                </el-col> -->
-
                 <el-col :span="5" :offset="4">
                   <el-button size="mini" @click="cancelSearch">取消</el-button>
                   <el-button icon="el-icon-search" type="primary" size="mini" @click="searchEmp">搜索</el-button>
@@ -116,7 +90,6 @@
               align="left"
               width="30">
             </el-table-column>
-
             <el-table-column
               prop="name"
               align="left"
@@ -124,13 +97,11 @@
               label="客户名称"
               width="90">
             </el-table-column>
-
             <el-table-column
               prop="highSea"
-              label="公海"
+              label="所属公海"
               width="50">
             </el-table-column>
-
             <el-table-column
               prop="customerId"
               width="85"
@@ -152,11 +123,16 @@
             </el-table-column>
             <el-table-column
               prop="county"
-              label="县"
+              label="地区（县）"
               align="left"
               width="50">
             </el-table-column>
 
+            <el-table-column
+              align="left"
+              prop="industry"
+              label="行业">
+            </el-table-column>
           
             <el-table-column
               prop="website"
@@ -249,30 +225,15 @@
               align="left"
               label="联系地址">
             </el-table-column>
-           <!--  <el-table-column
-              prop="department.name"
-              align="left"
-              width="100"
-              label="所属部门">
-            </el-table-column> -->
+          
             <el-table-column
               width="100"
               align="left"
               prop="position.name"
               label="职位">
             </el-table-column>
-           <!--  <el-table-column
-              prop="jobLevel.name"
-              width="100"
-              align="left"
-              label="职称">
-            </el-table-column> -->
-
-            <el-table-column
-              align="left"
-              prop="industry"
-              label="行业">
-            </el-table-column>
+           
+            
             <el-table-column
               fixed="right"
               label="操作"
@@ -313,20 +274,28 @@
 <!--    添加和编辑数据-->
     <el-form :model="emp" :rules="rules" ref="addEmpForm" style="margin: 0px;padding: 0px;">
       <div style="text-align: left">
-        <el-dialog
-          :title="dialogTitle"
-          style="padding: 0px;"
-          :close-on-click-modal="false"
-          :visible.sync="dialogVisible"
-          width="77%">
+        <el-dialog  
+        :title="dialogTitle"   
+        style="padding: 0px;" 
+        :close-on-click-modal="false" 
+        :visible.sync="dialogVisible"          
+        width="77%">
 
-          <el-row>
-<!--            第一行-->
+          <el-row> <!-- 第一行 -->
             <el-col :span="6">
               <div>
                 <el-form-item label="客户名称:" prop="name">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.name" size="mini" style="width: 150px"
                             placeholder="请输入员工姓名"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+             <el-col :span="5">
+              <div>
+                <el-form-item label="所属公海:" prop="highSea">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.highSea" size="mini" style="width: 150px"
+                            placeholder="请输入公海"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -342,20 +311,15 @@
             
             <el-col :span="5">
               <div>
-                <el-form-item label="公海:" prop="highSea">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.highSea" size="mini" style="width: 150px"
-                            placeholder="请输入公海"></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
-            <el-col :span="5">
-              <div>
                 <el-form-item label="省份:" prop="province">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.province" size="mini" style="width: 150px"
                             placeholder="请输入省份"></el-input>
                 </el-form-item>
               </div>
             </el-col>
+          </el-row>
+
+          <el-row> <!-- 第二行 -->
             <el-col :span="5">
               <div>
                 <el-form-item label="城市:" prop="city">
@@ -364,6 +328,7 @@
                 </el-form-item>
               </div>
             </el-col>
+
             <el-col :span="5">
               <div>
                 <el-form-item label="县:" prop="county">
@@ -372,7 +337,44 @@
                 </el-form-item>
               </div>
             </el-col>
+            
+            <el-col :span="5">
+              <div>
+                <el-form-item label="行业:" prop="industry">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.industry" size="mini" style="width: 150px"
+                            placeholder="行业"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
 
+            <el-col :span="7">
+              <div>
+                <el-form-item label="地址:" prop="address">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.address" size="mini" style="width: 200px"
+                            placeholder="地址..."></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+          </el-row> 
+
+          <el-row> <!-- 第三行 -->
+            <el-col :span="7">
+              <div>
+                <el-form-item label="电话号码:" prop="phone">
+                  <el-input prefix-icon="el-icon-phone" v-model="emp.phone" size="mini" style="width: 200px"
+                            placeholder="电话号码..."></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="6">
+              <div>
+                <el-form-item label="电子邮箱:" prop="email">
+                  <el-input prefix-icon="el-icon-message" v-model="emp.email" size="mini" style="width: 150px"
+                            placeholder="电子邮箱地址..."></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
 
             <el-col :span="5">
               <div>
@@ -391,7 +393,9 @@
                 </el-form-item>
               </div>
             </el-col>
+          </el-row>
 
+          <el-row> <!-- 第四行 -->
             <el-col :span="5">
               <div>
                 <el-form-item label="营业收入:" prop="businessReceipt">
@@ -419,7 +423,6 @@
               </div>
             </el-col>
 
-
             <el-col :span="5">
               <div>
                 <el-form-item label="资产总计:" prop="propertyValue">
@@ -428,7 +431,9 @@
                 </el-form-item>
               </div>
             </el-col>
-            
+          </el-row>
+
+          <el-row> <!-- 第五行 -->
             <el-col :span="5">
               <div>
                 <el-form-item label="曾用名:" prop="oldName">
@@ -458,37 +463,15 @@
 
             <el-col :span="5">
               <div>
-                <el-form-item label="资产类型:" prop="propertyType">
+                <el-form-item label="资质类型:" prop="propertyType">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.propertyType" size="mini" style="width: 150px"
                             placeholder="请输入industry"></el-input>
                 </el-form-item>
               </div>
-            </el-col>           
-
-          </el-row>
-          第二行
-          <el-row>
-            
-            <el-col :span="6">
-              <div>
-                <el-form-item label="电子邮箱:" prop="email">
-                  <el-input prefix-icon="el-icon-message" v-model="emp.email" size="mini" style="width: 150px"
-                            placeholder="电子邮箱地址..."></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
-            <el-col :span="7">
-              <div>
-                <el-form-item label="联系地址:" prop="address">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.address" size="mini" style="width: 200px"
-                            placeholder="联系地址..."></el-input>
-                </el-form-item>
-              </div>
             </el-col>
           </el-row>
 
-          <el-row>
-<!--            第三行-->
+          <el-row> <!-- 第六行 -->
             <el-col :span="6">
               <div>
                 <el-form-item label="职位:" prop="posId">
@@ -503,68 +486,13 @@
                 </el-form-item>
               </div>
             </el-col>
-            <!-- <el-col :span="5">
-              <div>
-                <el-form-item label="职称:" prop="jobLevelId">
-                  <el-select v-model="emp.jobLevelId" style="width: 120px" size="mini" placeholder="请选择职称">
-                    <el-option
-                      v-for="item in joblevels"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-              </div>
-            </el-col> -->
-            <!-- <el-col :span="6">
-              <div>
-                <el-form-item label="所属部门:" prop="departmentId">
-                  <el-popover
-                    v-model="showOrHidePop"
-                    placement="right"
-                    title="请选择部门"
-                    trigger="manual">
-                    <el-tree :data="deps" :default-expand-all="true" :props="defaultProps" :expand-on-click-node="false"
-                             @node-click="handleNodeClick"></el-tree>
-                    <div slot="reference"
-                         style="width: 150px;height: 26px;display: inline-flex;font-size:13px;border: 1px;border-radius: 5px;border-style: solid;padding-left: 13px;box-sizing:border-box;border-color: #dcdfe6;cursor: pointer;align-items: center"
-                         @click.left="showDepTree" v-bind:style="{color: depTextColor}">{{emp.departmentName}}
-                    </div>
-                  </el-popover>
-                </el-form-item>
-              </div>
-            </el-col> -->
-            <el-col :span="7">
-              <div>
-                <el-form-item label="电话号码:" prop="phone">
-                  <el-input prefix-icon="el-icon-phone" v-model="emp.phone" size="mini" style="width: 200px"
-                            placeholder="电话号码..."></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
           </el-row>
-          <el-row>
-<!--            第四行-->
 
-            <el-col :span="5">
-              <div>
-                <el-form-item label="行业:" prop="industry">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.industry" size="mini" style="width: 150px"
-                            placeholder="行业"></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
-          </el-row>
-          <el-row>
-            第五行
-          </el-row>
-          第六行
-          </el-row>
           <span slot="footer" class="dialog-footer">
-            <el-button size="mini" @click="cancelEidt">取 消</el-button>
-            <el-button size="mini" type="primary" @click="addEmp('addEmpForm')">确 定</el-button>
+              <el-button size="mini" @click="cancelEidt">取 消</el-button>
+              <el-button size="mini" type="primary" @click="addEmp('addEmpForm')">确 定</el-button>
           </span>
+
         </el-dialog>
       </div>
     </el-form>
@@ -624,7 +552,6 @@
           address: '',
           posId: '',
           industry: '',
-          workID: '',
         },
         rules: {
           name: [{required: true, message: '必填:姓名', trigger: 'blur'}],
@@ -792,22 +719,6 @@
         this.dialogVisible = false;
         this.emptyEmpData();
       },
-      // showDepTree(){
-      //   this.showOrHidePop = !this.showOrHidePop;
-      // },
-      // showDepTree2(){
-      //   this.showOrHidePop2 = !this.showOrHidePop2;
-      // },
-      // handleNodeClick(data) {
-      //   this.showOrHidePop = false;
-      //   this.depTextColor = '#606266';
-      // },
-      // handleNodeClick2(data) {
-      //   this.emp.departmentName = data.name;
-      //   this.emp.departmentId = data.id;
-      //   this.showOrHidePop2 = false;
-      //   this.depTextColor = '#606266';
-      // },
       initData(){
         console.log("initData");
         var _this = this;
@@ -826,9 +737,6 @@
         console.log(row);
         this.dialogTitle = "编辑员工";
         this.emp = row;
-        // this.emp.departmentId = row.department.id;
-        // this.emp.departmentName = row.department.name;
-        // this.emp.jobLevelId = row.jobLevel.id;
         this.emp.posId = row.position.id;
 
         this.dialogVisible = true;
@@ -860,12 +768,8 @@
           email: '',
           phone: '',
           address: '',
-          // departmentId: '',
-          // departmentName: '所属部门...',
-          // jobLevelId: '',
           posId: '',
           industry: '',
-          // workID: '',
         }
       }
     }

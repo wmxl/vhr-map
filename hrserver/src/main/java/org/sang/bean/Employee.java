@@ -27,7 +27,6 @@ public class Employee {
     private Position position; //   -- 公司性质 ---
 
     private String propertyValue;
-
     private String oldName; //曾用名
     private String employeeNum;
     private String products;
