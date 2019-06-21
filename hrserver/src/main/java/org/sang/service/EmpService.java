@@ -30,21 +30,14 @@ public class EmpService {
         return empMapper.addEmp(employee);
     }
 
-    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long posId,
-//                                            Long jobLevelId,
-                                            Long departmentId) {
+    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long posId) {
         int start = (page - 1) * size;
-        return empMapper.getEmployeeByPage(start, size, keywords, posId,
-//                jobLevelId,
-                departmentId);
+        return empMapper.getEmployeeByPage(start, size, keywords, posId);
     }
 
-    public Long getCountByKeywords(String keywords, Long posId,
-//                                   Long jobLevelId,
-                                   Long departmentId) {
-        return empMapper.getCountByKeywords(keywords, posId,
-//                jobLevelId,
-                departmentId);
+    public Long getCountByKeywords(String keywords, Long posId
+) {
+        return empMapper.getCountByKeywords(keywords, posId);
     }
 
     public int updateEmp(Employee employee) {
@@ -60,9 +53,7 @@ public class EmpService {
     }
 
     public List<Employee> getAllEmployees() {
-        return empMapper.getEmployeeByPage(null, null, "", null, null
-//                , null
-        );
+        return empMapper.getEmployeeByPage(null, null, "", null);
     }
 
     public int addEmps(List<Employee> emps) {

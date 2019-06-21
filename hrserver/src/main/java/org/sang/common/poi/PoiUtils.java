@@ -132,8 +132,6 @@ public class PoiUtils {
                 row.createCell(3).setCellValue(emp.getProvince());
                 row.createCell(7).setCellValue(emp.getPhone());
                 row.createCell(8).setCellValue(emp.getAddress());
-                row.createCell(9).setCellValue(emp.getDepartment().getName());
-                row.createCell(10).setCellValue(emp.getJobLevel().getName());
                 row.createCell(11).setCellValue(emp.getPosition().getName());
                 row.createCell(12).setCellValue(emp.getIndustry());
 
@@ -154,7 +152,6 @@ public class PoiUtils {
 
     public static List<Employee> importEmp2List(MultipartFile file,
 
-                                                List<Department> allDeps,
                                                 List<Position> allPos
 //            , List<JobLevel> allJobLevels
     ) {
@@ -216,12 +213,8 @@ public class PoiUtils {
                                         employee.setAddress(cellValue);
                                         break;
                                     case 9:
-                                        int depIndex = allDeps.indexOf(new Department(cellValue));
-                                        employee.setDepartmentId(allDeps.get(depIndex).getId());
                                         break;
                                     case 10:
-//                                        int jlIndex = allJobLevels.indexOf(new JobLevel(cellValue));
-//                                        employee.setJobLevelId(allJobLevels.get(jlIndex).getId());
                                         break;
                                     case 11:
                                         int posIndex = allPos.indexOf(new Position(cellValue));

@@ -8,30 +8,32 @@ public class Employee {
     private Long id;
     private String name;
     private String highSea;
+    private String customerId; //客户编号
     private String province;
     private String city;
     private String county;
+    private String industry;
+    private String address;
+    private String phone;
+    private String email;
     private String website;
     private String remark;
     private String businessReceipt;
     private String businessScope;
-    private String industry;
+    private String registerCapital; //注册资本金
+
+    private Long posId;
+    private String posName;
+    private Position position; //   -- 公司性质 ---
+
     private String propertyValue;
+
+    private String oldName; //曾用名
     private String employeeNum;
     private String products;
     private String propertyType;
-    private String email;
-    private String phone;
-    private String address;
-    private Long departmentId;
-    private String departmentName;
-    private Long jobLevelId;
-    private String jobLevelName;
-    private Long posId;
-    private String posName;
-    private Department department;
-    private JobLevel jobLevel;
-    private Position position;
+
+    //get set
 
     public String getPosName() {
         return posName;
@@ -39,22 +41,6 @@ public class Employee {
 
     public void setPosName(String posName) {
         this.posName = posName;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-    public JobLevel getJobLevel() {
-        return jobLevel;
-    }
-
-    public void setJobLevel(JobLevel jobLevel) {
-        this.jobLevel = jobLevel;
     }
 
     public Position getPosition() {
@@ -115,42 +101,6 @@ public class Employee {
     }
 
     @JsonIgnore
-    public Long getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    @JsonIgnore
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
-    @JsonIgnore
-    public Long getJobLevelId() {
-        return jobLevelId;
-    }
-
-    public void setJobLevelId(Long jobLevelId) {
-        this.jobLevelId = jobLevelId;
-    }
-
-    @JsonIgnore
-    public String getJobLevelName() {
-        return jobLevelName;
-    }
-
-    public void setJobLevelName(String jobLevelName) {
-        this.jobLevelName = jobLevelName;
-    }
-
-    @JsonIgnore
     public Long getPosId() {
         return posId;
     }
@@ -191,6 +141,7 @@ public class Employee {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
     public String getWebsite() {
         return website;
     }
@@ -245,6 +196,7 @@ public class Employee {
     public void setPropertyType(String propertyType) {
         this.propertyType = propertyType;
     }
+
     public String getIndustry() {
         return industry;
     }
@@ -253,36 +205,30 @@ public class Employee {
         this.industry = industry;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", highSea='" + highSea + '\'' +
-                ", province='" + province + '\'' +
-                ", city='" + city + '\'' +
-                ", county='" + county + '\'' +
-                ", website='" + website + '\'' +
-                ", remark='" + remark + '\'' +
-                ", businessReceipt='" + businessReceipt + '\'' +
-                ", businessScope='" + businessScope + '\'' +
-                ", industry='" + industry + '\'' +
-                ", propertyValue='" + propertyValue + '\'' +
-                ", employeeNum='" + employeeNum + '\'' +
-                ", products='" + products + '\'' +
-                ", propertyType='" + propertyType + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", departmentId=" + departmentId +
-                ", departmentName='" + departmentName + '\'' +
-                ", jobLevelId=" + jobLevelId +
-                ", jobLevelName='" + jobLevelName + '\'' +
-                ", posId=" + posId +
-                ", posName='" + posName + '\'' +
-                ", department=" + department +
-                ", jobLevel=" + jobLevel +
-                ", position=" + position +
-                '}';
+    public String getCustomerId() {
+        return customerId;
     }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getRegisterCapital() {
+        return registerCapital;
+    }
+
+    public void setRegisterCapital(String registerCapital) {
+        this.registerCapital = registerCapital;
+    }
+
+    public String getOldName() {
+        return oldName;
+    }
+
+    public void setOldName(String oldName) {
+        this.oldName = oldName;
+    }
+
+
+
 }

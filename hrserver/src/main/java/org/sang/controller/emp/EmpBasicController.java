@@ -30,11 +30,7 @@ public class EmpBasicController {
     @Autowired
     EmpService empService;
     @Autowired
-    DepartmentService departmentService; //删掉
-    @Autowired
-    PositionService positionService;//职位 -> 资质类型
-//    @Autowired
-//    JobLevelService jobLevelService; //删掉
+    PositionService positionService;//职位 -> 公司性质
     @Autowired
     ExecutorService executorService;
     @Autowired
@@ -45,9 +41,7 @@ public class EmpBasicController {
     @RequestMapping(value = "/basicdata", method = RequestMethod.GET)
     public Map<String, Object> getAllNations() {
         Map<String, Object> map = new HashMap<>();
-        map.put("deps", departmentService.getDepByPid(-1L));
         map.put("positions", positionService.getAllPos());
-//        map.put("joblevels", jobLevelService.getAllJobLevels());
         return map;
     }
 
@@ -90,17 +84,11 @@ public class EmpBasicController {
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "") String keywords,
-             Long posId,
-//            Long jobLevelId,
-            Long departmentId) {
+             Long posId) {
         Map<String, Object> map = new HashMap<>();
         List<Employee> employeeByPage = empService.getEmployeeByPage(page, size,
-                keywords, posId,
-//                jobLevelId,
-                departmentId);
-        Long count = empService.getCountByKeywords(keywords,posId,
-//                jobLevelId,
-                departmentId);
+                keywords, posId);
+        Long count = empService.getCountByKeywords(keywords,posId);
         map.put("emps", employeeByPage);
         map.put("count", count);
         return map;
@@ -114,7 +102,6 @@ public class EmpBasicController {
     @RequestMapping(value = "/importEmp", method = RequestMethod.POST)
     public RespBean importEmp(MultipartFile file) {
         List<Employee> emps = PoiUtils.importEmp2List(file,
-                departmentService.getAllDeps(),
                 positionService.getAllPos()
 //                ,jobLevelService.getAllJobLevels()
         );

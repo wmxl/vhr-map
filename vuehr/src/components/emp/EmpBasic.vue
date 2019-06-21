@@ -78,7 +78,7 @@
                 </el-col> -->
               </el-row>
               <el-row style="margin-top: 10px">
-                <el-col :span="5">
+                <!-- <el-col :span="5">
                   所属部门:
                   <el-popover
                     v-model="showOrHidePop2"
@@ -92,7 +92,7 @@
                          @click="showDepTree2" v-bind:style="{color: depTextColor}">{{emp.departmentName}}
                     </div>
                   </el-popover>
-                </el-col>
+                </el-col> -->
 
                 <el-col :span="5" :offset="4">
                   <el-button size="mini" @click="cancelSearch">取消</el-button>
@@ -132,7 +132,7 @@
             </el-table-column>
 
             <el-table-column
-              prop="workID"
+              prop="customerId"
               width="85"
               align="left"
               label="客户编码">
@@ -186,9 +186,26 @@
               width="50">
             </el-table-column>
 
+            
+            <el-table-column
+              prop="registerCapital"
+              label="注册资本金"
+              align="left"
+              width="50">
+            </el-table-column>
+
             <el-table-column
               prop="propertyValue"
               label="资产总计"
+              align="left"
+              width="50">
+            </el-table-column>
+            
+
+            
+            <el-table-column
+              prop="oldName"
+              label="曾用名"
               align="left"
               width="50">
             </el-table-column>
@@ -212,29 +229,7 @@
               label="资产类型"
               align="left"
               width="50">
-            </el-table-column>
-
-
-
-            <!-- <el-table-column
-              width="85"
-              align="left"
-              label="出生日期">
-              <template slot-scope="scope">{{ scope.row.birthday | formatDate}}</template>
-            </el-table-column> -->
-
-<!--            <el-table-column-->
-<!--              prop="wedlock"-->
-<!--              width="70"-->
-<!--              label="婚姻状况">-->
-<!--            </el-table-column>-->
-
-            <!-- <el-table-column
-              width="50"
-              prop="nation.name"
-              label="民族">
-            </el-table-column> -->
-            
+            </el-table-column>            
 
             </el-table-column>
             <el-table-column
@@ -254,12 +249,12 @@
               align="left"
               label="联系地址">
             </el-table-column>
-            <el-table-column
+           <!--  <el-table-column
               prop="department.name"
               align="left"
               width="100"
               label="所属部门">
-            </el-table-column>
+            </el-table-column> -->
             <el-table-column
               width="100"
               align="left"
@@ -315,7 +310,7 @@
 
       </el-main>
     </el-container>
-<!--    添加数据-->
+<!--    添加和编辑数据-->
     <el-form :model="emp" :rules="rules" ref="addEmpForm" style="margin: 0px;padding: 0px;">
       <div style="text-align: left">
         <el-dialog
@@ -336,6 +331,15 @@
               </div>
             </el-col>
 
+            <el-col :span="5">
+              <div>
+                <el-form-item label="客户编码:" prop="customerId">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.customerId" size="mini" style="width: 150px"
+                            placeholder="请输入客户编码"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+            
             <el-col :span="5">
               <div>
                 <el-form-item label="公海:" prop="highSea">
@@ -406,12 +410,30 @@
               </div>
             </el-col>
 
+            <el-col :span="5">
+              <div>
+                <el-form-item label="注册资本金:" prop="registerCapital">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.registerCapital" size="mini" style="width: 150px"
+                            placeholder="请输入注册资本金"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
 
             <el-col :span="5">
               <div>
                 <el-form-item label="资产总计:" prop="propertyValue">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.propertyValue" size="mini" style="width: 150px"
                             placeholder="请输入industry"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+            
+            <el-col :span="5">
+              <div>
+                <el-form-item label="曾用名:" prop="oldName">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.oldName" size="mini" style="width: 150px"
+                            placeholder="请输入曾用名"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -495,7 +517,7 @@
                 </el-form-item>
               </div>
             </el-col> -->
-            <el-col :span="6">
+            <!-- <el-col :span="6">
               <div>
                 <el-form-item label="所属部门:" prop="departmentId">
                   <el-popover
@@ -512,7 +534,7 @@
                   </el-popover>
                 </el-form-item>
               </div>
-            </el-col>
+            </el-col> -->
             <el-col :span="7">
               <div>
                 <el-form-item label="电话号码:" prop="phone">
@@ -524,14 +546,6 @@
           </el-row>
           <el-row>
 <!--            第四行-->
-            <el-col :span="6">
-              <div>
-                <el-form-item label="工号:" prop="workID">
-                  <el-input v-model="emp.workID" disabled size="mini" style="width: 150px"
-                            placeholder="员工工号..."></el-input>
-                </el-form-item>
-              </div>
-            </el-col>
 
             <el-col :span="5">
               <div>
@@ -544,7 +558,6 @@
           </el-row>
           <el-row>
             第五行
-            
           </el-row>
           第六行
           </el-row>
@@ -566,6 +579,7 @@
     data() {
       return {
         emps: [],
+
         keywords: '',
         fileUploadBtnText: '导入数据',
         faangledoubleup: 'fa-angle-double-up',
@@ -574,7 +588,6 @@
         multipleSelection: [],
         depTextColor: '#c0c4cc',
         positions: [],
-        // joblevels: [],
         totalCount: -1,
         currentPage: 1,
         
@@ -592,6 +605,7 @@
         emp: {
           name: '',
           highSea: '',
+          customerId: '',
           province: '',
           city: '',
           county: '',
@@ -599,19 +613,16 @@
           remark: '',
           businessReceipt: '',
           businessScope: '',
-
+          registerCapital: '',
           propertyValue: '',
+          oldName: '',
           employeeNum: '',
           products: '',
           propertyType: '',
           email: '',
           phone: '',
           address: '',
-          departmentId: '',
-          departmentName: '所属部门...',
-          // jobLevelId: '',
           posId: '',
-
           industry: '',
           workID: '',
         },
@@ -715,9 +726,7 @@
       loadEmps(){
         var _this = this;
         this.tableLoading = true;
-        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&posId=" + this.emp.posId + 
-          // "&jobLevelId=" + this.emp.jobLevelId  + 
-          "&departmentId=" + this.emp.departmentId).then(resp=> {
+        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&posId=" + this.emp.posId).then(resp=> {
           this.tableLoading = false;
 
           if (resp && resp.status == 200) {
@@ -750,6 +759,10 @@
                 _this.tableLoading = false;
                 if (resp && resp.status == 200) {
                   console.log("进入更新if");
+                  console.log(resp)
+                  console.log(resp.data)
+                  console.log(resp.data[0])
+
                   var data = resp.data;
                   _this.dialogVisible = false;
                   _this.emptyEmpData();
@@ -779,24 +792,22 @@
         this.dialogVisible = false;
         this.emptyEmpData();
       },
-      showDepTree(){
-        this.showOrHidePop = !this.showOrHidePop;
-      },
-      showDepTree2(){
-        this.showOrHidePop2 = !this.showOrHidePop2;
-      },
-      handleNodeClick(data) {
-        this.emp.departmentName = data.name;
-        this.emp.departmentId = data.id;
-        this.showOrHidePop = false;
-        this.depTextColor = '#606266';
-      },
-      handleNodeClick2(data) {
-        this.emp.departmentName = data.name;
-        this.emp.departmentId = data.id;
-        this.showOrHidePop2 = false;
-        this.depTextColor = '#606266';
-      },
+      // showDepTree(){
+      //   this.showOrHidePop = !this.showOrHidePop;
+      // },
+      // showDepTree2(){
+      //   this.showOrHidePop2 = !this.showOrHidePop2;
+      // },
+      // handleNodeClick(data) {
+      //   this.showOrHidePop = false;
+      //   this.depTextColor = '#606266';
+      // },
+      // handleNodeClick2(data) {
+      //   this.emp.departmentName = data.name;
+      //   this.emp.departmentId = data.id;
+      //   this.showOrHidePop2 = false;
+      //   this.depTextColor = '#606266';
+      // },
       initData(){
         console.log("initData");
         var _this = this;
@@ -815,8 +826,8 @@
         console.log(row);
         this.dialogTitle = "编辑员工";
         this.emp = row;
-        this.emp.departmentId = row.department.id;
-        this.emp.departmentName = row.department.name;
+        // this.emp.departmentId = row.department.id;
+        // this.emp.departmentName = row.department.name;
         // this.emp.jobLevelId = row.jobLevel.id;
         this.emp.posId = row.position.id;
 
@@ -832,6 +843,7 @@
         this.emp = {
           name: '',
           highSea: '',
+          customerId: '',
           province: '',
           city: '',
           county: '',
@@ -839,19 +851,21 @@
           remark: '',
           businessReceipt: '',
           businessScope: '',
+          registerCapital: '',
           propertyValue: '',
+          oldName: '',
           employeeNum: '',
           products: '',
           propertyType: '',
           email: '',
           phone: '',
           address: '',
-          departmentId: '',
-          departmentName: '所属部门...',
+          // departmentId: '',
+          // departmentName: '所属部门...',
           // jobLevelId: '',
           posId: '',
           industry: '',
-          workID: '',
+          // workID: '',
         }
       }
     }

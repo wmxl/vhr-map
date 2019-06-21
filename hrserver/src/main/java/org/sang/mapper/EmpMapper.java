@@ -13,13 +13,9 @@ public interface EmpMapper {
 
     int addEmp(Employee employee);
 
-    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("posId") Long posId,
-//                                     @Param("jobLevelId") Long jobLevelId,
-                                     @Param("departmentId")Long  departmentId);
+    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("posId") Long posId);
 
-    Long getCountByKeywords(@Param("keywords") String keywords, @Param("posId") Long posId,
-//                            @Param("jobLevelId") Long jobLevelId,
-                            @Param("departmentId")Long  departmentId);
+    Long getCountByKeywords(@Param("keywords") String keywords, @Param("posId") Long posId);
 
     int updateEmp(@Param("emp") Employee employee);
 
