@@ -48,15 +48,15 @@
       <el-main style="padding-left: 0px;padding-top: 0px">
         
         <div>
-<!--          主列表之前-->
+<!--          高级搜索-->
           <transition name="slide-fade">
             <div
               style="margin-bottom: 10px;border: 1px;border-radius: 5px;border-style: solid;padding: 5px 0px 5px 0px;box-sizing:border-box;border-color: #20a0ff"
               v-show="advanceSearchViewVisible">
               <el-row>
                 <el-col :span="4">
-                  职位:
-                  <el-select v-model="emp.posId" style="width: 130px" size="mini" placeholder="请选择职位">
+                  公司性质:
+                  <el-select v-model="emp.posId" style="width: 130px" size="mini" placeholder="请选择公司性质">
                     <el-option
                       v-for="item in positions"
                       :key="item.id"
@@ -64,6 +64,16 @@
                       :value="item.id">
                     </el-option>
                   </el-select>
+                </el-col>
+
+                <el-col :span="5">
+                  资产总计：
+                  <el-input prefix-icon="el-icon-edit" v-model="propertyValue" size="mini" style="width: 150px"
+                                placeholder="请输入min"></el-input>
+                  <el-input prefix-icon="el-icon-edit" v-model="propertyValue2" size="mini" style="width: 150px"
+                                placeholder="请输入max"></el-input>
+                    </el-form-item>
+
                 </el-col>
 
               </el-row>
@@ -75,7 +85,7 @@
               </el-row>
             </div>
           </transition>
-<!--          主列表之前 结束-->
+<!--          高级搜索 结束-->
 <!--          主列表-->
           <el-table
             :data="emps"
@@ -133,14 +143,34 @@
               prop="industry"
               label="行业">
             </el-table-column>
-          
+
+            <el-table-column
+              prop="address"
+              width="220"
+              align="left"
+              label="地址">
+            </el-table-column>
+
+            <el-table-column
+              prop="phone"
+              width="100"
+              label="联系电话">
+            </el-table-column>
+
+            <el-table-column
+              prop="email"
+              width="180"
+              align="left"
+              label="邮箱">
+            </el-table-column>
+            
             <el-table-column
               prop="website"
               label="网址"
               align="left"
               width="50">
             </el-table-column>
-
+            
             <el-table-column
               prop="remark"
               label="备注"
@@ -171,13 +201,18 @@
             </el-table-column>
 
             <el-table-column
+              width="100"
+              align="left"
+              prop="position.name"
+              label="公司性质">
+            </el-table-column>
+
+            <el-table-column
               prop="propertyValue"
               label="资产总计"
               align="left"
               width="50">
             </el-table-column>
-            
-
             
             <el-table-column
               prop="oldName"
@@ -202,37 +237,60 @@
 
             <el-table-column
               prop="propertyType"
-              label="资产类型"
+              label="资质类型"
               align="left"
               width="50">
             </el-table-column>            
 
-            </el-table-column>
             <el-table-column
-              prop="email"
-              width="180"
+              prop="giov"
+              label="工业总产值"
               align="left"
-              label="电子邮件">
-            </el-table-column>
+              width="50">
+            </el-table-column>   
+
             <el-table-column
-              prop="phone"
-              width="100"
-              label="电话号码">
-            </el-table-column>
-            <el-table-column
-              prop="address"
-              width="220"
+              prop="creator"
+              label="创建人"
               align="left"
-              label="联系地址">
-            </el-table-column>
-          
+              width="50">
+            </el-table-column> 
+
             <el-table-column
-              width="100"
+              prop="relevantP"
+              label="相关人"
               align="left"
-              prop="position.name"
-              label="职位">
-            </el-table-column>
-           
+              width="50">
+            </el-table-column>    
+
+            <el-table-column
+              prop="relevantPAccount"
+              label="相关人账号"
+              align="left"
+              width="50">
+            </el-table-column>   
+
+            <el-table-column
+              prop="creatorAccount"
+              label="创建人账号"
+              align="left"
+              width="50">
+            </el-table-column> 
+
+            <el-table-column
+              prop="chargePAccount"
+              label="负责人账号"
+              align="left"
+              width="50">
+            </el-table-column> 
+
+            <el-table-column
+              prop="chargeP"
+              label="负责人"
+              align="left"
+              width="50">
+            </el-table-column> 
+            
             
             <el-table-column
               fixed="right"
@@ -471,11 +529,11 @@
             </el-col>
           </el-row>
 
-          <el-row> <!-- 第六行 -->
+          <el-row> <!-- 第6行 -->
             <el-col :span="6">
               <div>
-                <el-form-item label="职位:" prop="posId">
-                  <el-select v-model="emp.posId" style="width: 150px" size="mini" placeholder="请选择职位">
+                <el-form-item label="公司性质:" prop="posId">
+                  <el-select v-model="emp.posId" style="width: 150px" size="mini" placeholder="请选择公司性质">
                     <el-option
                       v-for="item in positions"
                       :key="item.id"
@@ -486,6 +544,69 @@
                 </el-form-item>
               </div>
             </el-col>
+            <el-col :span="5">
+              <div>
+                <el-form-item label="工业总产值:" prop="giov">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.giov" size="mini" style="width: 150px"
+                            placeholder="请输入工业总产值"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="创建人:" prop="creator">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.creator" size="mini" style="width: 150px"
+                            placeholder="请输入创建人。。"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="相关人:" prop="relevantP">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.relevantP" size="mini" style="width: 150px"
+                            placeholder="请输入相关人"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="相关人账号:" prop="relevantPAccount">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.relevantPAccount" size="mini" style="width: 150px"
+                            placeholder="请输入相关人账号"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="创建人账号:" prop="creatorAccount">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.creatorAccount" size="mini" style="width: 150px"
+                            placeholder="请输入创建人账号"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="负责人账号:" prop="chargePAccount">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.chargePAccount" size="mini" style="width: 150px"
+                            placeholder="请输入负责人账号"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="负责人:" prop="chargeP">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.chargeP" size="mini" style="width: 150px"
+                            placeholder="请输入负责人"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
           </el-row>
 
           <span slot="footer" class="dialog-footer">
@@ -509,6 +630,8 @@
         emps: [],
 
         keywords: '',
+        propertyValue: '',
+        propertyValue2: '',
         fileUploadBtnText: '导入数据',
         faangledoubleup: 'fa-angle-double-up',
         faangledoubledown: 'fa-angle-double-down',
@@ -552,6 +675,14 @@
           address: '',
           posId: '',
           industry: '',
+
+          giov: '',
+          creator: '',
+          relevantP: '',
+          relevantPAccount: '',
+          creatorAccount: '',
+          chargePAccount: '',
+          chargeP: ''
         },
         rules: {
           name: [{required: true, message: '必填:姓名', trigger: 'blur'}],
@@ -588,6 +719,8 @@
       cancelSearch(){
         this.advanceSearchViewVisible = false;
         this.emptyEmpData();
+        this.propertyValue = '';
+        this.propertyValue2 = '';
         this.loadEmps();
       },
       showAdvanceSearchView(){
@@ -595,6 +728,8 @@
         this.keywords = '';
         if (!this.advanceSearchViewVisible) {
           this.emptyEmpData();
+          this.propertyValue = '';
+          this.propertyValue2 = '';
           this.loadEmps();
         }
       },
@@ -649,22 +784,27 @@
         this.currentPage = currentChange;
         this.loadEmps();
       },
-      //加载数据的方法
+      //lemps 加载数据的方法
       loadEmps(){
         var _this = this;
         this.tableLoading = true;
-        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&posId=" + this.emp.posId).then(resp=> {
+        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&posId=" + this.emp.posId + "&propertyValue=" + this.propertyValue + "&propertyValue2=" + this.propertyValue2 ).then(resp=> {
           this.tableLoading = false;
+
+          console.log("loadEmps():")
+          console.log("&propertyValue=" + this.emp.posId + "&propertyValue=" + this.propertyValue)
+
+          console.log(resp)
 
           if (resp && resp.status == 200) {
             var data = resp.data;
             _this.emps = data.emps;
             _this.totalCount = data.count;
 
-            // console.log("start")
-            // console.log(data.emps)
-            // console.log(data.emps[0])
-            // console.log("end")
+            console.log("start")
+            console.log(data.emps)
+            console.log(data.emps[0])
+            console.log("end")
 
 //            _this.emptyEmpData();
           }
@@ -676,19 +816,17 @@
           if (valid) {
             if (this.emp.id) {
               //更新
-              console.log("进入更新");
               this.tableLoading = true;
               this.putRequest("/employee/basic/emp", this.emp).then(resp=> {
                 console.log("进入更新putRequest");
-                console.log(resp)
                 console.log(resp.status)
 
                 _this.tableLoading = false;
                 if (resp && resp.status == 200) {
                   console.log("进入更新if");
                   console.log(resp)
-                  console.log(resp.data)
-                  console.log(resp.data[0])
+                  console.log(resp.config)
+                  console.log(resp.config.data)
 
                   var data = resp.data;
                   _this.dialogVisible = false;
@@ -698,10 +836,14 @@
               })
             } else {
               //添加
+              console.log("进入添加");
               this.tableLoading = true;
               this.postRequest("/employee/basic/emp", this.emp).then(resp=> {
+                console.log("进入添加posRequest");
                 _this.tableLoading = false;
+                console.log(resp.status);
                 if (resp && resp.status == 200) {
+                  console.log("进入添加if");
                   var data = resp.data;
                   
                   _this.dialogVisible = false;
@@ -727,7 +869,6 @@
             var data = resp.data;
             _this.deps = data.deps;
             _this.positions = data.positions;
-            // _this.joblevels = data.joblevels;
             _this.emp.workID = data.workID;
           }
         })
@@ -736,6 +877,7 @@
         console.log("showEditEmpView");
         console.log(row);
         this.dialogTitle = "编辑员工";
+
         this.emp = row;
         this.emp.posId = row.position.id;
 
@@ -761,6 +903,7 @@
           businessScope: '',
           registerCapital: '',
           propertyValue: '',
+          propertyValue2: '',
           oldName: '',
           employeeNum: '',
           products: '',
@@ -770,6 +913,14 @@
           address: '',
           posId: '',
           industry: '',
+
+          giov: '',
+          creator: '',
+          relevantP: '',
+          relevantPAccount: '',
+          creatorAccount: '',
+          chargePAccount: '',
+          chargeP: ''
         }
       }
     }

@@ -3,7 +3,6 @@ package org.sang.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.sang.bean.Employee;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,9 +12,9 @@ public interface EmpMapper {
 
     int addEmp(Employee employee);
 
-    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("posId") Long posId);
+    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("posId") Long posId, @Param("propertyValue")Long propertyValue, @Param("propertyValue2")Long propertyValue2);
 
-    Long getCountByKeywords(@Param("keywords") String keywords, @Param("posId") Long posId);
+    Long getCountByKeywords(@Param("keywords") String keywords, @Param("posId") Long posId, @Param("propertyValue") Long propertyValu, @Param("propertyValue2") Long propertyValue2);
 
     int updateEmp(@Param("emp") Employee employee);
 

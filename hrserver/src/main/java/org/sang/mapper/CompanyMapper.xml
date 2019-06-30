@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sang.mapper.CompanyMapper">
+	<resultMap id="companies" type="org.sang.bean.Company">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="status" property="status"/>
+        <result column="companyId" property="companyId"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="area" property="area"/>
+        <result column="industry" property="industry"/>
+        <result column="address" property="address"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="web" property="web"/>
+        <result column="note" property="note"/>
+        <result column="income" property="income"/>
+        <result column="limit" property="limit"/>
+        <result column="registeredCapital" property="registeredCapital"/>
+        <result column="nature" property="nature"/>
+        <result column="totalAsset" property="totalAsset"/>
+        <result column="formerName" property="formerName"/>
+        <result column="numEmployees" property="numEmployees"/>
+        <result column="products" property="products"/>
+        <result column="type" property="type"/>
+        <result column="output" property="output"/>
+        <result column="founder" property="founder"/>
+        <result column="relevant" property="relevant"/>
+        <result column="relevantAccount" property="relevantAccount"/>
+        <result column="founderAccount" property="founderAccount"/>
+        <result column="headAccount" property="headAccount"/>
+        <result column="head" property="head"/>
+        <result column="longitude" property="longitude"/>
+        <result column="latitude" property="latitude"/>
+        </resultMap>
+
+    <select id="Companies" resultType="org.sang.bean.Company">
+        SELECT * FROM company
+    </select>
+    
+    <select id="getCompanyByPage" resultType="org.sang.bean.Company">
+        SELECT * FROM company where name like concat('%',#{keywords},'%')
+        <if test="start!=null and size!=null">
+            order by id limit #{start},#{size}
+        </if>
+    </select>
+    
+    <insert id="addCompany" parameterType="org.sang.bean.Company">
+    	insert into company (name,status,companyId,province,city,area,
+    	industry,address,phone,email,web,note,income,limit,
+    	registeredCapital,nature,totalAsset,formerName,numEmployees,
+    	products,type,output,founder,relevant,relevantAccount,
+    	founderAccount,headAccount,head) 
+    	values (#{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{companyId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR},
+      #{industry,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{web,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR},
+      #{income,jdbcType=DOUBLE}, #{limit,jdbcType=VARCHAR}, #{registeredCapital,jdbcType=DOUBLE},
+      #{nature,jdbcType=VARCHAR}, #{totalAsset,jdbcType=DOUBLE}, #{formerName,jdbcType=VARCHAR},
+      #{numEmployees,jdbcType=INTEGER},#{products,jdbcType=VARCHAR},
+      #{type,jdbcType=VARCHAR}, #{output,jdbcType=DOUBLE},
+      #{founder,jdbcType=VARCHAR}, #{relevant,jdbcType=VARCHAR}, #{relevantAccount,jdbcType=VARCHAR},
+      #{founderAccount,jdbcType=VARCHAR}, #{headAccount,jdbcType=VARCHAR},
+      #{head,jdbcType=VARCHAR}
+      )
+    </insert>
+    
+    <insert id="addCompanies">
+    	insert into company (name,status,companyId,province,city,area,
+    	industry,address,phone,email,web,note,income,limit,
+    	registeredCapital,nature,totalAsset,formerName,numEmployees,
+    	products,type,output,founder,relevant,relevantAccount,
+    	founderAccount,headAccount,head) 
+    	values 
+    	<foreach collection="coms" item="com" separator=",">
+    	(#{com.name,jdbcType=VARCHAR}, #{com.status,jdbcType=VARCHAR},
+      #{com.companyId,jdbcType=VARCHAR}, #{com.province,jdbcType=VARCHAR}, #{com.city,jdbcType=VARCHAR}, #{com.area,jdbcType=VARCHAR},
+      #{com.industry,jdbcType=VARCHAR}, #{com.address,jdbcType=VARCHAR}, #{com.phone,jdbcType=VARCHAR},
+      #{com.email,jdbcType=VARCHAR}, #{com.web,jdbcType=VARCHAR}, #{com.note,jdbcType=VARCHAR},
+      #{com.income,jdbcType=DOUBLE}, #{com.limit,jdbcType=VARCHAR}, #{com.registeredCapital,jdbcType=DOUBLE},
+      #{com.nature,jdbcType=VARCHAR}, #{com.totalAsset,jdbcType=DOUBLE}, #{com.formerName,jdbcType=VARCHAR},
+      #{com.numEmployees,jdbcType=INTEGER},#{com.products,jdbcType=VARCHAR},
+      #{com.type,jdbcType=VARCHAR}, #{com.output,jdbcType=DOUBLE},
+      #{com.founder,jdbcType=VARCHAR}, #{com.relevant,jdbcType=VARCHAR}, #{com.relevantAccount,jdbcType=VARCHAR},
+      #{com.founderAccount,jdbcType=VARCHAR}, #{com.headAccount,jdbcType=VARCHAR},
+      #{com.head,jdbcType=VARCHAR}
+      )
+      </foreach>
+    </insert>
+    <select id="getCountByKeywords" resultType="Long">
+        SELECT count(*) FROM company WHERE name LIKE concat('%',#{keywords},'%')
+    </select>
+    <select id="getCompanyByPageShort" resultMap="companies">
+		select * FROM company ORDER BY id limit #{start},#{size}
+    </select>
+</mapper>

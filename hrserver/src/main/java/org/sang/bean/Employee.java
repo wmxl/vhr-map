@@ -2,13 +2,11 @@ package org.sang.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.Date;
-
 public class Employee {
     private Long id;
     private String name;
     private String highSea;
-    private String customerId; //客户编号
+    private String customerId;
     private String province;
     private String city;
     private String county;
@@ -20,20 +18,27 @@ public class Employee {
     private String remark;
     private String businessReceipt;
     private String businessScope;
-    private String registerCapital; //注册资本金
+    private String registerCapital;
 
     private Long posId;
     private String posName;
     private Position position; //   -- 公司性质 ---
 
-    private String propertyValue;
-    private String oldName; //曾用名
+    private long propertyValue;
+    private String oldName;
     private String employeeNum;
     private String products;
     private String propertyType;
 
-    //get set
+    private String giov; //工业总产值 gross industrial output value
+    private String creator;
+    private String creatorAccount;
+    private String relevantP;
+    private String relevantPAccount;
+    private String chargeP;
+    private String chargePAccount;
 
+    //get set
     public String getPosName() {
         return posName;
     }
@@ -164,11 +169,11 @@ public class Employee {
     public void setBusinessScope(String businessScope) {
         this.businessScope = businessScope;
     }
-    public String getPropertyValue() {
+    public long getPropertyValue() {
         return propertyValue;
     }
 
-    public void setPropertyValue(String propertyValue) {
+    public void setPropertyValue(long propertyValue) {
         this.propertyValue = propertyValue;
     }
 
@@ -228,6 +233,90 @@ public class Employee {
         this.oldName = oldName;
     }
 
+    public String getGiov() {
+        return giov;
+    }
 
+    public void setGiov(String giov) {
+        this.giov = giov;
+    }
 
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getCreatorAccount() {
+        return creatorAccount;
+    }
+
+    public void setCreatorAccount(String creatorAccount) {
+        this.creatorAccount = creatorAccount;
+    }
+
+    public String getRelevantP() {
+        return relevantP;
+    }
+
+    public void setRelevantP(String relevantP) {
+        this.relevantP = relevantP;
+    }
+
+    public String getRelevantPAccount() {
+        return relevantPAccount;
+    }
+
+    public void setRelevantPAccount(String relevantPAccount) {
+        this.relevantPAccount = relevantPAccount;
+    }
+
+    public String getChargeP() {
+        return chargeP;
+    }
+
+    public void setChargeP(String chargeP) {
+        this.chargeP = chargeP;
+    }
+
+    public String getChargePAccount() {
+        return chargePAccount;
+    }
+
+    public void setChargePAccount(String chargePAccount) {
+        this.chargePAccount = chargePAccount;
+    }
+
+    //toString
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", highSea='" + highSea + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", county='" + county + '\'' +
+                ", industry='" + industry + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", website='" + website + '\'' +
+                ", remark='" + remark + '\'' +
+                ", businessReceipt='" + businessReceipt + '\'' +
+                ", businessScope='" + businessScope + '\'' +
+                ", registerCapital='" + registerCapital + '\'' +
+                ", posId=" + posId +
+                ", posName='" + posName + '\'' +
+                ", position=" + position +
+                ", propertyValue=" + propertyValue  +
+                ", oldName='" + oldName + '\'' +
+                ", employeeNum='" + employeeNum + '\'' +
+                ", products='" + products + '\'' +
+                ", propertyType='" + propertyType + '\'' +
+                '}';
+    }
 }

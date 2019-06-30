@@ -43,11 +43,12 @@ public class EmpBasicController {
         return map;
     }
 
-
-
     @RequestMapping(value = "/emp", method = RequestMethod.POST)
     public RespBean addEmp(Employee employee) {
+        System.err.println("进入添加controller:");
         if (empService.addEmp(employee) == 1) {
+            System.err.println("1:");
+
             List<Position> allPos = positionService.getAllPos();
             for (Position allPo : allPos) {
                 if (allPo.getId() == employee.getPosId()) {
@@ -56,6 +57,7 @@ public class EmpBasicController {
             }
             executorService.execute(new EmailRunnable(employee,
                     javaMailSender, templateEngine));
+            System.err.println(employee);
             return RespBean.ok("添加成功!");
         }
         return RespBean.error("添加失败!");
@@ -82,11 +84,16 @@ public class EmpBasicController {
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "") String keywords,
-             Long posId) {
+             Long posId
+            ,Long propertyValue
+            ,Long propertyValue2
+    ) {
+//        System.err.println("进入EmpBasicController:");
+//        System.err.println(posId);
+//        System.err.println(propertyValue);
         Map<String, Object> map = new HashMap<>();
-        List<Employee> employeeByPage = empService.getEmployeeByPage(page, size,
-                keywords, posId);
-        Long count = empService.getCountByKeywords(keywords,posId);
+        List<Employee> employeeByPage = empService.getEmployeeByPage(page, size, keywords, posId, propertyValue, propertyValue2);
+        Long count = empService.getCountByKeywords(keywords, posId, propertyValue, propertyValue2);
         map.put("emps", employeeByPage);
         map.put("count", count);
         return map;
@@ -101,11 +108,15 @@ public class EmpBasicController {
     public RespBean importEmp(MultipartFile file) {
         List<Employee> emps = PoiUtils.importEmp2List(file,
                 positionService.getAllPos()
-//                ,jobLevelService.getAllJobLevels()
         );
-        System.out.println("controller:");
-        System.out.println(emps);
-        if (empService.addEmps(emps) == emps.size()) {
+        System.err.println("EmpBasicController:");
+        System.err.println(emps);
+
+        System.err.println("emps.size() = " + emps.size());
+        int a = empService.addEmps(emps);
+        System.err.println("empService.addEmps(emps) = " + a);
+
+        if (a == emps.size()) {
             return RespBean.ok("导入成功!");
         }
         return RespBean.error("导入失败!");

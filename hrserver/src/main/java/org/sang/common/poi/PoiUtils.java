@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.print.DocFlavor;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,16 +63,16 @@ public class PoiUtils {
             sheet.setColumnWidth(0, 5 * 256);
             sheet.setColumnWidth(1, 12 * 256);
             sheet.setColumnWidth(2, 10 * 256);
-            sheet.setColumnWidth(3, 5 * 256);
+            sheet.setColumnWidth(3, 10 * 256);
             sheet.setColumnWidth(4, 12 * 256);
-            sheet.setColumnWidth(5, 20 * 256);
+            sheet.setColumnWidth(5, 10 * 256);
             sheet.setColumnWidth(6, 10 * 256);
             sheet.setColumnWidth(7, 10 * 256);
             sheet.setColumnWidth(8, 16 * 256);
-            sheet.setColumnWidth(9, 12 * 256);
-            sheet.setColumnWidth(10, 15 * 256);
-            sheet.setColumnWidth(11, 20 * 256);
-            sheet.setColumnWidth(12, 16 * 256);
+            sheet.setColumnWidth(9, 25 * 256);
+            sheet.setColumnWidth(10, 20 * 256);
+            sheet.setColumnWidth(11, 22 * 256);
+            sheet.setColumnWidth(12, 10 * 256);
             sheet.setColumnWidth(13, 14 * 256);
             sheet.setColumnWidth(14, 14 * 256);
             sheet.setColumnWidth(15, 12 * 256);
@@ -81,7 +82,6 @@ public class PoiUtils {
             sheet.setColumnWidth(19, 12 * 256);
             sheet.setColumnWidth(20, 8 * 256);
             sheet.setColumnWidth(21, 25 * 256);
-            sheet.setColumnWidth(22, 14 * 256);
             //5.设置表头
             HSSFRow headerRow = sheet.createRow(0);
 
@@ -197,7 +197,7 @@ public class PoiUtils {
                 row.createCell(17).setCellValue(emp.getOldName());
                 row.createCell(18).setCellValue(emp.getEmployeeNum());
                 row.createCell(19).setCellValue(emp.getProducts());
-                row.createCell(19).setCellValue(emp.getPropertyType());
+                row.createCell(20).setCellValue(emp.getPropertyType());
                 row.createCell(21).setCellValue(emp.getPosition().getName());
             }
             headers = new HttpHeaders();
@@ -213,9 +213,7 @@ public class PoiUtils {
     }
 
     public static List<Employee> importEmp2List(MultipartFile file,
-
                                                 List<Position> allPos
-//            , List<JobLevel> allJobLevels
     ) {
         List<Employee> emps = new ArrayList<>();
         try {
@@ -224,96 +222,107 @@ public class PoiUtils {
             int numberOfSheets = workbook.getNumberOfSheets();
             System.err.println("numberOfSheets:" + numberOfSheets);
             for (int i = 0; i < numberOfSheets; i++) {
-                System.err.println("进入循环了！");
                 HSSFSheet sheet = workbook.getSheetAt(i);
                 int physicalNumberOfRows = sheet.getPhysicalNumberOfRows();
                 Employee employee;
                 System.err.println("Rows = " + physicalNumberOfRows);
-                for (int j = 0; j < physicalNumberOfRows; j++) {//遍历行
-                    if (j == 0) {
-                        continue;//标题行
-                    }
+                for (int j = 0; j < physicalNumberOfRows; j++) { //遍历行
+                    if (j == 0) continue; //标题行
                     HSSFRow row = sheet.getRow(j);
-                    if (row == null) {
-                        continue;//没数据
-                    }
+                    if (row == null) continue; //没数据
+
                     int physicalNumberOfCells = row.getPhysicalNumberOfCells();
                     employee = new Employee();
-                    System.err.println("physicalNumberOfCells = " + physicalNumberOfCells);
-                    for (int k = 0; k < physicalNumberOfCells; k++) {//遍历列
+                    System.err.println("Column = " + physicalNumberOfCells);
+                    for (int k = 0; k < physicalNumberOfCells; k++) { //遍历列
+                        if(k == 0) continue;
+
                         System.err.println("k = " + k);
                         HSSFCell cell = row.getCell(k);
-//                        System.out.println("cell.getCellTypeEnum(): " + cell.getCellTypeEnum());
-                        switch (cell.getCellTypeEnum()) {
-                            case STRING: {
-                                System.err.println("现在是STRING里的 k = " + k);
-                                String cellValue = cell.getStringCellValue();
-                                if (cellValue == null) {
-                                    cellValue = "";
-                                }
+                        if(cell == null){
+                            System.err.println("当前cell是null");
+                            continue;
+                        }else {
+                            System.err.println("cell: " + cell);
+                        }
+                        System.err.println(cell.getCellTypeEnum());
+                        String cellValue = cell.getStringCellValue();
+                        if (cellValue == null) cellValue = "";
+                        System.err.println("当前cell内容为: " + cellValue);
+                        switch (k) {
+                            case 1:
+                                employee.setName(cellValue);
+                                break;
+                            case 2:
+                                employee.setHighSea(cellValue);
+                                break;
+                            case 3:
+                                employee.setCustomerId(cellValue);
+                                break;
+                            case 4:
+                                employee.setProvince(cellValue);
+                                break;
+                            case 5:
+                                employee.setCity(cellValue);
+                                break;
+                            case 6:
+                                employee.setCounty(cellValue);
+                                break;
+                            case 7:
+                                employee.setIndustry(cellValue);
+                                break;
+                            case 8:
+                                employee.setAddress(cellValue);
+                                break;
+                            case 9:
+                                employee.setPhone(cellValue);
+                                break;
+                            case 10:
+                                employee.setEmail(cellValue);
+                                break;
+                            case 11:
+                                employee.setWebsite(cellValue);
+                                break;
+                            case 12:
+                                employee.setRemark(cellValue);
+                                break;
+                            case 13:
+                                employee.setBusinessReceipt(cellValue);
+                                break;
+                            case 14:
+                                employee.setBusinessScope(cellValue);
+                                break;
+                            case 15:
+                                employee.setRegisterCapital(cellValue);
+                                break;
+                            case 16:
+                                System.out.println("case 16:");
                                 System.out.println(cellValue);
-                                switch (k) {
-                                    case 1:
-                                        employee.setName(cellValue);
-                                        break;
-                                    case 2:
-                                        break;
-                                    case 3:
-                                        employee.setProvince(cellValue);
-                                        break;
-                                    case 4:
-                                        break;
-                                    case 5:
-                                        break;
-                                    case 6:
+                                System.out.println(Long.parseLong(cellValue));
 
-                                        break;
-                                    case 7:
-                                        employee.setPhone(cellValue);
-                                        break;
-                                    case 8:
-                                        employee.setAddress(cellValue);
-                                        break;
-                                    case 9:
-                                        break;
-                                    case 10:
-                                        break;
-                                    case 11:
-                                        int posIndex = allPos.indexOf(new Position(cellValue));
-                                        employee.setPosId(allPos.get(posIndex).getId());
-                                        break;
-                                    case 12:
-                                        employee.setIndustry(cellValue);
-                                        break;
-                                    case 13:
-                                        break;
-                                    case 14:
-                                        break;
-                                    case 16:
-                                        break;
-                                    case 17:
-                                        employee.setEmail(cellValue);
-                                        break;
-                                }
-                            }
-                            break;
-                            default: {
-                                System.err.println("default k = " + k);
-                                switch (k) {
-                                    case 15:
-                                        break;
-                                    case 18:
-                                        break;
-                                    case 19:
-                                        break;
-                                    case 20:
-                                        break;
-                                    default:
-                                        break;
+                                employee.setPropertyValue(Long.parseLong(cellValue));
 
-                                }
-                            }
-                            break;
+
+                                break;
+                            case 17:
+                                employee.setOldName(cellValue);
+                                break;
+                            case 18:
+                                employee.setEmployeeNum(cellValue);
+                                break;
+                            case 19:
+                                employee.setProducts(cellValue);
+                                break;
+                            case 20:
+                                employee.setPropertyType(cellValue);
+                                break;
+                            case 21:
+                                int posIndex = allPos.indexOf(new Position(cellValue));
+                                employee.setPosId(allPos.get(posIndex).getId());
+                                break;
+                            default:
+                                System.err.println("cell其他情况");
+                                break;
                         }
                     }
                     System.err.println("add了！！！");
@@ -326,7 +335,6 @@ public class PoiUtils {
             System.err.println("异常！！！！！！！！！！！！！！！");
             e.printStackTrace();
         }
-
         System.err.println("rentrun了！！！");
         System.err.println(emps);
         System.err.println("rentrun了！！！");
