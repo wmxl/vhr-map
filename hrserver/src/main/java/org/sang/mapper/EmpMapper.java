@@ -12,9 +12,9 @@ public interface EmpMapper {
 
     int addEmp(Employee employee);
 
-    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("posId") Long posId, @Param("propertyValueMin")Long propertyValueMin, @Param("propertyValueMax")Long propertyValueMax);
+    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("propertyValueMin")Long propertyValueMin, @Param("propertyValueMax")Long propertyValueMax);
 
-    Long getCountByKeywords(@Param("keywords") String keywords, @Param("posId") Long posId, @Param("propertyValueMin") Long propertyValueMin, @Param("propertyValueMax") Long propertyValueMax);
+    Long getCountByKeywords(@Param("keywords") String keywords, @Param("propertyValueMin") Long propertyValueMin, @Param("propertyValueMax") Long propertyValueMax);
 
     int updateEmp(@Param("emp") Employee employee);
 

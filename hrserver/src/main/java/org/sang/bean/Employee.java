@@ -20,10 +20,6 @@ public class Employee {
     private String businessScope;
     private String registerCapital;
 
-    private Long posId;
-    private String posName;
-    private Position position; //   -- 公司性质 ---
-
     private long propertyValue;
     private String oldName;
     private String employeeNum;
@@ -37,23 +33,6 @@ public class Employee {
     private String relevantPAccount;
     private String chargeP;
     private String chargePAccount;
-
-    //get set
-    public String getPosName() {
-        return posName;
-    }
-
-    public void setPosName(String posName) {
-        this.posName = posName;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
 
     public Long getId() {
         return id;
@@ -102,15 +81,6 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    @JsonIgnore
-    public Long getPosId() {
-        return posId;
-    }
-
-    public void setPosId(Long posId) {
-        this.posId = posId;
     }
 
 
@@ -309,9 +279,9 @@ public class Employee {
                 ", businessReceipt='" + businessReceipt + '\'' +
                 ", businessScope='" + businessScope + '\'' +
                 ", registerCapital='" + registerCapital + '\'' +
-                ", posId=" + posId +
-                ", posName='" + posName + '\'' +
-                ", position=" + position +
+//                ", posId=" + posId +
+//                ", posName='" + posName + '\'' +
+//                ", position=" + position +
                 ", propertyValue=" + propertyValue  +
                 ", oldName='" + oldName + '\'' +
                 ", employeeNum='" + employeeNum + '\'' +

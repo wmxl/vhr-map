@@ -30,14 +30,14 @@ public class EmpService {
         return empMapper.addEmp(employee);
     }
 
-    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long posId, Long propertyValueMin, Long propertyValueMax) {
+    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long propertyValueMin, Long propertyValueMax) {
 //        System.err.println("进入查询");
         int start = (page - 1) * size;
-        return empMapper.getEmployeeByPage(start, size, keywords, posId, propertyValueMin, propertyValueMax);
+        return empMapper.getEmployeeByPage(start, size, keywords, propertyValueMin, propertyValueMax);
     }
 
-    public Long getCountByKeywords(String keywords, Long posId, Long propertyValueMin, Long propertyValueMax) {
-        return empMapper.getCountByKeywords(keywords, posId, propertyValueMin, propertyValueMax);
+    public Long getCountByKeywords(String keywords, Long propertyValueMin, Long propertyValueMax) {
+        return empMapper.getCountByKeywords(keywords,propertyValueMin, propertyValueMax);
     }
 
     public int updateEmp(Employee employee) {
@@ -53,7 +53,7 @@ public class EmpService {
     }
 
     public List<Employee> getAllEmployees() {
-        return empMapper.getEmployeeByPage(null, null, "", null, null ,null);
+        return empMapper.getEmployeeByPage(null, null, "", null, null);
     }
 
     public int addEmps(List<Employee> emps) {

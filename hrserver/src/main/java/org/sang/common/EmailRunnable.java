@@ -33,8 +33,8 @@ public class EmailRunnable implements Runnable {
             helper.setFrom("1510161612@qq.com");
             helper.setSubject("XXX集团：通知");
             Context ctx = new Context();
-            ctx.setVariable("name", employee.getName());
-            ctx.setVariable("posName", employee.getPosName());
+//            ctx.setVariable("name", employee.getName());
+//            ctx.setVariable("posName", employee.getPosName());
             String mail = templateEngine.process("email.html", ctx);
             helper.setText(mail, true);
             javaMailSender.send(message);

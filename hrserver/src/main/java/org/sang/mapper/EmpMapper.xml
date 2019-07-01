@@ -10,7 +10,6 @@
         phone, email, website, remark,
         businessReceipt, businessScope, registerCapital, propertyValue,
         oldName, employeeNum, products, propertyType,
-        posId,
         giov, creator, relevantP, relevantPAccount,
         creatorAccount, chargePAccount, chargeP
         )
@@ -19,7 +18,6 @@
         #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
         #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR}, #{registerCapital,jdbcType=VARCHAR}, #{propertyValue,jdbcType=INTEGER},
         #{oldName,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR}, #{propertyType,jdbcType=VARCHAR},
-        #{posId,jdbcType=INTEGER},
         #{giov,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{relevantP,jdbcType=VARCHAR}, #{relevantPAccount,jdbcType=VARCHAR},
         #{creatorAccount,jdbcType=VARCHAR}, #{chargePAccount,jdbcType=VARCHAR}, #{chargeP,jdbcType=VARCHAR}
         )
@@ -43,7 +41,6 @@
         <result column="email" property="email"/>
         <result column="phone" property="phone"/>
         <result column="address" property="address"/>
-        <result column="posId" property="posId"/>
         <result column="industry" property="industry"/>
         <result column="registerCapital" property="registerCapital"/>
         <result column="customerId" property="customerId"/>
@@ -56,11 +53,6 @@
         <result column="creatorAccount" property="creatorAccount"/>
         <result column="chargePAccount" property="chargePAccount"/>
         <result column="chargeP" property="chargeP"/>
-
-        <association property="position" javaType="org.sang.bean.Position">
-            <id property="id" column="pid"/>
-            <result property="name" column="pname"/>
-        </association>
     </resultMap>
 
     <select id="getEmployeeByPage" resultMap="BaseResultMap">
@@ -69,14 +61,9 @@
         <!--        from employee e, joblevel jl, department d, position p-->
         <!--        where e.`posId`=p.`id` and e.`jobLevelId`=jl.`id` and e.`departmentId`=d.id-->
         <!--        and e.`name` like concat('%',#{keywords},'%')-->
-        select e.*, p.`id` as pid,p.`name` as pname
-        from employee e, position p
-        where e.`posId`=p.`id`
-        and e.`name` like concat('%',#{keywords},'%')
-
-        <if test="posId!=null and posId!=''">
-            AND e.posId=#{posId}
-        </if>
+        select e.*
+        from employee e
+        where e.`name` like concat('%',#{keywords},'%')
         <if test="propertyValueMin!=null and propertyValueMax!=null">
             AND e.propertyValue BETWEEN #{propertyValueMin} AND #{propertyValueMax}
         </if>
@@ -87,11 +74,6 @@
     </select>
     <select id="getCountByKeywords" resultType="Long">
         SELECT count(*) FROM employee e WHERE e.name LIKE concat('%',#{keywords},'%')
-
-        <if test="posId!=null and posId!=''">
-            AND e.posId=#{posId}
-        </if>
-
     </select>
     <update id="updateEmp">
         update employee
@@ -143,9 +125,6 @@
             </if>
             <if test="emp.address != null">
                 address = #{emp.address,jdbcType=VARCHAR},
-            </if>
-            <if test="emp.posId != null">
-                posId = #{emp.posId,jdbcType=INTEGER},
             </if>
             <if test="emp.industry != null">
                 industry = #{emp.industry,jdbcType=CHAR},
@@ -200,7 +179,6 @@
         phone, email, website, remark,
         businessReceipt, businessScope, registerCapital, propertyValue,
         oldName, employeeNum, products, propertyType,
-        posId,
         giov, creator, relevantP, relevantPAccount,
         creatorAccount, chargePAccount, chargeP
         )
@@ -211,7 +189,6 @@
             #{emp.phone,jdbcType=VARCHAR}, #{emp.email,jdbcType=VARCHAR}, #{emp.website,jdbcType=VARCHAR}, #{emp.remark,jdbcType=VARCHAR},
             #{emp.businessReceipt,jdbcType=VARCHAR}, #{emp.businessScope,jdbcType=VARCHAR}, #{emp.registerCapital,jdbcType=VARCHAR}, #{emp.propertyValue,jdbcType=INTEGER},
             #{emp.oldName,jdbcType=VARCHAR}, #{emp.employeeNum,jdbcType=VARCHAR}, #{emp.products,jdbcType=VARCHAR}, #{emp.propertyType,jdbcType=VARCHAR},
-            #{emp.posId,jdbcType=INTEGER},
             #{emp.giov,jdbcType=VARCHAR}, #{emp.creator,jdbcType=VARCHAR}, #{emp.relevantP,jdbcType=VARCHAR}, #{emp.relevantPAccount,jdbcType=VARCHAR},
             #{emp.creatorAccount,jdbcType=VARCHAR}, #{emp.hargePAccount,jdbcType=VARCHAR}, #{emp.chargeP,jdbcType=VARCHAR}
             )

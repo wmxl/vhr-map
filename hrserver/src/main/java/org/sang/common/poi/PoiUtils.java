@@ -198,7 +198,7 @@ public class PoiUtils {
                 row.createCell(18).setCellValue(emp.getEmployeeNum());
                 row.createCell(19).setCellValue(emp.getProducts());
                 row.createCell(20).setCellValue(emp.getPropertyType());
-                row.createCell(21).setCellValue(emp.getPosition().getName());
+//                row.createCell(21).setCellValue(emp.getPosition().getName());
             }
             headers = new HttpHeaders();
             headers.setContentDispositionFormData("attachment",
@@ -317,8 +317,8 @@ public class PoiUtils {
                                 employee.setPropertyType(cellValue);
                                 break;
                             case 21:
-                                int posIndex = allPos.indexOf(new Position(cellValue));
-                                employee.setPosId(allPos.get(posIndex).getId());
+//                                int posIndex = allPos.indexOf(new Position(cellValue));
+//                                employee.setPosId(allPos.get(posIndex).getId());
                                 break;
                             default:
                                 System.err.println("cell其他情况");
