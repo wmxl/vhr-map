@@ -56,7 +56,7 @@
               <el-row>
                 <el-col :span="4">
                   公司性质:
-                  <el-select v-model="emp.posId" style="width: 130px" size="mini" placeholder="请选择公司性质">
+                  <el-select v-model="emp.posId" style="width: 130px" size="mini" placeholder="选择公司性质">
                     <el-option
                       v-for="item in positions"
                       :key="item.id"
@@ -68,10 +68,10 @@
 
                 <el-col :span="5">
                   资产总计：
-                  <el-input prefix-icon="el-icon-edit" v-model="propertyValue" size="mini" style="width: 150px"
-                                placeholder="请输入min"></el-input>
-                  <el-input prefix-icon="el-icon-edit" v-model="propertyValue2" size="mini" style="width: 150px"
-                                placeholder="请输入max"></el-input>
+                  <el-input prefix-icon="el-icon-edit" v-model="propertyValueMin" size="mini" style="width: 150px"
+                                placeholder="输入min"></el-input>
+                  <el-input prefix-icon="el-icon-edit" v-model="propertyValueMax" size="mini" style="width: 150px"
+                                placeholder="输入max"></el-input>
                     </el-form-item>
 
                 </el-col>
@@ -340,20 +340,20 @@
         width="77%">
 
           <el-row> <!-- 第一行 -->
-            <el-col :span="6">
+            <el-col :span="5">
               <div>
                 <el-form-item label="客户名称:" prop="name">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.name" size="mini" style="width: 150px"
-                            placeholder="请输入员工姓名"></el-input>
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.name" size="mini" style="width: 135px"
+                            placeholder="输入客户名称.."></el-input>
                 </el-form-item>
               </div>
             </el-col>
 
-             <el-col :span="5">
+             <el-col :span="4">
               <div>
                 <el-form-item label="所属公海:" prop="highSea">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.highSea" size="mini" style="width: 150px"
-                            placeholder="请输入公海"></el-input>
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.highSea" size="mini" style="width: 105px"
+                            placeholder="输入公海.."></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -361,28 +361,28 @@
             <el-col :span="5">
               <div>
                 <el-form-item label="客户编码:" prop="customerId">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.customerId" size="mini" style="width: 150px"
-                            placeholder="请输入客户编码"></el-input>
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.customerId" size="mini" style="width: 130px"
+                            placeholder="输入客户编码.."></el-input>
                 </el-form-item>
               </div>
             </el-col>
             
-            <el-col :span="5">
+            <el-col :span="4">
               <div>
                 <el-form-item label="省份:" prop="province">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.province" size="mini" style="width: 150px"
-                            placeholder="请输入省份"></el-input>
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.province" size="mini" style="width: 120px"
+                            placeholder="输入省份.."></el-input>
                 </el-form-item>
               </div>
             </el-col>
           </el-row>
 
           <el-row> <!-- 第二行 -->
-            <el-col :span="5">
+            <el-col :span="4">
               <div>
                 <el-form-item label="城市:" prop="city">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.city" size="mini" style="width: 150px"
-                            placeholder="请输入城市"></el-input>
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.city" size="mini" style="width: 120px"
+                            placeholder="输入城市.."></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -391,36 +391,36 @@
               <div>
                 <el-form-item label="地区(县):" prop="county">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.county" size="mini" style="width: 150px"
-                            placeholder="请输入地区(县)"></el-input>
+                            placeholder="输入地区(县).."></el-input>
                 </el-form-item>
               </div>
             </el-col>
-            
-            <el-col :span="5">
+
+            <el-col :span="4">
               <div>
                 <el-form-item label="行业:" prop="industry">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.industry" size="mini" style="width: 150px"
-                            placeholder="行业"></el-input>
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.industry" size="mini" style="width: 135px"
+                            placeholder="输入行业.."></el-input>
                 </el-form-item>
               </div>
             </el-col>
 
-            <el-col :span="7">
+            <el-col :span="6">
               <div>
-                <el-form-item label="地址:" prop="address">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.address" size="mini" style="width: 200px"
-                            placeholder="地址..."></el-input>
+                <el-form-item label="   地址:" prop="address">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.address" size="mini" style="width: 220px"
+                            placeholder="输入地址..."></el-input>
                 </el-form-item>
               </div>
             </el-col>
-          </el-row> 
+          </el-row>
 
           <el-row> <!-- 第三行 -->
-            <el-col :span="7">
+            <el-col :span="5">
               <div>
                 <el-form-item label="电话号码:" prop="phone">
-                  <el-input prefix-icon="el-icon-phone" v-model="emp.phone" size="mini" style="width: 200px"
-                            placeholder="电话号码..."></el-input>
+                  <el-input prefix-icon="el-icon-phone" v-model="emp.phone" size="mini" style="width: 140px"
+                            placeholder="输入电话号码..."></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -438,7 +438,7 @@
               <div>
                 <el-form-item label="网址:" prop="website">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.website" size="mini" style="width: 150px"
-                            placeholder="请输入industry"></el-input>
+                            placeholder="输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -447,7 +447,7 @@
               <div>
                 <el-form-item label="备注:" prop="remark">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.remark" size="mini" style="width: 150px"
-                            placeholder="请输入industry"></el-input>
+                            placeholder="输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -458,7 +458,7 @@
               <div>
                 <el-form-item label="营业收入:" prop="businessReceipt">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.businessReceipt" size="mini" style="width: 150px"
-                            placeholder="请输入industry"></el-input>
+                            placeholder="输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -467,7 +467,7 @@
               <div>
                 <el-form-item label="营业范围:" prop="businessScope">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.businessScope" size="mini" style="width: 150px"
-                            placeholder="请输入industry"></el-input>
+                            placeholder="输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -476,7 +476,7 @@
               <div>
                 <el-form-item label="注册资本金:" prop="registerCapital">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.registerCapital" size="mini" style="width: 150px"
-                            placeholder="请输入注册资本金"></el-input>
+                            placeholder="输入注册资本金"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -485,7 +485,7 @@
               <div>
                 <el-form-item label="资产总计:" prop="propertyValue">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.propertyValue" size="mini" style="width: 150px"
-                            placeholder="请输入industry"></el-input>
+                            placeholder="输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -496,7 +496,7 @@
               <div>
                 <el-form-item label="曾用名:" prop="oldName">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.oldName" size="mini" style="width: 150px"
-                            placeholder="请输入曾用名"></el-input>
+                            placeholder="输入曾用名"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -505,7 +505,7 @@
               <div>
                 <el-form-item label="从业总人数:" prop="employeeNum">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.employeeNum" size="mini" style="width: 150px"
-                            placeholder="请输入industry"></el-input>
+                            placeholder="输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -514,7 +514,7 @@
               <div>
                 <el-form-item label="主要产品:" prop="products">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.products" size="mini" style="width: 150px"
-                            placeholder="请输入industry"></el-input>
+                            placeholder="输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -523,7 +523,7 @@
               <div>
                 <el-form-item label="资质类型:" prop="propertyType">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.propertyType" size="mini" style="width: 150px"
-                            placeholder="请输入industry"></el-input>
+                            placeholder="输入industry"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -533,7 +533,7 @@
             <el-col :span="6">
               <div>
                 <el-form-item label="公司性质:" prop="posId">
-                  <el-select v-model="emp.posId" style="width: 150px" size="mini" placeholder="请选择公司性质">
+                  <el-select v-model="emp.posId" style="width: 150px" size="mini" placeholder="选择公司性质">
                     <el-option
                       v-for="item in positions"
                       :key="item.id"
@@ -548,7 +548,7 @@
               <div>
                 <el-form-item label="工业总产值:" prop="giov">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.giov" size="mini" style="width: 150px"
-                            placeholder="请输入工业总产值"></el-input>
+                            placeholder="输入工业总产值"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -557,7 +557,7 @@
               <div>
                 <el-form-item label="创建人:" prop="creator">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.creator" size="mini" style="width: 150px"
-                            placeholder="请输入创建人。。"></el-input>
+                            placeholder="输入创建人。。"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -566,7 +566,7 @@
               <div>
                 <el-form-item label="相关人:" prop="relevantP">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.relevantP" size="mini" style="width: 150px"
-                            placeholder="请输入相关人"></el-input>
+                            placeholder="输入相关人"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -575,7 +575,7 @@
               <div>
                 <el-form-item label="相关人账号:" prop="relevantPAccount">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.relevantPAccount" size="mini" style="width: 150px"
-                            placeholder="请输入相关人账号"></el-input>
+                            placeholder="输入相关人账号"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -584,7 +584,7 @@
               <div>
                 <el-form-item label="创建人账号:" prop="creatorAccount">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.creatorAccount" size="mini" style="width: 150px"
-                            placeholder="请输入创建人账号"></el-input>
+                            placeholder="输入创建人账号"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -593,7 +593,7 @@
               <div>
                 <el-form-item label="负责人账号:" prop="chargePAccount">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.chargePAccount" size="mini" style="width: 150px"
-                            placeholder="请输入负责人账号"></el-input>
+                            placeholder="输入负责人账号"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -602,7 +602,7 @@
               <div>
                 <el-form-item label="负责人:" prop="chargeP">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.chargeP" size="mini" style="width: 150px"
-                            placeholder="请输入负责人"></el-input>
+                            placeholder="输入负责人"></el-input>
                 </el-form-item>
               </div>
             </el-col>
@@ -628,10 +628,9 @@
     data() {
       return {
         emps: [],
-
         keywords: '',
-        propertyValue: '',
-        propertyValue2: '',
+        propertyValueMin: '',
+        propertyValueMax: '',
         fileUploadBtnText: '导入数据',
         faangledoubleup: 'fa-angle-double-up',
         faangledoubledown: 'fa-angle-double-down',
@@ -641,7 +640,6 @@
         positions: [],
         totalCount: -1,
         currentPage: 1,
-        
         deps: [],
         defaultProps: {
           label: 'name',
@@ -719,8 +717,8 @@
       cancelSearch(){
         this.advanceSearchViewVisible = false;
         this.emptyEmpData();
-        this.propertyValue = '';
-        this.propertyValue2 = '';
+        this.propertyValueMin = '';
+        this.propertyValueMax = '';
         this.loadEmps();
       },
       showAdvanceSearchView(){
@@ -728,8 +726,8 @@
         this.keywords = '';
         if (!this.advanceSearchViewVisible) {
           this.emptyEmpData();
-          this.propertyValue = '';
-          this.propertyValue2 = '';
+          this.propertyValueMin = '';
+          this.propertyValueMax = '';
           this.loadEmps();
         }
       },
@@ -787,12 +785,14 @@
       //lemps 加载数据的方法
       loadEmps(){
         var _this = this;
+        console.log(this);
+
         this.tableLoading = true;
-        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&posId=" + this.emp.posId + "&propertyValue=" + this.propertyValue + "&propertyValue2=" + this.propertyValue2 ).then(resp=> {
+        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&posId=" + this.emp.posId + "&propertyValueMin=" + this.propertyValueMin + "&propertyValueMax=" + this.propertyValueMax ).then(resp=> {
           this.tableLoading = false;
 
           console.log("loadEmps():")
-          console.log("&propertyValue=" + this.emp.posId + "&propertyValue=" + this.propertyValue)
+          console.log("&posId=" + this.emp.posId + "&propertyValueMin=" + this.propertyValueMin)
 
           console.log(resp)
 
@@ -903,7 +903,8 @@
           businessScope: '',
           registerCapital: '',
           propertyValue: '',
-          propertyValue2: '',
+          // propertyValueMin: '',
+          // propertyValueMax: '',
           oldName: '',
           employeeNum: '',
           products: '',

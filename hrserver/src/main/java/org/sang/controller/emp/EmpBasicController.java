@@ -85,15 +85,15 @@ public class EmpBasicController {
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "") String keywords,
              Long posId
-            ,Long propertyValue
-            ,Long propertyValue2
+            ,Long propertyValueMin
+            ,Long propertyValueMax
     ) {
-//        System.err.println("进入EmpBasicController:");
-//        System.err.println(posId);
-//        System.err.println(propertyValue);
+        System.err.println("进入 GET EmpBasicController:");
+        System.err.println(posId);
+        System.err.println(propertyValueMin);
         Map<String, Object> map = new HashMap<>();
-        List<Employee> employeeByPage = empService.getEmployeeByPage(page, size, keywords, posId, propertyValue, propertyValue2);
-        Long count = empService.getCountByKeywords(keywords, posId, propertyValue, propertyValue2);
+        List<Employee> employeeByPage = empService.getEmployeeByPage(page, size, keywords, posId, propertyValueMin, propertyValueMax);
+        Long count = empService.getCountByKeywords(keywords, posId, propertyValueMin, propertyValueMax);
         map.put("emps", employeeByPage);
         map.put("count", count);
         return map;

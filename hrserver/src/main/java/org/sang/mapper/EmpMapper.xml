@@ -77,8 +77,8 @@
         <if test="posId!=null and posId!=''">
             AND e.posId=#{posId}
         </if>
-        <if test="propertyValue!=null and propertyValue2!=null">
-            AND e.propertyValue BETWEEN #{propertyValue} AND #{propertyValue2}
+        <if test="propertyValueMin!=null and propertyValueMax!=null">
+            AND e.propertyValue BETWEEN #{propertyValueMin} AND #{propertyValueMax}
         </if>
         <!--        分页-->
         <if test="start!=null and size!=null">
