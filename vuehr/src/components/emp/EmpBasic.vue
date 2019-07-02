@@ -199,6 +199,13 @@
               align="left"
               width="50">
             </el-table-column>
+            
+            <el-table-column
+              prop="corporateNature"
+              label="公司性质"
+              align="left"
+              width="50">
+            </el-table-column>
 
            <!--  <el-table-column
               width="100"
@@ -483,6 +490,15 @@
 
             <el-col :span="5">
               <div>
+                <el-form-item label="公司性质:" prop="corporateNature">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.corporateNature" size="mini" style="width: 150px"
+                            placeholder="输入公司性质"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
                 <el-form-item label="资产总计:" prop="propertyValue">
                   <el-input prefix-icon="el-icon-edit" v-model="emp.propertyValue" size="mini" style="width: 150px"
                             placeholder="输入industry"></el-input>
@@ -663,6 +679,9 @@
           businessReceipt: '',
           businessScope: '',
           registerCapital: '',
+
+          corporateNature: '',
+
           propertyValue: '',
           oldName: '',
           employeeNum: '',
@@ -902,6 +921,7 @@
           businessReceipt: '',
           businessScope: '',
           registerCapital: '',
+          corporateNature: '',
           propertyValue: '',
           // propertyValueMin: '',
           // propertyValueMax: '',

@@ -8,7 +8,7 @@
         insert into employee (name, highSea, customerId, province,
         city, county, industry, address,
         phone, email, website, remark,
-        businessReceipt, businessScope, registerCapital, propertyValue,
+        businessReceipt, businessScope, registerCapital, corporateNature, propertyValue,
         oldName, employeeNum, products, propertyType,
         giov, creator, relevantP, relevantPAccount,
         creatorAccount, chargePAccount, chargeP
@@ -16,7 +16,7 @@
         values (#{name,jdbcType=VARCHAR}, #{highSea,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
         #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
         #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
-        #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR}, #{registerCapital,jdbcType=VARCHAR}, #{propertyValue,jdbcType=INTEGER},
+        #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR}, #{registerCapital,jdbcType=VARCHAR},#{corporateNature,jdbcType=VARCHAR}, #{propertyValue,jdbcType=INTEGER},
         #{oldName,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR}, #{propertyType,jdbcType=VARCHAR},
         #{giov,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{relevantP,jdbcType=VARCHAR}, #{relevantPAccount,jdbcType=VARCHAR},
         #{creatorAccount,jdbcType=VARCHAR}, #{chargePAccount,jdbcType=VARCHAR}, #{chargeP,jdbcType=VARCHAR}
@@ -43,6 +43,7 @@
         <result column="address" property="address"/>
         <result column="industry" property="industry"/>
         <result column="registerCapital" property="registerCapital"/>
+        <result column="corporateNature" property="corporateNature"/>
         <result column="customerId" property="customerId"/>
         <result column="oldName" property="oldName"/>
 
@@ -135,6 +136,11 @@
             <if test="emp.registerCapital != null">
                 registerCapital = #{emp.registerCapital,jdbcType=CHAR},
             </if>
+            <if test="emp.corporateNature != null">
+                corporateNature = #{emp.corporateNature,jdbcType=CHAR},
+            </if>
+
+
             <if test="emp.oldName != null">
                 oldName = #{emp.oldName,jdbcType=CHAR},
             </if>
@@ -177,7 +183,7 @@
         insert into employee (name, highSea, customerId, province,
         city, county, industry, address,
         phone, email, website, remark,
-        businessReceipt, businessScope, registerCapital, propertyValue,
+        businessReceipt, businessScope, registerCapital, corporateNature, propertyValue,
         oldName, employeeNum, products, propertyType,
         giov, creator, relevantP, relevantPAccount,
         creatorAccount, chargePAccount, chargeP
@@ -187,7 +193,7 @@
             (#{emp.name,jdbcType=VARCHAR}, #{emp.highSea,jdbcType=VARCHAR}, #{emp.customerId,jdbcType=VARCHAR}, #{emp.province,jdbcType=VARCHAR},
             #{emp.city,jdbcType=VARCHAR}, #{emp.county,jdbcType=VARCHAR}, #{emp.industry,jdbcType=VARCHAR}, #{emp.address,jdbcType=VARCHAR},
             #{emp.phone,jdbcType=VARCHAR}, #{emp.email,jdbcType=VARCHAR}, #{emp.website,jdbcType=VARCHAR}, #{emp.remark,jdbcType=VARCHAR},
-            #{emp.businessReceipt,jdbcType=VARCHAR}, #{emp.businessScope,jdbcType=VARCHAR}, #{emp.registerCapital,jdbcType=VARCHAR}, #{emp.propertyValue,jdbcType=INTEGER},
+            #{emp.businessReceipt,jdbcType=VARCHAR}, #{emp.businessScope,jdbcType=VARCHAR}, #{emp.registerCapital,jdbcType=VARCHAR}, #{emp.corporateNature,jdbcType=VARCHAR}, #{emp.propertyValue,jdbcType=INTEGER},
             #{emp.oldName,jdbcType=VARCHAR}, #{emp.employeeNum,jdbcType=VARCHAR}, #{emp.products,jdbcType=VARCHAR}, #{emp.propertyType,jdbcType=VARCHAR},
             #{emp.giov,jdbcType=VARCHAR}, #{emp.creator,jdbcType=VARCHAR}, #{emp.relevantP,jdbcType=VARCHAR}, #{emp.relevantPAccount,jdbcType=VARCHAR},
             #{emp.creatorAccount,jdbcType=VARCHAR}, #{emp.hargePAccount,jdbcType=VARCHAR}, #{emp.chargeP,jdbcType=VARCHAR}

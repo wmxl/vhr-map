@@ -20,6 +20,8 @@ public class Employee {
     private String businessScope;
     private String registerCapital;
 
+    private String corporateNature;
+
     private long propertyValue;
     private String oldName;
     private String employeeNum;
@@ -259,6 +261,14 @@ public class Employee {
         this.chargePAccount = chargePAccount;
     }
 
+    public String getCorporateNature() {
+        return corporateNature;
+    }
+
+    public void setCorporateNature(String corporateNature) {
+        this.corporateNature = corporateNature;
+    }
+
     //toString
     @Override
     public String toString() {
@@ -279,9 +289,6 @@ public class Employee {
                 ", businessReceipt='" + businessReceipt + '\'' +
                 ", businessScope='" + businessScope + '\'' +
                 ", registerCapital='" + registerCapital + '\'' +
-//                ", posId=" + posId +
-//                ", posName='" + posName + '\'' +
-//                ", position=" + position +
                 ", propertyValue=" + propertyValue  +
                 ", oldName='" + oldName + '\'' +
                 ", employeeNum='" + employeeNum + '\'' +
