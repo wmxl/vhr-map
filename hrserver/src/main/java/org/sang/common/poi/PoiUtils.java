@@ -13,11 +13,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.print.DocFlavor;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
+import static org.apache.poi.ss.usermodel.CellType.STRING;
 
 /**
  * Created by sang on 2018/1/16.
@@ -61,11 +63,11 @@ public class PoiUtils {
             headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             //定义列的宽度
             sheet.setColumnWidth(0, 5 * 256);
-            sheet.setColumnWidth(1, 12 * 256);
+            sheet.setColumnWidth(1, 10 * 256);
             sheet.setColumnWidth(2, 10 * 256);
             sheet.setColumnWidth(3, 10 * 256);
-            sheet.setColumnWidth(4, 12 * 256);
-            sheet.setColumnWidth(5, 10 * 256);
+            sheet.setColumnWidth(4, 8 * 256);
+            sheet.setColumnWidth(5, 8 * 256);
             sheet.setColumnWidth(6, 10 * 256);
             sheet.setColumnWidth(7, 10 * 256);
             sheet.setColumnWidth(8, 16 * 256);
@@ -287,8 +289,24 @@ public class PoiUtils {
                             System.err.println("cell: " + cell);
                         }
                         System.err.println(cell.getCellTypeEnum());
-                        String cellValue = cell.getStringCellValue();
-                        if (cellValue == null) cellValue = "";
+
+                        String cellValue = "";
+                        if(cell.getCellTypeEnum() == STRING){
+                            cellValue = cell.getStringCellValue();
+                        }else if(cell.getCellTypeEnum() == NUMERIC){
+                            System.out.println("enter else if NUMERIC");
+                            cellValue = String.valueOf(cell.getNumericCellValue());
+                        }else {
+                            try{
+                                cellValue = cell.getStringCellValue();
+                            }catch (Exception e){
+                                System.err.println("不是String或者Num类型");
+                                System.out.printf("Exception occurs!!\n");
+                                System.out.println(e.getMessage());  //print the root cause
+                                System.out.printf("===========================\n");
+                                e.printStackTrace(); //print the info of function stuck.
+                            }
+                        }
                         System.err.println("当前cell内容为: " + cellValue);
                         switch (k) {
                             case 1:
@@ -337,29 +355,51 @@ public class PoiUtils {
                                 employee.setRegisterCapital(cellValue);
                                 break;
                             case 16:
-                                System.out.println("case 16:");
-                                System.out.println(cellValue);
-                                System.out.println(Long.parseLong(cellValue));
-
-                                employee.setPropertyValue(Long.parseLong(cellValue));
-
-
+                                employee.setCorporateNature(cellValue);
                                 break;
                             case 17:
-                                employee.setOldName(cellValue);
+                                System.out.println(cellValue);
+                                double d = Double.parseDouble(cellValue);
+
+                                long a = new Double(d).longValue();
+                                System.err.println(a);
+                                employee.setPropertyValue(a);
+
+                                System.out.println(employee.getPropertyValue());
+                                System.out.println(employee);
                                 break;
                             case 18:
-                                employee.setEmployeeNum(cellValue);
+                                employee.setOldName(cellValue);
                                 break;
                             case 19:
-                                employee.setProducts(cellValue);
+                                employee.setEmployeeNum(cellValue);
                                 break;
                             case 20:
-                                employee.setPropertyType(cellValue);
+                                employee.setProducts(cellValue);
                                 break;
                             case 21:
-//                                int posIndex = allPos.indexOf(new Position(cellValue));
-//                                employee.setPosId(allPos.get(posIndex).getId());
+                                employee.setPropertyType(cellValue);
+                                break;
+                            case 22:
+                                employee.setGiov(cellValue);
+                                break;
+                            case 23:
+                                employee.setCreator(cellValue);
+                                break;
+                            case 24:
+                                employee.setRelevantP(cellValue);
+                                break;
+                            case 25:
+                                employee.setRelevantPAccount(cellValue);
+                                break;
+                            case 26:
+                                employee.setCreatorAccount(cellValue);
+                                break;
+                            case 27:
+                                employee.setChargePAccount(cellValue);
+                                break;
+                            case 28:
+                                employee.setChargeP(cellValue);
                                 break;
                             default:
                                 System.err.println("cell其他情况");

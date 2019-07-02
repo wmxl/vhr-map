@@ -270,6 +270,8 @@ public class Employee {
     }
 
     //toString
+
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -289,11 +291,19 @@ public class Employee {
                 ", businessReceipt='" + businessReceipt + '\'' +
                 ", businessScope='" + businessScope + '\'' +
                 ", registerCapital='" + registerCapital + '\'' +
-                ", propertyValue=" + propertyValue  +
+                ", corporateNature='" + corporateNature + '\'' +
+                ", propertyValue=" + propertyValue +
                 ", oldName='" + oldName + '\'' +
                 ", employeeNum='" + employeeNum + '\'' +
                 ", products='" + products + '\'' +
                 ", propertyType='" + propertyType + '\'' +
+                ", giov='" + giov + '\'' +
+                ", creator='" + creator + '\'' +
+                ", creatorAccount='" + creatorAccount + '\'' +
+                ", relevantP='" + relevantP + '\'' +
+                ", relevantPAccount='" + relevantPAccount + '\'' +
+                ", chargeP='" + chargeP + '\'' +
+                ", chargePAccount='" + chargePAccount + '\'' +
                 '}';
     }
 }
