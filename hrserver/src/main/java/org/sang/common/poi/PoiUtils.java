@@ -62,7 +62,8 @@ public class PoiUtils {
             headerStyle.setFillForegroundColor(IndexedColors.YELLOW.index);
             headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             //定义列的宽度
-            sheet.setColumnWidth(0, 5 * 256);
+//            sheet.setColumnWidth(0, 5 * 256);
+            sheet.setColumnWidth(0, 10 * 256);
             sheet.setColumnWidth(1, 10 * 256);
             sheet.setColumnWidth(2, 10 * 256);
             sheet.setColumnWidth(3, 10 * 256);
@@ -94,154 +95,126 @@ public class PoiUtils {
             //5.设置表头
             HSSFRow headerRow = sheet.createRow(0);
 
-            HSSFCell cell0 = headerRow.createCell(0);
-            cell0.setCellValue("id");
-            cell0.setCellStyle(headerStyle);
-
-            HSSFCell cell1 = headerRow.createCell(1);
+//            HSSFCell cell0 = headerRow.createCell(0);
+//            cell0.setCellValue("id");
+//            cell0.setCellStyle(headerStyle);
+            HSSFCell cell1 = headerRow.createCell(0);
             cell1.setCellValue("客户名称");
             cell1.setCellStyle(headerStyle);
-
-            HSSFCell cell2 = headerRow.createCell(2);
+            HSSFCell cell2 = headerRow.createCell(1);
             cell2.setCellValue("所属公海");
             cell2.setCellStyle(headerStyle);
-
-            HSSFCell cell3 = headerRow.createCell(3);
+            HSSFCell cell3 = headerRow.createCell(2);
             cell3.setCellValue("客户编码");
             cell3.setCellStyle(headerStyle);
-
-            HSSFCell cell4 = headerRow.createCell(4);
+            HSSFCell cell4 = headerRow.createCell(3);
             cell4.setCellValue("省份");
             cell4.setCellStyle(headerStyle);
-
-            HSSFCell cell5 = headerRow.createCell(5);
+            HSSFCell cell5 = headerRow.createCell(4);
             cell5.setCellValue("城市");
             cell5.setCellStyle(headerStyle);
-
-            HSSFCell cell6 = headerRow.createCell(6);
+            HSSFCell cell6 = headerRow.createCell(5);
             cell6.setCellValue("地区(县)");
             cell6.setCellStyle(headerStyle);
-
-            HSSFCell cell7 = headerRow.createCell(7);
+            HSSFCell cell7 = headerRow.createCell(6);
             cell7.setCellValue("行业");
             cell7.setCellStyle(headerStyle);
-
-            HSSFCell cell8 = headerRow.createCell(8);
+            HSSFCell cell8 = headerRow.createCell(7);
             cell8.setCellValue("地址");
             cell8.setCellStyle(headerStyle);
-
-            HSSFCell cell9 = headerRow.createCell(9);
+            HSSFCell cell9 = headerRow.createCell(8);
             cell9.setCellValue("联系电话");
             cell9.setCellStyle(headerStyle);
-
-            HSSFCell cell10 = headerRow.createCell(10);
+            HSSFCell cell10 = headerRow.createCell(9);
             cell10.setCellValue("邮箱");
             cell10.setCellStyle(headerStyle);
-
-            HSSFCell cell11 = headerRow.createCell(11);
+            HSSFCell cell11 = headerRow.createCell(10);
             cell11.setCellValue("网址");
             cell11.setCellStyle(headerStyle);
-
-            HSSFCell cell12 = headerRow.createCell(12);
+            HSSFCell cell12 = headerRow.createCell(11);
             cell12.setCellValue("备注");
             cell12.setCellStyle(headerStyle);
-
-            HSSFCell cell13 = headerRow.createCell(13);
+            HSSFCell cell13 = headerRow.createCell(12);
             cell13.setCellValue("营业收入");
             cell13.setCellStyle(headerStyle);
-
-            HSSFCell cell14 = headerRow.createCell(14);
+            HSSFCell cell14 = headerRow.createCell(13);
             cell14.setCellValue("营业范围");
             cell14.setCellStyle(headerStyle);
-
-            HSSFCell cell15 = headerRow.createCell(15);
+            HSSFCell cell15 = headerRow.createCell(14);
             cell15.setCellValue("注册资本金");
             cell15.setCellStyle(headerStyle);
-
-            HSSFCell cell16 = headerRow.createCell(16);
+            HSSFCell cell16 = headerRow.createCell(15);
             cell16.setCellValue("公司性质");
             cell16.setCellStyle(headerStyle);
-
-            HSSFCell cell17 = headerRow.createCell(17);
+            HSSFCell cell17 = headerRow.createCell(16);
             cell17.setCellValue("资产总计");
             cell17.setCellStyle(headerStyle);
-
-            HSSFCell cell18 = headerRow.createCell(18);
+            HSSFCell cell18 = headerRow.createCell(17);
             cell18.setCellValue("曾用名");
             cell18.setCellStyle(headerStyle);
-
-            HSSFCell cell19 = headerRow.createCell(19);
+            HSSFCell cell19 = headerRow.createCell(18);
             cell19.setCellValue("从业总人数");
             cell19.setCellStyle(headerStyle);
-
-            HSSFCell cell20 = headerRow.createCell(20);
+            HSSFCell cell20 = headerRow.createCell(19);
             cell20.setCellValue("主要产品");
             cell20.setCellStyle(headerStyle);
-
-            HSSFCell cell21 = headerRow.createCell(21);
+            HSSFCell cell21 = headerRow.createCell(20);
             cell21.setCellValue("资质类型");
             cell21.setCellStyle(headerStyle);
-
-            HSSFCell cell22 = headerRow.createCell(22);
+            HSSFCell cell22 = headerRow.createCell(21);
             cell22.setCellValue("工业总产值");
             cell22.setCellStyle(headerStyle);
-
-            HSSFCell cell23 = headerRow.createCell(23);
+            HSSFCell cell23 = headerRow.createCell(22);
             cell23.setCellValue("创建人");
             cell23.setCellStyle(headerStyle);
-
-            HSSFCell cell24 = headerRow.createCell(24);
+            HSSFCell cell24 = headerRow.createCell(23);
             cell24.setCellValue("相关人");
             cell24.setCellStyle(headerStyle);
-
-            HSSFCell cell25 = headerRow.createCell(25);
+            HSSFCell cell25 = headerRow.createCell(24);
             cell25.setCellValue("相关人账号");
             cell25.setCellStyle(headerStyle);
-
-            HSSFCell cell26 = headerRow.createCell(26);
+            HSSFCell cell26 = headerRow.createCell(25);
             cell26.setCellValue("创建人账号");
             cell26.setCellStyle(headerStyle);
-
-            HSSFCell cell27 = headerRow.createCell(27);
+            HSSFCell cell27 = headerRow.createCell(26);
             cell27.setCellValue("负责人账号");
             cell27.setCellStyle(headerStyle);
-
-            HSSFCell cell28 = headerRow.createCell(28);
+            HSSFCell cell28 = headerRow.createCell(27);
             cell28.setCellValue("负责人");
             cell28.setCellStyle(headerStyle);
             //6.装数据
             for (int i = 0; i < emps.size(); i++) {
                 HSSFRow row = sheet.createRow(i + 1);
                 Employee emp = emps.get(i);
-                row.createCell(0).setCellValue(emp.getId());
-                row.createCell(1).setCellValue(emp.getName());
-                row.createCell(2).setCellValue(emp.getHighSea());
-                row.createCell(3).setCellValue(emp.getCustomerId());
-                row.createCell(4).setCellValue(emp.getProvince());
-                row.createCell(5).setCellValue(emp.getCity());
-                row.createCell(6).setCellValue(emp.getCounty());
-                row.createCell(7).setCellValue(emp.getIndustry());
-                row.createCell(8).setCellValue(emp.getAddress());
-                row.createCell(9).setCellValue(emp.getPhone());
-                row.createCell(10).setCellValue(emp.getEmail());
-                row.createCell(11).setCellValue(emp.getWebsite());
-                row.createCell(12).setCellValue(emp.getRemark());
-                row.createCell(13).setCellValue(emp.getBusinessReceipt());
-                row.createCell(14).setCellValue(emp.getBusinessScope());
-                row.createCell(15).setCellValue(emp.getRegisterCapital());
-                row.createCell(16).setCellValue(emp.getCorporateNature());
-                row.createCell(17).setCellValue(emp.getPropertyValue());
-                row.createCell(18).setCellValue(emp.getOldName());
-                row.createCell(19).setCellValue(emp.getEmployeeNum());
-                row.createCell(20).setCellValue(emp.getProducts());
-                row.createCell(21).setCellValue(emp.getPropertyType());
-                row.createCell(22).setCellValue(emp.getGiov());
-                row.createCell(23).setCellValue(emp.getCreator());
-                row.createCell(24).setCellValue(emp.getRelevantP());
-                row.createCell(25).setCellValue(emp.getRelevantPAccount());
-                row.createCell(26).setCellValue(emp.getCreatorAccount());
-                row.createCell(27).setCellValue(emp.getChargeP());
-                row.createCell(28).setCellValue(emp.getChargePAccount());
+//                row.createCell(0).setCellValue(emp.getId());
+                row.createCell(0).setCellValue(emp.getName());
+                row.createCell(1).setCellValue(emp.getHighSea());
+                row.createCell(2).setCellValue(emp.getCustomerId());
+                row.createCell(3).setCellValue(emp.getProvince());
+                row.createCell(4).setCellValue(emp.getCity());
+                row.createCell(5).setCellValue(emp.getCounty());
+                row.createCell(6).setCellValue(emp.getIndustry());
+                row.createCell(7).setCellValue(emp.getAddress());
+                row.createCell(8).setCellValue(emp.getPhone());
+                row.createCell(9).setCellValue(emp.getEmail());
+                row.createCell(10).setCellValue(emp.getWebsite());
+                row.createCell(11).setCellValue(emp.getRemark());
+                row.createCell(12).setCellValue(emp.getBusinessReceipt());
+                row.createCell(13).setCellValue(emp.getBusinessScope());
+                row.createCell(14).setCellValue(emp.getRegisterCapital());
+                row.createCell(15).setCellValue(emp.getCorporateNature());
+                row.createCell(16).setCellValue(emp.getPropertyValue());
+                row.createCell(17).setCellValue(emp.getOldName());
+                row.createCell(18).setCellValue(emp.getEmployeeNum());
+                row.createCell(19).setCellValue(emp.getProducts());
+                row.createCell(20).setCellValue(emp.getPropertyType());
+                row.createCell(21).setCellValue(emp.getGiov());
+                row.createCell(22).setCellValue(emp.getCreator());
+                row.createCell(23).setCellValue(emp.getRelevantP());
+                row.createCell(24).setCellValue(emp.getRelevantPAccount());
+                row.createCell(25).setCellValue(emp.getCreatorAccount());
+                row.createCell(26).setCellValue(emp.getChargeP());
+                row.createCell(27).setCellValue(emp.getChargePAccount());
             }
             headers = new HttpHeaders();
             headers.setContentDispositionFormData("attachment",
@@ -258,6 +231,7 @@ public class PoiUtils {
     public static List<Employee> importEmp2List(MultipartFile file,
                                                 List<Position> allPos
     ) {
+        System.err.println("进入到importEmp2Excel:\n");
         List<Employee> emps = new ArrayList<>();
         try {
             HSSFWorkbook workbook =
@@ -278,15 +252,13 @@ public class PoiUtils {
                     employee = new Employee();
                     System.err.println("Column = " + physicalNumberOfCells);
                     for (int k = 0; k < physicalNumberOfCells; k++) { //遍历列
-                        if(k == 0) continue;
-
-                        System.err.println("k = " + k);
                         HSSFCell cell = row.getCell(k);
                         if(cell == null){
                             System.err.println("当前cell是null");
                             continue;
                         }else {
-                            System.err.println("cell: " + cell);
+//                            if(j == 1)
+//                                System.err.println("cell: " + cell);
                         }
                         System.err.println(cell.getCellTypeEnum());
 
@@ -307,8 +279,9 @@ public class PoiUtils {
                                 e.printStackTrace(); //print the info of function stuck.
                             }
                         }
-                        System.err.println("当前cell内容为: " + cellValue);
-                        switch (k) {
+//                        if(j == 1)
+                            System.err.println("k = " + k + "  当前cell内容为: " + cellValue);
+                        switch (k+1) {
                             case 1:
                                 employee.setName(cellValue);
                                 break;
@@ -358,13 +331,17 @@ public class PoiUtils {
                                 employee.setCorporateNature(cellValue);
                                 break;
                             case 17:
-                                System.out.println(cellValue);
-                                double d = Double.parseDouble(cellValue);
-
-                                long a = new Double(d).longValue();
-                                System.err.println(a);
-                                employee.setPropertyValue(a);
-
+                                System.out.println("enter case 17:  cellValue = " + cellValue);
+                                try{
+                                    double d = Double.parseDouble(cellValue);
+                                    long a = new Double(d).longValue();
+                                    System.err.println(a);
+                                    employee.setPropertyValue(a);
+                                }catch (Exception e){
+                                    System.out.printf("Exception occurs!!\n" + e.getMessage());
+                                    System.out.printf("===========================\n");
+//                                    e.printStackTrace(); //print the info of function stuck.
+                                }
                                 System.out.println(employee.getPropertyValue());
                                 System.out.println(employee);
                                 break;

@@ -54,18 +54,6 @@
               style="margin-bottom: 10px;border: 1px;border-radius: 5px;border-style: solid;padding: 5px 0px 5px 0px;box-sizing:border-box;border-color: #20a0ff"
               v-show="advanceSearchViewVisible">
               <el-row>
-                <!-- <el-col :span="4">
-                  公司性质:
-                  <el-select v-model="emp.posId" style="width: 130px" size="mini" placeholder="选择公司性质">
-                    <el-option
-                      v-for="item in positions"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id">
-                    </el-option>
-                  </el-select>
-                </el-col> -->
-
                 <el-col :span="5">
                   资产总计：
                   <el-input prefix-icon="el-icon-edit" v-model="propertyValueMin" size="mini" style="width: 150px"
@@ -189,7 +177,7 @@
               prop="businessScope"
               label="营业范围"
               align="left"
-              width="50">
+              width="250">
             </el-table-column>
 
             
@@ -206,13 +194,6 @@
               align="left"
               width="50">
             </el-table-column>
-
-           <!--  <el-table-column
-              width="100"
-              align="left"
-              prop="position.name"
-              label="公司性质">
-            </el-table-column> -->
 
             <el-table-column
               prop="propertyValue"
@@ -239,7 +220,7 @@
               prop="products"
               label="主要产品"
               align="left"
-              width="50">
+              width="250">
             </el-table-column>
 
             <el-table-column
@@ -267,14 +248,14 @@
               prop="relevantP"
               label="相关人"
               align="left"
-              width="50">
+              width="250">
             </el-table-column>    
 
             <el-table-column
               prop="relevantPAccount"
               label="相关人账号"
               align="left"
-              width="50">
+              width="250">
             </el-table-column>   
 
             <el-table-column
@@ -288,14 +269,14 @@
               prop="chargePAccount"
               label="负责人账号"
               align="left"
-              width="50">
+              width="250">
             </el-table-column> 
 
             <el-table-column
               prop="chargeP"
               label="负责人"
               align="left"
-              width="50">
+              width="250">
             </el-table-column> 
             
             
@@ -546,20 +527,6 @@
           </el-row>
 
           <el-row> <!-- 第6行 -->
-            <!-- <el-col :span="6">
-              <div>
-                <el-form-item label="公司性质:" prop="posId">
-                  <el-select v-model="emp.posId" style="width: 150px" size="mini" placeholder="选择公司性质">
-                    <el-option
-                      v-for="item in positions"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id">
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-              </div>
-            </el-col> -->
             <el-col :span="5">
               <div>
                 <el-form-item label="工业总产值:" prop="giov">
@@ -653,7 +620,6 @@
         dialogTitle: '',
         multipleSelection: [],
         depTextColor: '#c0c4cc',
-        // positions: [],
         totalCount: -1,
         currentPage: 1,
         deps: [],
@@ -690,7 +656,6 @@
           email: '',
           phone: '',
           address: '',
-          // posId: '',
           industry: '',
 
           giov: '',
@@ -887,7 +852,6 @@
           if (resp && resp.status == 200) {
             var data = resp.data;
             _this.deps = data.deps;
-            // _this.positions = data.positions;
             _this.emp.workID = data.workID;
           }
         })
@@ -898,8 +862,6 @@
         this.dialogTitle = "编辑员工";
 
         this.emp = row;
-        // this.emp.posId = row.position.id;
-
         this.dialogVisible = true;
       },
       showAddEmpView(){
@@ -923,8 +885,6 @@
           registerCapital: '',
           corporateNature: '',
           propertyValue: '',
-          // propertyValueMin: '',
-          // propertyValueMax: '',
           oldName: '',
           employeeNum: '',
           products: '',
@@ -932,9 +892,7 @@
           email: '',
           phone: '',
           address: '',
-          // posId: '',
           industry: '',
-
           giov: '',
           creator: '',
           relevantP: '',
