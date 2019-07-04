@@ -22,7 +22,7 @@ public class Employee {
 
     private String corporateNature;
 
-    private long propertyValue;
+    private double propertyValue;
     private String oldName;
     private String employeeNum;
     private String products;
@@ -141,11 +141,11 @@ public class Employee {
     public void setBusinessScope(String businessScope) {
         this.businessScope = businessScope;
     }
-    public long getPropertyValue() {
+    public double getPropertyValue() {
         return propertyValue;
     }
 
-    public void setPropertyValue(long propertyValue) {
+    public void setPropertyValue(double propertyValue) {
         this.propertyValue = propertyValue;
     }
 

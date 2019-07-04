@@ -477,7 +477,11 @@
                 </el-form-item>
               </div>
             </el-col>
+          </el-row>
 
+            
+
+          <el-row> <!-- 第五行 -->
             <el-col :span="5">
               <div>
                 <el-form-item label="资产总计:" prop="propertyValue">
@@ -486,9 +490,7 @@
                 </el-form-item>
               </div>
             </el-col>
-          </el-row>
 
-          <el-row> <!-- 第五行 -->
             <el-col :span="5">
               <div>
                 <el-form-item label="曾用名:" prop="oldName">
@@ -515,7 +517,11 @@
                 </el-form-item>
               </div>
             </el-col>
+          </el-row>
 
+            
+
+          <el-row> <!-- 第6行 -->
             <el-col :span="5">
               <div>
                 <el-form-item label="资质类型:" prop="propertyType">
@@ -524,9 +530,7 @@
                 </el-form-item>
               </div>
             </el-col>
-          </el-row>
-
-          <el-row> <!-- 第6行 -->
+          
             <el-col :span="5">
               <div>
                 <el-form-item label="工业总产值:" prop="giov">
@@ -553,7 +557,9 @@
                 </el-form-item>
               </div>
             </el-col>
+          </el-row>
 
+          <el-row> <!-- 第七行 -->
             <el-col :span="5">
               <div>
                 <el-form-item label="相关人账号:" prop="relevantPAccount">
@@ -589,7 +595,26 @@
                 </el-form-item>
               </div>
             </el-col>
+          </el-row>
 
+          <el-row> <!-- 第8行 -->
+            <!-- <el-col :span="5">
+              <div>
+                <el-form-item label="经度:" prop="relevantPAccount">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.relevantPAccount" size="mini" style="width: 150px"
+                            placeholder="输入相关人账号"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+
+            <el-col :span="5">
+              <div>
+                <el-form-item label="纬度:" prop="creatorAccount">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.creatorAccount" size="mini" style="width: 150px"
+                            placeholder="输入创建人账号"></el-input>
+                </el-form-item>
+              </div>
+            </el-col> -->
           </el-row>
 
           <span slot="footer" class="dialog-footer">
@@ -668,6 +693,7 @@
         },
         rules: {
           name: [{required: true, message: '必填:姓名', trigger: 'blur'}],
+          propertyValue: [{required: true, message: '必填:资产总计', trigger: 'blur'}],
           email: [{required: true, message: '必填:电子邮箱', trigger: 'blur'}, {
             type: 'email',
             message: '邮箱格式不正确',

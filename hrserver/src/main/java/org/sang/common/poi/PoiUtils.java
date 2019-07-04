@@ -334,9 +334,8 @@ public class PoiUtils {
                                 System.out.println("enter case 17:  cellValue = " + cellValue);
                                 try{
                                     double d = Double.parseDouble(cellValue);
-                                    long a = new Double(d).longValue();
-                                    System.err.println(a);
-                                    employee.setPropertyValue(a);
+                                    System.err.println(d);
+                                    employee.setPropertyValue(d);
                                 }catch (Exception e){
                                     System.out.printf("Exception occurs!!\n" + e.getMessage());
                                     System.out.printf("===========================\n");
