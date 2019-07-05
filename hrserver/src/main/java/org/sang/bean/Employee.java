@@ -18,16 +18,13 @@ public class Employee {
     private String remark;
     private String businessReceipt;
     private String businessScope;
-    private String registerCapital;
-
+    private double registerCapital;
     private String corporateNature;
-
     private double propertyValue;
     private String oldName;
     private String employeeNum;
     private String products;
     private String propertyType;
-
     private String giov; //工业总产值 gross industrial output value
     private String creator;
     private String creatorAccount;
@@ -35,6 +32,17 @@ public class Employee {
     private String relevantPAccount;
     private String chargeP;
     private String chargePAccount;
+
+    private String longitude;
+    private String latitude;
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
 
     public Long getId() {
         return id;
@@ -189,11 +197,11 @@ public class Employee {
         this.customerId = customerId;
     }
 
-    public String getRegisterCapital() {
+    public double getRegisterCapital() {
         return registerCapital;
     }
 
-    public void setRegisterCapital(String registerCapital) {
+    public void setRegisterCapital(double registerCapital) {
         this.registerCapital = registerCapital;
     }
 

@@ -16,8 +16,8 @@
         values (#{name,jdbcType=VARCHAR}, #{highSea,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
         #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
         #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
-        #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR}, #{registerCapital,jdbcType=VARCHAR},#{corporateNature,jdbcType=VARCHAR},
-        #{propertyValue,jdbcType=INTEGER}, #{oldName,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR},
+        #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR}, #{registerCapital,jdbcType=NUMERIC},#{corporateNature,jdbcType=VARCHAR},
+        #{propertyValue,jdbcType=NUMERIC}, #{oldName,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR},
         #{propertyType,jdbcType=VARCHAR}, #{giov,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{relevantP,jdbcType=VARCHAR},
         #{relevantPAccount,jdbcType=VARCHAR}, #{creatorAccount,jdbcType=VARCHAR}, #{chargePAccount,jdbcType=VARCHAR}, #{chargeP,jdbcType=VARCHAR}
         )
@@ -63,18 +63,24 @@
         <!--        and e.`name` like concat('%',#{keywords},'%')-->
         select e.*
         from employee e
-        where e.`name` like concat('%',#{keywords},'%')
+        where e.`name` like concat('%',#{keywords},'%') AND e.`businessScope` like concat('%',#{keywords_range},'%')
+        AND e.`products` like concat('%',#{keywords_products},'%')
         <if test="propertyValueMin!=null and propertyValueMax!=null">
             AND e.propertyValue BETWEEN #{propertyValueMin} AND #{propertyValueMax}
+        </if>
+        <if test="registerCapitalMin!=null and registerCapitalMax!=null">
+            AND e.registerCapital BETWEEN #{registerCapitalMin} AND #{registerCapitalMax}
         </if>
         <!--        分页-->
         <if test="start!=null and size!=null">
             order by e.id limit #{start},#{size}
         </if>
     </select>
+
     <select id="getCountByKeywords" resultType="Long">
         SELECT count(*) FROM employee e WHERE e.name LIKE concat('%',#{keywords},'%')
     </select>
+
     <update id="updateEmp">
         update employee
         <set>
@@ -106,7 +112,7 @@
                 businessScope = #{emp.businessScope,jdbcType=VARCHAR},
             </if>
             <if test="emp.propertyValue != null">
-                propertyValue = #{emp.propertyValue,jdbcType=INTEGER},
+                propertyValue = #{emp.propertyValue,jdbcType=NUMERIC},
             </if>
             <if test="emp.employeeNum != null">
                 employeeNum = #{emp.employeeNum,jdbcType=VARCHAR},
@@ -127,43 +133,43 @@
                 address = #{emp.address,jdbcType=VARCHAR},
             </if>
             <if test="emp.industry != null">
-                industry = #{emp.industry,jdbcType=CHAR},
+                industry = #{emp.industry,jdbcType=VARCHAR},
             </if>
             <if test="emp.customerId != null">
-                customerId = #{emp.customerId,jdbcType=CHAR},
+                customerId = #{emp.customerId,jdbcType=VARCHAR},
             </if>
             <if test="emp.registerCapital != null">
-                registerCapital = #{emp.registerCapital,jdbcType=CHAR},
+                registerCapital = #{emp.registerCapital,jdbcType=NUMERIC},
             </if>
             <if test="emp.corporateNature != null">
-                corporateNature = #{emp.corporateNature,jdbcType=CHAR},
+                corporateNature = #{emp.corporateNature,jdbcType=VARCHAR},
             </if>
 
 
             <if test="emp.oldName != null">
-                oldName = #{emp.oldName,jdbcType=CHAR},
+                oldName = #{emp.oldName,jdbcType=VARCHAR},
             </if>
 
             <if test="emp.giov != null">
-                giov = #{emp.giov,jdbcType=CHAR},
+                giov = #{emp.giov,jdbcType=VARCHAR},
             </if>
             <if test="emp.creator != null">
-                creator = #{emp.creator,jdbcType=CHAR},
+                creator = #{emp.creator,jdbcType=VARCHAR},
             </if>
             <if test="emp.relevantP != null">
-                relevantP = #{emp.relevantP,jdbcType=CHAR},
+                relevantP = #{emp.relevantP,jdbcType=VARCHAR},
             </if>
             <if test="emp.relevantPAccount != null">
-                relevantPAccount = #{emp.relevantPAccount,jdbcType=CHAR},
+                relevantPAccount = #{emp.relevantPAccount,jdbcType=VARCHAR},
             </if>
             <if test="emp.creatorAccount != null">
-                creatorAccount = #{emp.creatorAccount,jdbcType=CHAR},
+                creatorAccount = #{emp.creatorAccount,jdbcType=VARCHAR},
             </if>
             <if test="emp.chargePAccount != null">
-                chargePAccount = #{emp.chargePAccount,jdbcType=CHAR},
+                chargePAccount = #{emp.chargePAccount,jdbcType=VARCHAR},
             </if>
             <if test="emp.chargeP != null">
-                chargeP = #{emp.chargeP,jdbcType=CHAR},
+                chargeP = #{emp.chargeP,jdbcType=VARCHAR},
             </if>
 
 
@@ -192,8 +198,8 @@
             (#{emp.name,jdbcType=VARCHAR}, #{emp.highSea,jdbcType=VARCHAR}, #{emp.customerId,jdbcType=VARCHAR}, #{emp.province,jdbcType=VARCHAR},
             #{emp.city,jdbcType=VARCHAR}, #{emp.county,jdbcType=VARCHAR}, #{emp.industry,jdbcType=VARCHAR}, #{emp.address,jdbcType=VARCHAR},
             #{emp.phone,jdbcType=VARCHAR}, #{emp.email,jdbcType=VARCHAR}, #{emp.website,jdbcType=VARCHAR}, #{emp.remark,jdbcType=VARCHAR},
-            #{emp.businessReceipt,jdbcType=VARCHAR}, #{emp.businessScope,jdbcType=VARCHAR}, #{emp.registerCapital,jdbcType=VARCHAR},#{emp.corporateNature,jdbcType=VARCHAR},
-            #{emp.propertyValue,jdbcType=INTEGER}, #{emp.oldName,jdbcType=VARCHAR}, #{emp.employeeNum,jdbcType=VARCHAR}, #{emp.products,jdbcType=VARCHAR},
+            #{emp.businessReceipt,jdbcType=VARCHAR}, #{emp.businessScope,jdbcType=VARCHAR}, #{emp.registerCapital,jdbcType=NUMERIC},#{emp.corporateNature,jdbcType=VARCHAR},
+            #{emp.propertyValue,jdbcType=NUMERIC}, #{emp.oldName,jdbcType=VARCHAR}, #{emp.employeeNum,jdbcType=VARCHAR}, #{emp.products,jdbcType=VARCHAR},
             #{emp.propertyType,jdbcType=VARCHAR}, #{emp.giov,jdbcType=VARCHAR}, #{emp.creator,jdbcType=VARCHAR}, #{emp.relevantP,jdbcType=VARCHAR},
             #{emp.relevantPAccount,jdbcType=VARCHAR}, #{emp.creatorAccount,jdbcType=VARCHAR}, #{emp.chargePAccount,jdbcType=VARCHAR}, #{emp.chargeP,jdbcType=VARCHAR}
             )

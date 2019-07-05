@@ -4,7 +4,7 @@
       <el-header style="padding: 0px;display:flex;justify-content:space-between;align-items: center">
         <div style="display: inline">
           <el-input
-            placeholder="Remember to press enter..."
+            placeholder="请输入客户名称..."
             clearable
             @change="keywordsChange"
             style="width: 300px;margin: 0px;padding: 0px;"
@@ -48,29 +48,90 @@
       <el-main style="padding-left: 0px;padding-top: 0px">
         
         <div>
-<!--          高级搜索-->
+          <!-- 高级搜索 -->
           <transition name="slide-fade">
             <div
               style="margin-bottom: 10px;border: 1px;border-radius: 5px;border-style: solid;padding: 5px 0px 5px 0px;box-sizing:border-box;border-color: #20a0ff"
               v-show="advanceSearchViewVisible">
               <el-row>
-                <el-col :span="5">
-                  资产总计：
-                  <el-input prefix-icon="el-icon-edit" v-model="propertyValueMin" size="mini" style="width: 150px"
+                <el-col :span="3">
+                  <div>资产总计</div>
+                  <el-input prefix-icon="el-icon-edit" v-model="propertyValueMin" size="mini" style="width: 120px"
                                 placeholder="输入min"></el-input>
-                  <el-input prefix-icon="el-icon-edit" v-model="propertyValueMax" size="mini" style="width: 150px"
+                  <el-input prefix-icon="el-icon-edit" v-model="propertyValueMax" size="mini" style="width: 120px"
                                 placeholder="输入max"></el-input>
-                    </el-form-item>
+                    </el-foWrm-item>
+                </el-col>
 
+                <el-col :span="3">
+                  <div>注册资本金</div>
+                    <el-input prefix-icon="el-icon-edit" v-model="registerCapitalMin" size="mini" style="width: 120px"
+                                placeholder="输入min"></el-input>  
+                    <el-input prefix-icon="el-icon-edit" v-model="registerCapitalMax" size="mini" style="width: 120px"
+                                placeholder="输入min"></el-input>  
+                </el-col>
+
+                <el-col :span="3">
+                  <el-input
+                    placeholder="请输入客户名称..."
+                    clearable
+                    @change="keywordsChange"
+                    style="width: 160px;margin: 0px;padding: 0px;"
+                    size="mini"
+                    @keyup.enter.native="searchEmp"
+                    prefix-icon="el-icon-search"
+                    v-model="keywords">
+                  </el-input>
+                </el-col>
+
+                <el-col :span="3">
+                  <el-input
+                    placeholder="请输入经营范围..."
+                    clearable
+                    @change="keywordsChange"
+                    style="width: 160px;margin: 0px;padding: 0px;"
+                    size="mini"
+                    @keyup.enter.native="searchEmp"
+                    prefix-icon="el-icon-search"
+                    v-model="keywords_range">
+                  </el-input>
+                </el-col>
+
+                <!-- <el-col :span="3">
+                  <el-input
+                    placeholder="请输入a..."
+                    clearable
+                    @change="keywordsChange"
+                    style="width: 160px;margin: 0px;padding: 0px;"
+                    size="mini"
+                    @keyup.enter.native="searchEmp"
+                    prefix-icon="el-icon-search"
+                    v-model="a">
+                  </el-input>
+                </el-col> -->
+
+                <el-col :span="3">
+                  <el-input
+                    placeholder="请输入主要产品..."
+                    clearable
+                    @change="keywordsChange"
+                    style="width: 160px;margin: 0px;padding: 0px;"
+                    size="mini"
+                    @keyup.enter.native="searchEmp"
+                    prefix-icon="el-icon-search"
+                    v-model="keywords_products">
+                  </el-input>
                 </el-col>
 
               </el-row>
+
               <el-row style="margin-top: 10px">
                 <el-col :span="5" :offset="4">
                   <el-button size="mini" @click="cancelSearch">取消</el-button>
                   <el-button icon="el-icon-search" type="primary" size="mini" @click="searchEmp">搜索</el-button>
                 </el-col>
               </el-row>
+
             </div>
           </transition>
 <!--          高级搜索 结束-->
@@ -636,9 +697,14 @@
     data() {
       return {
         emps: [],
+        a:'',
         keywords: '',
+        keywords_range: '',
+        keywords_products: '',
         propertyValueMin: '',
         propertyValueMax: '',
+        registerCapitalMin: '',
+        registerCapitalMax: '',
         fileUploadBtnText: '导入数据',
         faangledoubleup: 'fa-angle-double-up',
         faangledoubledown: 'fa-angle-double-down',
@@ -670,9 +736,7 @@
           businessReceipt: '',
           businessScope: '',
           registerCapital: '',
-
           corporateNature: '',
-
           propertyValue: '',
           oldName: '',
           employeeNum: '',
@@ -682,7 +746,6 @@
           phone: '',
           address: '',
           industry: '',
-
           giov: '',
           creator: '',
           relevantP: '',
@@ -729,15 +792,22 @@
         this.emptyEmpData();
         this.propertyValueMin = '';
         this.propertyValueMax = '';
+        this.registerCapitalMin = '';
+        this.registerCapitalMax = '';
         this.loadEmps();
       },
       showAdvanceSearchView(){
         this.advanceSearchViewVisible = !this.advanceSearchViewVisible;
         this.keywords = '';
+        this.a = '';
+        this.keywords_range = '';
+        this.keywords_products = '';
         if (!this.advanceSearchViewVisible) {
           this.emptyEmpData();
           this.propertyValueMin = '';
           this.propertyValueMax = '';
+          this.registerCapitalMin = '';
+          this.registerCapitalMax = '';
           this.loadEmps();
         }
       },
@@ -796,25 +866,27 @@
       loadEmps(){
         var _this = this;
         console.log(this);
-
+  
         this.tableLoading = true;
-        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&propertyValueMin=" + this.propertyValueMin + "&propertyValueMax=" + this.propertyValueMax ).then(resp=> {
+        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&keywords_range=" + this.keywords_range + "&a" +this.a + "&keywords_products=" + this.keywords_products + "&propertyValueMin=" + this.propertyValueMin + "&propertyValueMax=" + this.propertyValueMax + "&registerCapitalMin=" + this.registerCapitalMin + "&registerCapitalMax=" + this.registerCapitalMax).then(resp=> {
           this.tableLoading = false;
 
           console.log("loadEmps():")
+          console.log("&a=" + this.a)
+          console.log("&keywords_range=" + this.keywords_range)
           console.log("&propertyValueMin=" + this.propertyValueMin)
-
-          console.log(resp)
-
+          console.log("&propertyValueMax=" + this.propertyValueMax)
+          console.log("&registerCapitalMin=" + this.registerCapitalMin)
+          console.log("&registerCapitalMax=" + this.registerCapitalMax)
+        
           if (resp && resp.status == 200) {
             var data = resp.data;
             _this.emps = data.emps;
             _this.totalCount = data.count;
-
-            console.log("start")
-            console.log(data.emps)
-            console.log(data.emps[0])
-            console.log("end")
+            // console.log("start")
+            // console.log(data.emps)
+            // console.log(data.emps[0])
+            // console.log("end")
 
 //            _this.emptyEmpData();
           }
@@ -828,16 +900,10 @@
               //更新
               this.tableLoading = true;
               this.putRequest("/employee/basic/emp", this.emp).then(resp=> {
-                console.log("进入更新putRequest");
-                console.log(resp.status)
-
+                // console.log("进入更新putRequest");
+                // console.log(resp.status)
                 _this.tableLoading = false;
                 if (resp && resp.status == 200) {
-                  console.log("进入更新if");
-                  console.log(resp)
-                  console.log(resp.config)
-                  console.log(resp.config.data)
-
                   var data = resp.data;
                   _this.dialogVisible = false;
                   _this.emptyEmpData();

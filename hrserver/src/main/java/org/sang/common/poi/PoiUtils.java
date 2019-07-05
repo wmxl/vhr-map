@@ -325,7 +325,16 @@ public class PoiUtils {
                                 employee.setBusinessScope(cellValue);
                                 break;
                             case 15:
-                                employee.setRegisterCapital(cellValue);
+                                System.out.println("enter case 15:  cellValue = " + cellValue);
+                                try{
+                                    double d = Double.parseDouble(cellValue);
+                                    System.err.println(d);
+                                    employee.setRegisterCapital(d);
+                                }catch (Exception e){
+                                    System.out.printf("Exception occurs!!\n" + e.getMessage());
+                                    System.out.printf("===================================\n");
+//                                    e.printStackTrace(); //print the info of function stuck.
+                                }
                                 break;
                             case 16:
                                 employee.setCorporateNature(cellValue);
@@ -338,7 +347,7 @@ public class PoiUtils {
                                     employee.setPropertyValue(d);
                                 }catch (Exception e){
                                     System.out.printf("Exception occurs!!\n" + e.getMessage());
-                                    System.out.printf("===========================\n");
+                                    System.out.printf("===================================\n");
 //                                    e.printStackTrace(); //print the info of function stuck.
                                 }
                                 System.out.println(employee.getPropertyValue());

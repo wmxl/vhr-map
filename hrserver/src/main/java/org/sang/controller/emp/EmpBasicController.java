@@ -50,12 +50,6 @@ public class EmpBasicController {
         if (empService.addEmp(employee) == 1) {
             System.err.println("1:");
 
-//            List<Position> allPos = positionService.getAllPos();
-//            for (Position allPo : allPos) {
-//                if (allPo.getId() == employee.getPosId()) {
-//                    employee.setPosName(allPo.getName());
-//                }
-//            }
             executorService.execute(new EmailRunnable(employee,
                     javaMailSender, templateEngine));
             System.err.println(employee);
@@ -84,17 +78,24 @@ public class EmpBasicController {
     public Map<String, Object> getEmployeeByPage(
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
-            @RequestParam(defaultValue = "") String keywords
-            ,Long propertyValueMin
-            ,Long propertyValueMax
+            @RequestParam(defaultValue = "") String keywords,
+            @RequestParam(defaultValue = "") String keywords_range,
+            @RequestParam(defaultValue = "") String a,
+            @RequestParam(defaultValue = "") String keywords_products,
+            Double propertyValueMin
+            ,Double propertyValueMax
+            ,Double registerCapitalMin
+            ,Double registerCapitalMax
     ) {
-        System.err.println("进入 GET EmpBasicController:");
-        System.err.println(propertyValueMin);
-        System.err.println(propertyValueMax);
-
+        System.err.println("进入 GET EmpBasicController: getEmployeeByPage");
+        System.out.println("keywords_range = " + keywords_range);
+        System.out.println("a = " + a);
+        System.out.println("keywords_products = " + keywords_products);
         Map<String, Object> map = new HashMap<>();
-        List<Employee> employeeByPage = empService.getEmployeeByPage(page, size, keywords, propertyValueMin, propertyValueMax);
-        Long count = empService.getCountByKeywords(keywords, propertyValueMin, propertyValueMax);
+        List<Employee> employeeByPage = empService.getEmployeeByPage(page, size, keywords, keywords_range, keywords_products,
+                propertyValueMin, propertyValueMax, registerCapitalMin, registerCapitalMax );
+        Long count = empService.getCountByKeywords(keywords, keywords_range, keywords_products,
+                propertyValueMin, propertyValueMax, registerCapitalMin, registerCapitalMax);
         map.put("emps", employeeByPage);
         map.put("count", count);
         return map;

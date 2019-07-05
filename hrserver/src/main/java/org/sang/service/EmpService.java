@@ -20,24 +20,26 @@ import java.util.List;
 public class EmpService {
     @Autowired
     EmpMapper empMapper;
-    SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-    SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
-    SimpleDateFormat birthdayFormat = new SimpleDateFormat("yyyy-MM-dd");
-    DecimalFormat decimalFormat = new DecimalFormat("##.00");
-
-
+//    SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+//    SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+//    SimpleDateFormat birthdayFormat = new SimpleDateFormat("yyyy-MM-dd");
+//    DecimalFormat decimalFormat = new DecimalFormat("##.00");
     public int addEmp(Employee employee) {
         return empMapper.addEmp(employee);
     }
 
-    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long propertyValueMin, Long propertyValueMax) {
-//        System.err.println("进入查询");
+    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, String keywords_range, String keywords_products,
+                                            Double propertyValueMin, Double propertyValueMax, Double registerCapitalMin, Double registerCapitalMax) {
+        System.err.println("enter EmpService: getEmployeeByPage");
+
         int start = (page - 1) * size;
-        return empMapper.getEmployeeByPage(start, size, keywords, propertyValueMin, propertyValueMax);
+        return empMapper.getEmployeeByPage(start, size, keywords, keywords_range, keywords_products, propertyValueMin, propertyValueMax,
+                registerCapitalMin, registerCapitalMax);
     }
 
-    public Long getCountByKeywords(String keywords, Long propertyValueMin, Long propertyValueMax) {
-        return empMapper.getCountByKeywords(keywords,propertyValueMin, propertyValueMax);
+    public Long getCountByKeywords(String keywords, String keywords_range, String keywords_products,
+                                   Double propertyValueMin, Double propertyValueMax, Double registerCapitalMin, Double registerCapitalMax) {
+        return empMapper.getCountByKeywords(keywords,  keywords_range, keywords_products, propertyValueMin, propertyValueMax, registerCapitalMin, registerCapitalMax);
     }
 
     public int updateEmp(Employee employee) {
@@ -53,7 +55,8 @@ public class EmpService {
     }
 
     public List<Employee> getAllEmployees() {
-        return empMapper.getEmployeeByPage(null, null, "", null, null);
+        return empMapper.getEmployeeByPage(null, null, "","","",
+                null, null, null, null);
     }
 
     public int addEmps(List<Employee> emps) {

@@ -12,9 +12,15 @@ public interface EmpMapper {
 
     int addEmp(Employee employee);
 
-    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords, @Param("propertyValueMin")Long propertyValueMin, @Param("propertyValueMax")Long propertyValueMax);
+    List<Employee> getEmployeeByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords,
+                                     @Param("keywords_range") String keywords_range, @Param("keywords_products") String keywords_products,
+                                     @Param("propertyValueMin") Double propertyValueMin, @Param("propertyValueMax") Double propertyValueMax,
+                                     @Param("registerCapitalMin") Double registerCapitalMin, @Param("registerCapitalMax") Double registerCapitalMax);
 
-    Long getCountByKeywords(@Param("keywords") String keywords, @Param("propertyValueMin") Long propertyValueMin, @Param("propertyValueMax") Long propertyValueMax);
+    Long getCountByKeywords(@Param("keywords") String keywords,
+                            @Param("keywords_range") String keywords_range, @Param("keywords_products") String keywords_products,
+                            @Param("propertyValueMin") Double propertyValueMin, @Param("propertyValueMax") Double propertyValueMax,
+                            @Param("registerCapitalMin") Double registerCapitalMin, @Param("registerCapitalMax")Double registerCapitalMax);
 
     int updateEmp(@Param("emp") Employee employee);
 
