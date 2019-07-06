@@ -3,26 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sang.mapper.EmpMapper">
-
-    <insert id="addEmp" parameterType="org.sang.bean.Employee">
-        insert into employee (name, highSea, customerId, province,
-        city, county, industry, address,
-        phone, email, website, remark,
-        businessReceipt, businessScope, registerCapital, corporateNature,
-        propertyValue, oldName, employeeNum, products,
-        propertyType, giov, creator, relevantP,
-        relevantPAccount, creatorAccount, chargePAccount, chargeP
-        )
-        values (#{name,jdbcType=VARCHAR}, #{highSea,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
-        #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
-        #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
-        #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR}, #{registerCapital,jdbcType=NUMERIC},#{corporateNature,jdbcType=VARCHAR},
-        #{propertyValue,jdbcType=NUMERIC}, #{oldName,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR},
-        #{propertyType,jdbcType=VARCHAR}, #{giov,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{relevantP,jdbcType=VARCHAR},
-        #{relevantPAccount,jdbcType=VARCHAR}, #{creatorAccount,jdbcType=VARCHAR}, #{chargePAccount,jdbcType=VARCHAR}, #{chargeP,jdbcType=VARCHAR}
-        )
-    </insert>
-
     <resultMap id="BaseResultMap" type="org.sang.bean.Employee">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
@@ -53,14 +33,10 @@
         <result column="creatorAccount" property="creatorAccount"/>
         <result column="chargePAccount" property="chargePAccount"/>
         <result column="chargeP" property="chargeP"/>
+        <result column="longitude" property="longitude"/>
+        <result column="latitude" property="latitude"/>
     </resultMap>
-
     <select id="getEmployeeByPage" resultMap="BaseResultMap">
-        <!--        select e.*, jl.`id` as jlid,jl.`name` as jlname,jl.`titleLevel` as jlTitleLevel,d.`id` as did,d.`name` as-->
-        <!--        dname, p.`id` as pid,p.`name` as pname-->
-        <!--        from employee e, joblevel jl, department d, position p-->
-        <!--        where e.`posId`=p.`id` and e.`jobLevelId`=jl.`id` and e.`departmentId`=d.id-->
-        <!--        and e.`name` like concat('%',#{keywords},'%')-->
         select e.*
         from employee e
         where e.`name` like concat('%',#{keywords},'%') AND e.`businessScope` like concat('%',#{keywords_range},'%')
@@ -79,7 +55,53 @@
 
     <select id="getCountByKeywords" resultType="Long">
         SELECT count(*) FROM employee e WHERE e.name LIKE concat('%',#{keywords},'%')
+        AND e.`businessScope` like concat('%',#{keywords_range},'%')
+        AND e.`products` like concat('%',#{keywords_products},'%')
     </select>
+
+    <insert id="addEmp" parameterType="org.sang.bean.Employee">
+        insert into employee (name, highSea, customerId, province,
+        city, county, industry, address,
+        phone, email, website, remark,
+        businessReceipt, businessScope, registerCapital, corporateNature,
+        propertyValue, oldName, employeeNum, products,
+        propertyType, giov, creator, relevantP,
+        relevantPAccount, creatorAccount, chargePAccount, chargeP,
+        longitude, latitude
+        )
+        values (#{name,jdbcType=VARCHAR}, #{highSea,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
+        #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+        #{businessReceipt,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR}, #{registerCapital,jdbcType=NUMERIC},#{corporateNature,jdbcType=VARCHAR},
+        #{propertyValue,jdbcType=NUMERIC}, #{oldName,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, #{products,jdbcType=VARCHAR},
+        #{propertyType,jdbcType=VARCHAR}, #{giov,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{relevantP,jdbcType=VARCHAR},
+        #{relevantPAccount,jdbcType=VARCHAR}, #{creatorAccount,jdbcType=VARCHAR}, #{chargePAccount,jdbcType=VARCHAR}, #{chargeP,jdbcType=VARCHAR},
+        #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="addEmps">
+        insert into employee (name, highSea, customerId, province,
+        city, county, industry, address,
+        phone, email, website, remark,
+        businessReceipt, businessScope, registerCapital, corporateNature,
+        propertyValue, oldName, employeeNum, products,
+        propertyType, giov, creator, relevantP,
+        relevantPAccount, creatorAccount, chargePAccount, chargeP,
+        longitude, latitude
+        )
+        values
+        <foreach collection="emps" item="emp" separator=",">
+            (#{emp.name,jdbcType=VARCHAR}, #{emp.highSea,jdbcType=VARCHAR}, #{emp.customerId,jdbcType=VARCHAR}, #{emp.province,jdbcType=VARCHAR},
+            #{emp.city,jdbcType=VARCHAR}, #{emp.county,jdbcType=VARCHAR}, #{emp.industry,jdbcType=VARCHAR}, #{emp.address,jdbcType=VARCHAR},
+            #{emp.phone,jdbcType=VARCHAR}, #{emp.email,jdbcType=VARCHAR}, #{emp.website,jdbcType=VARCHAR}, #{emp.remark,jdbcType=VARCHAR},
+            #{emp.businessReceipt,jdbcType=VARCHAR}, #{emp.businessScope,jdbcType=VARCHAR}, #{emp.registerCapital,jdbcType=NUMERIC},#{emp.corporateNature,jdbcType=VARCHAR},
+            #{emp.propertyValue,jdbcType=NUMERIC}, #{emp.oldName,jdbcType=VARCHAR}, #{emp.employeeNum,jdbcType=VARCHAR}, #{emp.products,jdbcType=VARCHAR},
+            #{emp.propertyType,jdbcType=VARCHAR}, #{emp.giov,jdbcType=VARCHAR}, #{emp.creator,jdbcType=VARCHAR}, #{emp.relevantP,jdbcType=VARCHAR},
+            #{emp.relevantPAccount,jdbcType=VARCHAR}, #{emp.creatorAccount,jdbcType=VARCHAR}, #{emp.chargePAccount,jdbcType=VARCHAR}, #{emp.chargeP,jdbcType=VARCHAR},
+            #{emp.longitude,jdbcType=VARCHAR}, #{emp.latitude,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
 
     <update id="updateEmp">
         update employee
@@ -144,12 +166,9 @@
             <if test="emp.corporateNature != null">
                 corporateNature = #{emp.corporateNature,jdbcType=VARCHAR},
             </if>
-
-
             <if test="emp.oldName != null">
                 oldName = #{emp.oldName,jdbcType=VARCHAR},
             </if>
-
             <if test="emp.giov != null">
                 giov = #{emp.giov,jdbcType=VARCHAR},
             </if>
@@ -171,8 +190,12 @@
             <if test="emp.chargeP != null">
                 chargeP = #{emp.chargeP,jdbcType=VARCHAR},
             </if>
-
-
+            <if test="emp.longitude != null">
+                longitude = #{emp.longitude,jdbcType=VARCHAR},
+            </if>
+            <if test="emp.latitude != null">
+                latitude = #{emp.latitude,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{emp.id,jdbcType=BIGINT}
     </update>
@@ -183,33 +206,9 @@
             #{id}
         </foreach>
     </delete>
-
-    <insert id="addEmps">
-        insert into employee (name, highSea, customerId, province,
-        city, county, industry, address,
-        phone, email, website, remark,
-        businessReceipt, businessScope, registerCapital, corporateNature,
-        propertyValue, oldName, employeeNum, products,
-        propertyType, giov, creator, relevantP,
-        relevantPAccount, creatorAccount, chargePAccount, chargeP
-        )
-        values
-        <foreach collection="emps" item="emp" separator=",">
-            (#{emp.name,jdbcType=VARCHAR}, #{emp.highSea,jdbcType=VARCHAR}, #{emp.customerId,jdbcType=VARCHAR}, #{emp.province,jdbcType=VARCHAR},
-            #{emp.city,jdbcType=VARCHAR}, #{emp.county,jdbcType=VARCHAR}, #{emp.industry,jdbcType=VARCHAR}, #{emp.address,jdbcType=VARCHAR},
-            #{emp.phone,jdbcType=VARCHAR}, #{emp.email,jdbcType=VARCHAR}, #{emp.website,jdbcType=VARCHAR}, #{emp.remark,jdbcType=VARCHAR},
-            #{emp.businessReceipt,jdbcType=VARCHAR}, #{emp.businessScope,jdbcType=VARCHAR}, #{emp.registerCapital,jdbcType=NUMERIC},#{emp.corporateNature,jdbcType=VARCHAR},
-            #{emp.propertyValue,jdbcType=NUMERIC}, #{emp.oldName,jdbcType=VARCHAR}, #{emp.employeeNum,jdbcType=VARCHAR}, #{emp.products,jdbcType=VARCHAR},
-            #{emp.propertyType,jdbcType=VARCHAR}, #{emp.giov,jdbcType=VARCHAR}, #{emp.creator,jdbcType=VARCHAR}, #{emp.relevantP,jdbcType=VARCHAR},
-            #{emp.relevantPAccount,jdbcType=VARCHAR}, #{emp.creatorAccount,jdbcType=VARCHAR}, #{emp.chargePAccount,jdbcType=VARCHAR}, #{emp.chargeP,jdbcType=VARCHAR}
-            )
-        </foreach>
-    </insert>
-
     <!--    <select id="getEmployeeByPageShort" resultMap="BaseResultMap">-->
     <!--select e.*,d.`id` as did,d.`name` as dname,s.`id` as sid,s.`accumulationFundBase`,s.`accumulationFundPer`,s.`allSalary`,s.`basicSalary`,s.`bonus`,s.`createDate`,s.`lunchSalary`,s.`medicalBase`,s.`medicalPer`,s.`name` as sname,s.`pensionBase`,s.`pensionPer`,s.`trafficSalary`-->
     <!--        from employee e left join department d on e.`departmentId`=d.id left join empsalary es on es.`eid`=e.`id` left join salary s on s.`id`=es.`sid`-->
     <!--        ORDER BY e.id limit #{start},#{size}-->
     <!--    </select>-->
-
 </mapper>

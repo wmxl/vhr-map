@@ -96,7 +96,6 @@
                     v-model="keywords_range">
                   </el-input>
                 </el-col>
-
                 <!-- <el-col :span="3">
                   <el-input
                     placeholder="请输入a..."
@@ -109,7 +108,6 @@
                     v-model="a">
                   </el-input>
                 </el-col> -->
-
                 <el-col :span="3">
                   <el-input
                     placeholder="请输入主要产品..."
@@ -339,7 +337,20 @@
               align="left"
               width="250">
             </el-table-column> 
-            
+
+            <el-table-column
+              prop="longitude"
+              label="经度"
+              align="left"
+              width="50">
+            </el-table-column> 
+
+            <el-table-column
+              prop="latitude"
+              label="纬度"
+              align="left"
+              width="50">
+            </el-table-column> 
             
             <el-table-column
               fixed="right"
@@ -540,8 +551,6 @@
             </el-col>
           </el-row>
 
-            
-
           <el-row> <!-- 第五行 -->
             <el-col :span="5">
               <div>
@@ -579,9 +588,6 @@
               </div>
             </el-col>
           </el-row>
-
-            
-
           <el-row> <!-- 第6行 -->
             <el-col :span="5">
               <div>
@@ -657,25 +663,24 @@
               </div>
             </el-col>
           </el-row>
-
           <el-row> <!-- 第8行 -->
-            <!-- <el-col :span="5">
+            <el-col :span="5">
               <div>
-                <el-form-item label="经度:" prop="relevantPAccount">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.relevantPAccount" size="mini" style="width: 150px"
-                            placeholder="输入相关人账号"></el-input>
+                <el-form-item label="经度:" prop="longitude">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.longitude" size="mini" style="width: 150px"
+                            placeholder="输入经度.."></el-input>
                 </el-form-item>
               </div>
             </el-col>
 
             <el-col :span="5">
               <div>
-                <el-form-item label="纬度:" prop="creatorAccount">
-                  <el-input prefix-icon="el-icon-edit" v-model="emp.creatorAccount" size="mini" style="width: 150px"
-                            placeholder="输入创建人账号"></el-input>
+                <el-form-item label="纬度:" prop="latitude">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.latitude" size="mini" style="width: 150px"
+                            placeholder="输入纬度.."></el-input>
                 </el-form-item>
               </div>
-            </el-col> -->
+            </el-col>
           </el-row>
 
           <span slot="footer" class="dialog-footer">
@@ -725,7 +730,7 @@
         showOrHidePop: false,
         showOrHidePop2: false,
         emp: {
-          name: '',
+          name: '无名小路的公司1',
           highSea: '',
           customerId: '',
           province: '',
@@ -735,14 +740,14 @@
           remark: '',
           businessReceipt: '',
           businessScope: '',
-          registerCapital: '',
+          registerCapital: '25000',
           corporateNature: '',
-          propertyValue: '',
+          propertyValue: '15000',
           oldName: '',
           employeeNum: '',
           products: '',
           propertyType: '',
-          email: '',
+          email: '1245667@qq.com',
           phone: '',
           address: '',
           industry: '',
@@ -752,11 +757,14 @@
           relevantPAccount: '',
           creatorAccount: '',
           chargePAccount: '',
-          chargeP: ''
+          chargeP: '',
+          longitude: '111',
+          latitude:'222'
         },
         rules: {
           name: [{required: true, message: '必填:姓名', trigger: 'blur'}],
           propertyValue: [{required: true, message: '必填:资产总计', trigger: 'blur'}],
+          registerCapital: [{required: true, message: '必填:注册资本金', trigger: 'blur'}],
           email: [{required: true, message: '必填:电子邮箱', trigger: 'blur'}, {
             type: 'email',
             message: '邮箱格式不正确',
@@ -855,6 +863,7 @@
           this.loadEmps();
         }
       },
+
       searchEmp(){
         this.loadEmps();
       },
@@ -864,6 +873,7 @@
       },
       //lemps 加载数据的方法
       loadEmps(){
+        console.log("loadEmps:")
         var _this = this;
         console.log(this);
   
@@ -871,14 +881,6 @@
         this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&keywords=" + this.keywords + "&keywords_range=" + this.keywords_range + "&a" +this.a + "&keywords_products=" + this.keywords_products + "&propertyValueMin=" + this.propertyValueMin + "&propertyValueMax=" + this.propertyValueMax + "&registerCapitalMin=" + this.registerCapitalMin + "&registerCapitalMax=" + this.registerCapitalMax).then(resp=> {
           this.tableLoading = false;
 
-          console.log("loadEmps():")
-          console.log("&a=" + this.a)
-          console.log("&keywords_range=" + this.keywords_range)
-          console.log("&propertyValueMin=" + this.propertyValueMin)
-          console.log("&propertyValueMax=" + this.propertyValueMax)
-          console.log("&registerCapitalMin=" + this.registerCapitalMin)
-          console.log("&registerCapitalMax=" + this.registerCapitalMax)
-        
           if (resp && resp.status == 200) {
             var data = resp.data;
             _this.emps = data.emps;
@@ -887,7 +889,6 @@
             // console.log(data.emps)
             // console.log(data.emps[0])
             // console.log("end")
-
 //            _this.emptyEmpData();
           }
         })
@@ -900,8 +901,8 @@
               //更新
               this.tableLoading = true;
               this.putRequest("/employee/basic/emp", this.emp).then(resp=> {
-                // console.log("进入更新putRequest");
-                // console.log(resp.status)
+                console.log("进入更新putRequest");
+                console.log(resp.status)
                 _this.tableLoading = false;
                 if (resp && resp.status == 200) {
                   var data = resp.data;
@@ -944,7 +945,6 @@
           if (resp && resp.status == 200) {
             var data = resp.data;
             _this.deps = data.deps;
-            _this.emp.workID = data.workID;
           }
         })
       },
@@ -960,11 +960,10 @@
         this.dialogTitle = "添加员工";
         this.dialogVisible = true;
         var _this = this;
-
       },
       emptyEmpData(){
         this.emp = {
-          name: '',
+          name: '无名2',
           highSea: '',
           customerId: '',
           province: '',
@@ -974,14 +973,14 @@
           remark: '',
           businessReceipt: '',
           businessScope: '',
-          registerCapital: '',
+          registerCapital: '25000',
           corporateNature: '',
-          propertyValue: '',
+          propertyValue: '15000',
           oldName: '',
           employeeNum: '',
           products: '',
           propertyType: '',
-          email: '',
+          email: '1245667@qq.com',
           phone: '',
           address: '',
           industry: '',
@@ -991,7 +990,9 @@
           relevantPAccount: '',
           creatorAccount: '',
           chargePAccount: '',
-          chargeP: ''
+          chargeP: '',
+          longitude: '111',
+          latitude:'222'
         }
       }
     }

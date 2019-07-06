@@ -36,8 +36,16 @@ public class Employee {
     private String longitude;
     private String latitude;
 
+    public String getLongitude() {
+        return longitude;
+    }
+
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
     }
 
     public void setLatitude(String latitude) {
@@ -278,8 +286,6 @@ public class Employee {
     }
 
     //toString
-
-
     @Override
     public String toString() {
         return "Employee{" +
@@ -298,7 +304,7 @@ public class Employee {
                 ", remark='" + remark + '\'' +
                 ", businessReceipt='" + businessReceipt + '\'' +
                 ", businessScope='" + businessScope + '\'' +
-                ", registerCapital='" + registerCapital + '\'' +
+                ", registerCapital=" + registerCapital +
                 ", corporateNature='" + corporateNature + '\'' +
                 ", propertyValue=" + propertyValue +
                 ", oldName='" + oldName + '\'' +
@@ -312,6 +318,8 @@ public class Employee {
                 ", relevantPAccount='" + relevantPAccount + '\'' +
                 ", chargeP='" + chargeP + '\'' +
                 ", chargePAccount='" + chargePAccount + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", latitude='" + latitude + '\'' +
                 '}';
     }
 }

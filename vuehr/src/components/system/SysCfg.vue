@@ -3,24 +3,28 @@
   <div id="container" style="width:100%; height:100%"></div>
   <div id="panel"></div>
   <div id="myPageTop" style="position: absolute;top: 20px;right: 50px;background: #fff;">
-      <table>
-        <tr>
-          <td>
-            <label>请输入关键字：</label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input v-model="input" id="tipinput"/><button @click="searchAddress">搜索</button>
-          </td>
-        </tr>
-      </table>
-      <p>附近</p>
-      <select class="choice" v-on:change="indexSelect($event)">
-            <option value='100000'>10km</option>
-            <option value='200000'>20km</option>
-            <option value='300000'>30km</option>
-      </select>
+    <table>
+      <tr>
+        <td>
+          <label>请输入关键字：</label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input v-model="input" id="tipinput"/><button @click="searchAddress">搜索</button>
+        </td>
+      </tr>
+    </table>
+    <p>附近</p>
+    <select class="choice" v-on:change="indexSelect($event)">
+          <option value='100000'>10km</option>
+          <option value='200000'>20km</option>
+          <option value='300000'>30km</option>
+    </select>
+  </div>   
+  <div id="luenceSearch" style="position: absolute;top: 20px;right: 1100px;background: #fff;">
+      <label>请输入luence关键字：</label>
+      <input v-model="keyword" id="input_luence_id"/><button @click="searchAddress_luence">搜索</button>
     </div>
   </div>   
 </template>
@@ -33,7 +37,8 @@ import AMapUI from 'AMapUI';
     name: "AMap",
     data: function(){
       return {
-        input: ''
+        input: '',
+        keyword: ''
       }
     },
     mounted: function () {
@@ -75,6 +80,13 @@ import AMapUI from 'AMapUI';
         placeSearch.search(this.input);
  
       },
+
+      searchAddress_luence() {
+        this.getRequest("/company/search?keyword=" + this.keyword).then(resp=> {
+          console.log("&keyword=" + this.keyword)
+        })
+      },
+
       selectAddress(e) {
         //这里获得点选地点的经纬度
         let location = e.selected.data.location;

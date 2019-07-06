@@ -2,6 +2,7 @@ package org.sang.controller;
 
 import org.sang.bean.Company;
 import org.sang.bean.RespBean;
+import org.sang.common.poi.LuenceUtils;
 import org.sang.common.poi.PoiUtils;
 import org.sang.service.CompanyService;
 
@@ -23,7 +24,15 @@ import org.springframework.web.multipart.MultipartFile;
 public class CompanyController {
 	@Autowired
 	CompanyService companyService;
-	
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public void searchResults(@RequestParam(defaultValue = "汽车") String keyword) throws Exception {
+		System.err.println("enter GET: search");
+		System.out.println(keyword);
+		LuenceUtils.TermQueryStrings(keyword);
+	}
+
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public Map<String, Object> companies(){
 		Map<String, Object> map = new HashMap<>();

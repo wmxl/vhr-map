@@ -44,7 +44,8 @@ public class EmpService {
 
     public int updateEmp(Employee employee) {
         System.err.println("进入update");
-        int r =empMapper.updateEmp(employee);
+        System.out.println("employee = " + employee);
+        int r = empMapper.updateEmp(employee);
         System.err.println(r);
         return r;
     }

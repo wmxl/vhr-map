@@ -50,8 +50,8 @@ public class EmpBasicController {
         if (empService.addEmp(employee) == 1) {
             System.err.println("1:");
 
-            executorService.execute(new EmailRunnable(employee,
-                    javaMailSender, templateEngine));
+//            executorService.execute(new EmailRunnable(employee,
+//                    javaMailSender, templateEngine));
             System.err.println(employee);
             return RespBean.ok("添加成功!");
         }
