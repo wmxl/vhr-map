@@ -222,4 +222,17 @@ public class Company {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
+
+	@Override
+	public String toString() {
+		return "Company{" +
+
+				", name='" + name + '\'' +
+
+				", address='" + address + '\'' +
+
+				", longitude='" + longitude + '\'' +
+				", latitude='" + latitude + '\'' +
+				'}';
+	}
 }

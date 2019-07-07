@@ -82,12 +82,17 @@ import AMapUI from 'AMapUI';
       },
 
       searchAddress_luence() {
+        var _this = this;
         this.getRequest("/company/search?keyword=" + this.keyword).then(resp=> {
           console.log("&keyword=" + this.keyword)
+
+          console.log(resp);
+          console.log(resp.data);
 
           if (resp) {
           var data = resp.data;
             _this.list = data.com;
+            console.log(_this.list)
           }
         })
       },

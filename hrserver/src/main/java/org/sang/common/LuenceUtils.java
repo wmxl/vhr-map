@@ -150,8 +150,8 @@ public class LuenceUtils {
         }
     }
 
-    static public List<String> searchResults(Query query) throws Exception {
-        List<String > strs = new ArrayList<>();
+    static public List<Company> searchResults(Query query) throws Exception {
+        List<Company > coms = new ArrayList<>();
         // 索引目录对象
         Directory directory = FSDirectory.open(new File("d://indexDir"));
         // 索引读取工具
@@ -172,17 +172,21 @@ public class LuenceUtils {
             // 根据编号去找文档
             Document doc = reader.document(docID);
             System.out.println("id: " + doc.get("id"));
-            System.out.println("title: " + doc.get("title"));
+            System.out.println("name: " + doc.get("name"));
             System.out.println("address: " + doc.get("address"));
             System.out.println("longitude: " + doc.get("longitude"));
             System.out.println("latitude: " + doc.get("latitude"));
             // 取出文档得分
             System.out.println("得分： " + scoreDoc.score);
-            String name =  doc.get("name");
-            strs.add(name);
+            Company com = new Company();
+            com.setName(doc.get("name"));
+            com.setAddress(doc.get("address"));
+            com.setLongitude(doc.get("longitude"));
+            com.setLatitude(doc.get("latitude"));
 
+            coms.add(com);
         }
-        return strs;
+        return coms;
     }
 
     static public void testTermQuery(String s1) throws Exception {
@@ -191,10 +195,10 @@ public class LuenceUtils {
         search(query);
     }
 
-    static public void TermQueryStrings(String s1) throws Exception {
+    static public  List<Company> TermQueryCompanys(String s1) throws Exception {
         // 创建词条查询对象
         Query query = new TermQuery(new Term("name", s1));
-        System.out.println(searchResults(query));;
+        return searchResults(query);
     }
 
     public static void main(String[] args) throws Exception {

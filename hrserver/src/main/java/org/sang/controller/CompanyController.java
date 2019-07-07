@@ -5,6 +5,7 @@ import org.sang.bean.RespBean;
 import org.sang.common.LuenceUtils;
 import org.sang.service.CompanyService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,13 @@ public class CompanyController {
 
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public void searchResults(@RequestParam(defaultValue = "汽车") String keyword) throws Exception {
+	public Map<String, Object> searchResults(@RequestParam(defaultValue = "汽车") String keyword) throws Exception {
+		Map<String, Object> map = new HashMap<>();
 		System.err.println("enter GET: search");
 		System.out.println(keyword);
-		LuenceUtils.TermQueryStrings(keyword);
-
-
+		map.put("com", LuenceUtils.TermQueryCompanys(keyword));
+		System.out.println(LuenceUtils.TermQueryCompanys(keyword));
+		return map;
 	}
 
 
