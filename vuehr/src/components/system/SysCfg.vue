@@ -84,6 +84,11 @@ import AMapUI from 'AMapUI';
       searchAddress_luence() {
         this.getRequest("/company/search?keyword=" + this.keyword).then(resp=> {
           console.log("&keyword=" + this.keyword)
+
+          if (resp) {
+          var data = resp.data;
+            _this.list = data.com;
+          }
         })
       },
 

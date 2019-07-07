@@ -5,7 +5,7 @@ import org.sang.bean.Company;
 import java.util.List;
 
 public interface CompanyMapper {
-	
+
 	List <Company> Companies(); 
 	
 	List<Company> getCompanyByPage(@Param("start") Integer start, @Param("size") Integer size, @Param("keywords") String keywords);
