@@ -82,17 +82,33 @@ import AMapUI from 'AMapUI';
       },
 
       searchAddress_luence() {
+      this.AMapInit();
         var _this = this;
         this.getRequest("/company/search?keyword=" + this.keyword).then(resp=> {
-          console.log("&keyword=" + this.keyword)
-
-          console.log(resp);
-          console.log(resp.data);
-
           if (resp) {
           var data = resp.data;
             _this.list = data.com;
-            console.log(_this.list)
+          }
+        var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
+          var center = map.getCenter();
+        for (var i = 0; i < _this.list.length; i++) {
+          let lngLat = [parseFloat(_this.list[i].longitude), parseFloat(_this.list[i].latitude)];
+          var marker = new AMap.Marker({
+                position: lngLat,
+                map: map
+            });
+            var info = [];
+            info.push("<div class='input-card content-window-card'><div><img style=\"float:left;\" src=\" https://webapi.amap.com/images/autonavi.png \"/></div> ");
+            info.push("<div style=\"padding:7px 0px 0px 0px;\"><h4>公司信息</h4>");
+            info.push("<p class='input-item'>公司名称 :"+_this.list[i].name+"</p>");
+            info.push("<p class='input-item'>地址 :"+_this.list[i].address+"</p></div></div>");
+            marker.content = info.join("");
+            marker.on('click', markerClick);
+            marker.emit('click', {target: marker}); 
+          }         
+        function markerClick(e) {
+            infoWindow.setContent(e.target.content);
+            infoWindow.open(map, e.target.getPosition());
           }
         })
       },
