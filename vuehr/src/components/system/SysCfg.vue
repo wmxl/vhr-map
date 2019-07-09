@@ -1,7 +1,7 @@
 <template>
 
-<div style="position: relative;width: 100%;height: 100%;">
-  <div id="container" style="width:100%; height:100%"></div>
+<div style="position: relative;width: 100%;height: 100%;" >
+  <div id="container" style="width:100%; height:100%" ></div>
   <div id="panel"></div>
   <div id="myPageTop" style="position: absolute;top: 20px;right: 50px;background: #fff;">
     <table>
@@ -26,29 +26,12 @@
   <div id="luenceSearch" style="position: absolute;top: 20px;right: 1100px;background: #fff;">
     <label>请输入luence关键字：</label>
     <input v-model="keyword" id="input_luence_id"/><button @click="searchAddress_luence">搜索</button>
-    <table border="0">
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
-      </tr>
-      <tr>
-        <td>January</td>
-        <td>$100</td>
-      </tr>
-      <tr>
-        <td>January</td>
-        <td>$100</td>
-      </tr>
-
-    </table>
     <el-table
       :data="coms"
-      v-loading="tableLoading"
-      border
       stripe
-      @selection-change="handleSelectionChange"
       size="mini"
-      style="width: 100%;"  v-html>
+      id = "search_table"
+      :style="mytablestyle">
       <el-table-column
         prop="name"
         align="left"
@@ -64,10 +47,7 @@
       </el-table-column>
     </el-table>
   </div>
-  <div id="luenceSearchResult" style="position: absolute;top: 120px;right: 1100px;background: #fff;">
-    
-  </div>
-  </div>   
+</div>   
 </template>
 
 <script>
@@ -78,6 +58,7 @@ import AMapUI from 'AMapUI';
     name: "AMap",
     data: function(){
       return {
+        mytablestyle:{display: 'none'},
         input: '',
         keyword: '',
         coms: [],
@@ -92,6 +73,15 @@ import AMapUI from 'AMapUI';
       this.showMark()
     },
     methods: {
+      //show search talbe
+      show_searchtable(){
+        this.mytablestyle = {}
+      },
+      //hide search talbe
+      hide_searchtable(){
+        this.mytablestyle = {display: 'none'}
+      },
+
       AMapInit: function () {
         map = new AMap.Map('container', {
           resizeEnable: true,
@@ -121,20 +111,25 @@ import AMapUI from 'AMapUI';
         map.plugin(["AMap.Geolocation"], function() {
             map.addControl(new AMap.Geolocation());
         }); 
+        this.hide_searchtable();
+
       },
+
       searchAddress() {
         placeSearch.search(this.input);
- 
+        this.hide_searchtable()
+
       },
 
       searchAddress_luence() {
-      this.AMapInit();
+        this.AMapInit();
         var _this = this;
         this.getRequest("/company/search?keyword=" + this.keyword).then(resp=> {
           if (resp) {
           var data = resp.data;
             _this.list = data.com;
             this.coms = data.com;
+            this.mytablestyle = {}; 
           }
         var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
           var center = map.getCenter();
@@ -160,14 +155,18 @@ import AMapUI from 'AMapUI';
         })
       },
 
+
       selectAddress(e) {
         //这里获得点选地点的经纬度
         let location = e.selected.data.location;
         console.log('lng',location.lng);
         console.log('lat',location.lat);
         // Do Something
+        this.hide_searchtable()
+
       },
       indexSelect(event){
+       this.hide_searchtable()
       	this.AMapInit();
       	var _this = this;
         this.getRequest("/company/list").then(resp=> {
@@ -196,6 +195,7 @@ import AMapUI from 'AMapUI';
         		marker.on('click', markerClick);
         		marker.emit('click', {target: marker});
         		}
+           
         		
         	}
         	
@@ -204,6 +204,8 @@ import AMapUI from 'AMapUI';
         		infoWindow.open(map, e.target.getPosition());
         	}
         })
+        this.hide_searchtable()
+
       },
       showMark(){
       var _this = this;
@@ -236,6 +238,8 @@ import AMapUI from 'AMapUI';
         		infoWindow.open(map, e.target.getPosition());
         	}
         })
+        this.hide_searchtable()
+
       }
     }
   }
