@@ -7,6 +7,10 @@ import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.*;
 import org.apache.lucene.search.*;
+import org.apache.lucene.search.highlight.Formatter;
+import org.apache.lucene.search.highlight.Highlighter;
+import org.apache.lucene.search.highlight.QueryScorer;
+import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
@@ -166,20 +170,33 @@ public class LuenceUtils {
         // 获取得分文档对象（ScoreDoc）数组.SocreDoc中包含：文档的编号、文档的得分
         ScoreDoc[] scoreDocs = topDocs.scoreDocs;
 
+
+//        =-------高亮 部分----
+        // 格式化器
+        Formatter formatter = new SimpleHTMLFormatter("【", "】");
+        QueryScorer scorer = new QueryScorer(query);
+        // 准备高亮工具
+        Highlighter highlighter = new Highlighter(formatter, scorer);
+
         for (ScoreDoc scoreDoc : scoreDocs) {
             // 取出文档编号
             int docID = scoreDoc.doc;
             // 根据编号去找文档
             Document doc = reader.document(docID);
             System.out.println("id: " + doc.get("id"));
-            System.out.println("name: " + doc.get("name"));
+
+            String hTitle = highlighter.getBestFragment(new IKAnalyzer(), "name", doc.get("name"));
+
+//            System.out.println("name: " + hTitle);
+
+            System.out.println("name: " + hTitle);
             System.out.println("address: " + doc.get("address"));
             System.out.println("longitude: " + doc.get("longitude"));
             System.out.println("latitude: " + doc.get("latitude"));
             // 取出文档得分
             System.out.println("得分： " + scoreDoc.score);
             Company com = new Company();
-            com.setName(doc.get("name"));
+            com.setName(hTitle);
             com.setAddress(doc.get("address"));
             com.setLongitude(doc.get("longitude"));
             com.setLatitude(doc.get("latitude"));
@@ -202,6 +219,7 @@ public class LuenceUtils {
     }
 
     public static void main(String[] args) throws Exception {
-        new LuenceUtils().createIndex();
+//        new LuenceUtils().createIndex();
+        System.out.println(LuenceUtils.TermQueryCompanys("公司"));
     }
 }

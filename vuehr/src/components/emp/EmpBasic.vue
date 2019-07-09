@@ -96,18 +96,6 @@
                     v-model="keywords_range">
                   </el-input>
                 </el-col>
-                <!-- <el-col :span="3">
-                  <el-input
-                    placeholder="请输入a..."
-                    clearable
-                    @change="keywordsChange"
-                    style="width: 160px;margin: 0px;padding: 0px;"
-                    size="mini"
-                    @keyup.enter.native="searchEmp"
-                    prefix-icon="el-icon-search"
-                    v-model="a">
-                  </el-input>
-                </el-col> -->
                 <el-col :span="3">
                   <el-input
                     placeholder="请输入主要产品..."

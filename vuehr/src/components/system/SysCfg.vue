@@ -1,4 +1,5 @@
 <template>
+
 <div style="position: relative;width: 100%;height: 100%;">
   <div id="container" style="width:100%; height:100%"></div>
   <div id="panel"></div>
@@ -23,9 +24,49 @@
     </select>
   </div>   
   <div id="luenceSearch" style="position: absolute;top: 20px;right: 1100px;background: #fff;">
-      <label>请输入luence关键字：</label>
-      <input v-model="keyword" id="input_luence_id"/><button @click="searchAddress_luence">搜索</button>
-    </div>
+    <label>请输入luence关键字：</label>
+    <input v-model="keyword" id="input_luence_id"/><button @click="searchAddress_luence">搜索</button>
+    <table border="0">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>January</td>
+        <td>$100</td>
+      </tr>
+      <tr>
+        <td>January</td>
+        <td>$100</td>
+      </tr>
+
+    </table>
+    <el-table
+      :data="coms"
+      v-loading="tableLoading"
+      border
+      stripe
+      @selection-change="handleSelectionChange"
+      size="mini"
+      style="width: 100%;"  v-html>
+      <el-table-column
+        prop="name"
+        align="left"
+        fixed
+        label="客户名称"
+        width="190">
+      </el-table-column>
+      <el-table-column
+        prop="address"
+        label="地址"
+        align="left"
+        width="250">
+      </el-table-column>
+    </el-table>
+  </div>
+  <div id="luenceSearchResult" style="position: absolute;top: 120px;right: 1100px;background: #fff;">
+    
+  </div>
   </div>   
 </template>
 
@@ -38,7 +79,12 @@ import AMapUI from 'AMapUI';
     data: function(){
       return {
         input: '',
-        keyword: ''
+        keyword: '',
+        coms: [],
+        com: {
+          name: '',
+          address: '',
+        }
       }
     },
     mounted: function () {
@@ -88,6 +134,7 @@ import AMapUI from 'AMapUI';
           if (resp) {
           var data = resp.data;
             _this.list = data.com;
+            this.coms = data.com;
           }
         var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
           var center = map.getCenter();
@@ -164,6 +211,7 @@ import AMapUI from 'AMapUI';
           if (resp) {
           var data = resp.data;
             _this.list = data.com;
+            
           }
         	var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
         	var center = map.getCenter();
@@ -202,4 +250,7 @@ import AMapUI from 'AMapUI';
     right: 10px;
     width: 280px;
   }
+  mark {
+              background-color:#00ff90; font-weight:bold;
+          }
 </style>
